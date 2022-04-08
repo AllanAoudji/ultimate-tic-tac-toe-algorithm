@@ -1,12 +1,14 @@
 {
-  "name": "ultimateTicTacToeAlgorithm",
+  "name": "ultimatetictactoealgorithm",
   "version": "1.0.0",
   "description": "Ultimate Tic Tic Toe Algorithm",
   "main": "index.js",
   "author": "AZIHubert <allan.aoudji@protonmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "tsc && node dist/index.js"
+    "start": "tsc && node dist/index.js",
+    "test": "jest --verbose",
+    "test-watch": "jest --verbose --watchAll"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
