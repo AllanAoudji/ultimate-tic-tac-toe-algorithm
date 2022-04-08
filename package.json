@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "AZIHubert <allan.aoudji@protonmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "tsc && node dist/index.js"
+  },
   "devDependencies": {
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.23",
