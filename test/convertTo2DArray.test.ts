@@ -31,8 +31,8 @@ describe('convertTo2DArray', () => {
 
   it('should keep order', () => {
     const array1D81 = Array.from(Array(81).keys());
-    const array2D9x9 = convertTo2DArray(array1D81);
     const array1D9 = Array.from(Array(9).keys());
+    const array2D9x9 = convertTo2DArray(array1D81);
     const array2D3x3 = convertTo2DArray(array1D9);
 
     expect(array2D9x9[0][0]).toBe(array1D81[0]);
