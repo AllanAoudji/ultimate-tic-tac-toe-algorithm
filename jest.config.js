@@ -1,5 +1,4 @@
 module.exports = {
-    
     transform: {
         '^.+\\.ts$': 'ts-jest'
     },
@@ -10,5 +9,8 @@ module.exports = {
     testMatch: [
         '**/test/**/*.test.(ts|js)'
     ],
-    testEnvironment: 'node'
+    testEnvironment: 'node',
+    moduleNameMapper: {
+        '^@src/(.*)$': '<rootDir>/src/$1',
+    },
 }
