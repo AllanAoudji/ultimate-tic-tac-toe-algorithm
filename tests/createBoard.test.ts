@@ -6,7 +6,7 @@ describe('createBoard', () => {
 
     expect(emptyBoard.length).toBe(81);
     emptyBoard.forEach((tile) => {
-      expect(tile).toStrictEqual('');
+      expect(tile).toBe(BoardState.Empty);
     });
   });
 });

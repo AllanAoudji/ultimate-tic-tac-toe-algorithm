@@ -1,4 +1,6 @@
-const convertTo1DArray: <T>(array2D: T[][]) => T[] = (array2D) => {
+const convertTo1DArray: (array2D: BoardState[][]) => BoardState[] = (
+  array2D,
+) => {
   const colsLength = array2D.length;
 
   if (colsLength !== 3 && colsLength !== 9) {
@@ -10,7 +12,7 @@ const convertTo1DArray: <T>(array2D: T[][]) => T[] = (array2D) => {
     }
   });
 
-  const array1D = ([] as typeof array2D[0][0][]).concat(...array2D);
+  const array1D = ([] as BoardState[]).concat(...array2D);
 
   return array1D;
 };

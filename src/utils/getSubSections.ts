@@ -1,4 +1,4 @@
-const getSubSections: <T>(board: T[][]) => T[][][] = (board) => {
+const getSubSections: (board: BoardState[][]) => BoardState[][][] = (board) => {
   if (board.length !== 9) {
     throw new Error('arg should be an array with a length of 81');
   }
@@ -20,7 +20,7 @@ const getSubSections: <T>(board: T[][]) => T[][][] = (board) => {
     [6, 9, 6, 9],
   ];
 
-  const subSections = slices.reduce<typeof board[0][0][][][]>((rows, key) => {
+  const subSections = slices.reduce<BoardState[][][]>((rows, key) => {
     const section = board
       .slice(key[2], key[3] + 1)
       .map((boardIndex) => boardIndex.slice(key[0], key[1] + 1));

@@ -4,16 +4,24 @@ const expectionMessage = 'arg should be a 3x3 or a 9x9 matrix';
 
 describe('convertTo1DArray', () => {
   it('should throw an error if arg is not a 3x3 array', () => {
-    const wrongArray3x2 = new Array(3).fill(new Array(2));
-    const wrongArray2x3 = new Array(2).fill(new Array(3));
+    const wrongArray3x2 = new Array(3).fill(
+      new Array(2).fill(BoardState.Empty),
+    );
+    const wrongArray2x3 = new Array(2).fill(
+      new Array(3).fill(BoardState.Empty),
+    );
 
     expect(() => convertTo1DArray(wrongArray3x2)).toThrow(expectionMessage);
     expect(() => convertTo1DArray(wrongArray2x3)).toThrow(expectionMessage);
   });
 
   it('should throw an error if arg is not a 9x9 array', () => {
-    const wrongArray9x8 = new Array(9).fill(new Array(8));
-    const wrongArray8x9 = new Array(8).fill(new Array(9));
+    const wrongArray9x8 = new Array(9).fill(
+      new Array(8).fill(BoardState.Empty),
+    );
+    const wrongArray8x9 = new Array(8).fill(
+      new Array(9).fill(BoardState.Empty),
+    );
 
     expect(() => convertTo1DArray(wrongArray9x8)).toThrow(expectionMessage);
     expect(() => convertTo1DArray(wrongArray8x9)).toThrow(expectionMessage);
@@ -21,31 +29,35 @@ describe('convertTo1DArray', () => {
 
   it('should convert a 9x9 2D array to a 1D array with a length of 81', () => {
     const shape = 9;
-    const array2D: number[][] = new Array(shape).fill(new Array(shape).fill(0));
+    const array2D: BoardState[][] = new Array(shape).fill(
+      new Array(shape).fill(BoardState.Empty),
+    );
     const array1D = convertTo1DArray(array2D);
 
     expect(array1D.length).toBe(shape * shape);
     array1D.forEach((item) => {
-      expect(item).toBe(0);
+      expect(item).toBe(BoardState.Empty);
     });
   });
 
   it('should convert a 3x3 2D array to a 1D array with a length of 9', () => {
     const shape = 3;
-    const array2D: number[][] = new Array(shape).fill(new Array(shape).fill(0));
+    const array2D: BoardState[][] = new Array(shape).fill(
+      new Array(shape).fill(BoardState.Empty),
+    );
     const array1D = convertTo1DArray(array2D);
 
     expect(array1D.length).toBe(shape * shape);
     array1D.forEach((item) => {
-      expect(item).toBe(0);
+      expect(item).toBe(BoardState.Empty);
     });
   });
 
   it('should keep the order', () => {
     const array2D = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
+      [BoardState.Empty, BoardState.X, BoardState.Y],
+      [BoardState.Y, BoardState.Empty, BoardState.X],
+      [BoardState.X, BoardState.Y, BoardState.Empty],
     ];
     const array1D = convertTo1DArray(array2D);
 

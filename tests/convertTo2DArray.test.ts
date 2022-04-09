@@ -2,7 +2,7 @@ import convertTo2DArray from '@src/utils/convertTo2DArray';
 
 describe('convertTo2DArray', () => {
   it("should return an exception if it's not 9/81-length array", () => {
-    const wrongArray: number[] = new Array(6).fill(0);
+    const wrongArray: BoardState[] = new Array(6).fill(BoardState.Empty);
 
     expect(() => convertTo2DArray(wrongArray)).toThrow(
       'argument should be an array with a length of 9 or 81',
@@ -10,7 +10,7 @@ describe('convertTo2DArray', () => {
   });
 
   it('should convert a 81-length array to a 9x9 2D array', () => {
-    const array1D: number[] = new Array(81).fill(0);
+    const array1D: BoardState[] = new Array(81).fill(BoardState.Empty);
     const array2D = convertTo2DArray(array1D);
 
     expect(convertTo2DArray(array1D).length).toBe(9);
@@ -20,7 +20,7 @@ describe('convertTo2DArray', () => {
   });
 
   it('should convert a 9-length array to a 3x3 2D array', () => {
-    const array1D: number[] = new Array(9).fill(0);
+    const array1D: BoardState[] = new Array(9).fill(BoardState.Empty);
     const array2D = convertTo2DArray(array1D);
 
     expect(convertTo2DArray(array1D).length).toBe(3);
@@ -30,8 +30,8 @@ describe('convertTo2DArray', () => {
   });
 
   it('should keep order', () => {
-    const array1D81 = Array.from(Array(81).keys());
-    const array1D9 = Array.from(Array(9).keys());
+    const array1D81: BoardState[] = new Array(81).fill(BoardState.Empty);
+    const array1D9: BoardState[] = new Array(81).fill(BoardState.Empty);
     const array2D9x9 = convertTo2DArray(array1D81);
     const array2D3x3 = convertTo2DArray(array1D9);
 

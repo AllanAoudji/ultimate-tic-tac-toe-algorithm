@@ -2,8 +2,12 @@ import getSubSections from '@src/utils/getSubSections';
 
 describe('getSubSections', () => {
   it('should throw an error if arg is not a 9x9 matrix', () => {
-    const wrongBoard8x9 = new Array(8).fill(new Array(9));
-    const wrongBoard9x8 = new Array(9).fill(new Array(8));
+    const wrongBoard8x9 = new Array(8).fill(
+      new Array(9).fill(BoardState.Empty),
+    );
+    const wrongBoard9x8 = new Array(9).fill(
+      new Array(8).fill(BoardState.Empty),
+    );
     const exceptionMessage = 'arg should be an array with a length of 81';
 
     expect(() => getSubSections(wrongBoard8x9)).toThrow(exceptionMessage);
@@ -11,7 +15,9 @@ describe('getSubSections', () => {
   });
 
   it('should return an 9x3x3 matrix', () => {
-    const board: number[][] = new Array(9).fill(new Array(9).fill(0));
+    const board: BoardState[][] = new Array(9).fill(
+      new Array(9).fill(BoardState.Empty),
+    );
     const subSections = getSubSections(board);
 
     expect(subSections.length).toBe(9);
@@ -24,7 +30,9 @@ describe('getSubSections', () => {
   });
 
   it('should keep the order', () => {
-    const board: number[][] = new Array(9).fill(Array.from(Array(9).keys()));
+    const board: BoardState[][] = new Array(9).fill(
+      Array.from(Array(9).keys()),
+    );
     const subSections = getSubSections(board);
 
     expect(subSections[0][0][0]).toBe(board[0][0]);
