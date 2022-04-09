@@ -1,7 +1,15 @@
 import convertTo2DArray from '@src/utils/convertTo2DArray';
 
 describe('convertTo2DArray', () => {
-  it("should return an exception if it's not 9/81-length array", () => {
+  it('should return an exception if arg is an empty array', () => {
+    const emptyArray = new Array(9);
+
+    expect(() => convertTo2DArray(emptyArray)).toThrow(
+      'argument should be an array with a length of 9 or 81',
+    );
+  });
+
+  it('should return an exception if arg is not 9/81-length array', () => {
     const wrongArray: BoardState[] = new Array(6).fill(BoardState.Empty);
 
     expect(() => convertTo2DArray(wrongArray)).toThrow(
