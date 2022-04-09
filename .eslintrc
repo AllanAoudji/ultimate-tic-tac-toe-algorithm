@@ -9,6 +9,7 @@
         "plugin:@shopify/typescript"
     ],
     "rules": {
-        "function-paren-newline": "off"
+        "function-paren-newline": "off",
+        "no-mixed-operators": "off"
     }
 }
