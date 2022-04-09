@@ -24,6 +24,18 @@ describe('checkIfWon', () => {
     expect(() => checkIfWon(wrongMatrix)).toThrow(EXCEPTION_MESSAGE);
   });
 
+  it('should throw an error if is not a square matrix', () => {
+    const wrongMatrix: Tile[][] = new Array(3).fill(new Array(2));
+
+    expect(() => checkIfWon(wrongMatrix)).toThrow(EXCEPTION_MESSAGE);
+  });
+
+  it('should work with an 1D array of BoardState', () => {
+    const array1D: BoardState[] = new Array(9).fill(BoardState.Empty);
+
+    expect(checkIfWon(array1D)).toBe(BoardState.Empty);
+  });
+
   it('should return a winner if the top row has the same symbol', () => {
     const winBoardPlayer1: Tile[][] = converToMatrixTile([
       [BoardState.Player1, BoardState.Player1, BoardState.Player1],
