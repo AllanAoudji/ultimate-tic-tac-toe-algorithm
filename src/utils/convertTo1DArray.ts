@@ -1,11 +1,16 @@
 const convertTo1DArray: (array2D: BoardState[][]) => BoardState[] = (
   array2D,
 ) => {
+  if (Object.keys(array2D).length === 0) {
+    throw new Error('arg should be a 3x3 or a 9x9 matrix');
+  }
+
   const colsLength = array2D.length;
 
   if (colsLength !== 3 && colsLength !== 9) {
     throw new Error('arg should be a 3x3 or a 9x9 matrix');
   }
+
   array2D.forEach((row) => {
     if (row.length !== colsLength) {
       throw new Error('arg should be a 3x3 or a 9x9 matrix');

@@ -1,6 +1,9 @@
 const convertTo2DArray: (array1D: BoardState[]) => BoardState[][] = (
   array1D,
 ) => {
+  if (Object.keys(array1D).length === 0) {
+    throw new Error('argument should be an array with a length of 9 or 81');
+  }
   if (array1D.length !== 81 && array1D.length !== 9) {
     throw new Error('argument should be an array with a length of 9 or 81');
   }

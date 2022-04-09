@@ -5,6 +5,9 @@ const getSubSections: (
 ) => BoardState[][][] = (board) => {
   let array2D: BoardState[][];
 
+  if (Object.keys(board).length === 0) {
+    throw new Error('arg should be a 81 length array or a 9x9 matrix');
+  }
   // Check if outer shape might match
   if (board.length !== 9 && board.length !== 81) {
     throw new Error('arg should be a 81 length array or a 9x9 matrix');
