@@ -7,5 +7,8 @@
     "extends": [
         "plugin:@shopify/esnext",
         "plugin:@shopify/typescript"
-    ]
+    ],
+    "rules": {
+        "function-paren-newline": "off"
+    }
 }
