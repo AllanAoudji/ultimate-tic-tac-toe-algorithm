@@ -1,10 +1,5 @@
-interface Position {
-  x: number;
-  y: number;
-}
-
 const getPosition1DFrom2D: (
-  position: Position,
+  position: Position2D,
   squareSize?: number,
 ) => number = ({x, y}, squareSize = 9) => {
   if (x >= squareSize || y >= squareSize) {
