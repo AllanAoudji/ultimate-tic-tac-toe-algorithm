@@ -7,7 +7,7 @@ enum RowOrColumn {
 }
 
 const checkColumnsOrRows: (
-  array: BoardState[][],
+  array: Tile[][],
   rowOrColumn: RowOrColumn,
 ) => [BoardState, WiningLine] | BoardState.Empty = (array, rowOrColumn) => {
   const state = array.reduce<[BoardState, WiningLine] | BoardState.Empty>(
@@ -21,9 +21,9 @@ const checkColumnsOrRows: (
       // Continue if A === B && B === C
       // and A !== Empty.
       if (
-        row[0] === row[1] &&
-        row[1] === row[2] &&
-        row[0] !== BoardState.Empty
+        row[0].state === row[1].state &&
+        row[1].state === row[2].state &&
+        row[0].state !== BoardState.Empty
       ) {
         // Check if we check the columns or the row,
         // and assign the winning player and the position
@@ -33,19 +33,19 @@ const checkColumnsOrRows: (
             rowOrColumn === RowOrColumn.Row
               ? WiningLine.TopRow
               : WiningLine.LeftColumn;
-          return [row[0], place];
+          return [row[0].state, place];
         } else if (index === 1) {
           const place =
             rowOrColumn === RowOrColumn.Row
               ? WiningLine.MiddleRow
               : WiningLine.MiddleColumn;
-          return [row[0], place];
+          return [row[0].state, place];
         } else {
           const place =
             rowOrColumn === RowOrColumn.Row
               ? WiningLine.BottomRow
               : WiningLine.RightColumn;
-          return [row[0], place];
+          return [row[0].state, place];
         }
       }
 
@@ -59,9 +59,9 @@ const checkColumnsOrRows: (
 };
 
 const checkIfWon: (
-  section: BoardState[] | BoardState[][],
+  section: BoardState[] | Tile[][],
 ) => [BoardState, WiningLine] | BoardState.Empty = (section) => {
-  let array2D: BoardState[][];
+  let array2D: Tile[][];
 
   // Check if section is a 9 length array or
   // a 3x3 Matrix and assign to array2D
@@ -75,7 +75,7 @@ const checkIfWon: (
         throw new Error('arg should be a 9 length array or a 9x9 matrix');
       }
     });
-    array2D = [...(section as BoardState[][])];
+    array2D = [...(section as Tile[][])];
   } else {
     array2D = convertTo2DArray(section as BoardState[]);
   }
@@ -95,18 +95,18 @@ const checkIfWon: (
 
   // Check if a diagonal is wining.
   if (
-    array2D[0][0] === array2D[1][1] &&
-    array2D[1][1] === array2D[2][2] &&
-    array2D[0][0] !== BoardState.Empty
+    array2D[0][0].state === array2D[1][1].state &&
+    array2D[1][1].state === array2D[2][2].state &&
+    array2D[0][0].state !== BoardState.Empty
   ) {
-    return [array2D[0][0], WiningLine.TopLeftBottomRightDiagonal];
+    return [array2D[0][0].state, WiningLine.TopLeftBottomRightDiagonal];
   }
   if (
-    array2D[0][2] === array2D[1][1] &&
-    array2D[1][1] === array2D[2][0] &&
-    array2D[0][2] !== BoardState.Empty
+    array2D[0][2].state === array2D[1][1].state &&
+    array2D[1][1].state === array2D[2][0].state &&
+    array2D[0][2].state !== BoardState.Empty
   ) {
-    return [array2D[0][2], WiningLine.TopRightBottomLeftDiagonal];
+    return [array2D[0][2].state, WiningLine.TopRightBottomLeftDiagonal];
   }
 
   return BoardState.Empty;

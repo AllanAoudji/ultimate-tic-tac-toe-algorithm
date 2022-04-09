@@ -1,9 +1,9 @@
 import convertTo2DArray from './convertTo2DArray';
 
-const getSubSections: (
-  board: BoardState[][] | BoardState[],
-) => BoardState[][][] = (board) => {
-  let array2D: BoardState[][];
+const getSubSections: (board: Tile[][] | BoardState[]) => Tile[][][] = (
+  board,
+) => {
+  let array2D: Tile[][];
 
   if (Object.keys(board).length === 0) {
     throw new Error('arg should be a 81 length array or a 9x9 matrix');
@@ -22,7 +22,7 @@ const getSubSections: (
         throw new Error('arg should be a 81 length array or a 9x9 matrix');
       }
     });
-    array2D = [...(board as BoardState[][])];
+    array2D = [...(board as Tile[][])];
   } else {
     array2D = convertTo2DArray(board as BoardState[]);
   }
@@ -42,7 +42,7 @@ const getSubSections: (
   ];
 
   // Split 9x9 board to 9 different slices
-  const subSections = slices.reduce<BoardState[][][]>((rows, key) => {
+  const subSections = slices.reduce<Tile[][][]>((rows, key) => {
     const section = array2D
       .slice(key[2], key[3] + 1)
       .map((boardIndex) => boardIndex.slice(key[0], key[1] + 1));

@@ -1,3 +1,4 @@
+import convertTo2DArray from '@src/utils/convertTo2DArray';
 import getSubSections from '@src/utils/getSubSections';
 
 const EXCEPTION_MESSAGE = 'arg should be a 81 length array or a 9x9 matrix';
@@ -35,10 +36,8 @@ describe('getSubSections', () => {
   });
 
   it('should return an 9x3x3 matrix', () => {
-    const board: BoardState[][] = new Array(9).fill(
-      new Array(9).fill(BoardState.Empty),
-    );
-    const subSections = getSubSections(board);
+    const board: BoardState[] = new Array(81).fill(BoardState.Empty);
+    const subSections = getSubSections(convertTo2DArray(board));
 
     expect(subSections.length).toBe(9);
     subSections.forEach((subSection) => {
@@ -50,28 +49,27 @@ describe('getSubSections', () => {
   });
 
   it('should keep the order', () => {
-    const board: BoardState[][] = new Array(9).fill(
-      Array.from(Array(9).keys()),
-    );
-    const subSections = getSubSections(board);
+    const board1D: BoardState[] = new Array(81).fill(BoardState.Empty);
+    const board2D = convertTo2DArray(board1D);
+    const subSections = getSubSections(board2D);
 
-    expect(subSections[0][0][0]).toBe(board[0][0]);
-    expect(subSections[0][2][2]).toBe(board[1][2]);
-    expect(subSections[1][0][0]).toBe(board[0][3]);
-    expect(subSections[1][2][2]).toBe(board[2][5]);
-    expect(subSections[2][0][0]).toBe(board[0][6]);
-    expect(subSections[2][2][2]).toBe(board[2][8]);
-    expect(subSections[3][0][0]).toBe(board[4][0]);
-    expect(subSections[3][2][2]).toBe(board[6][2]);
-    expect(subSections[4][0][0]).toBe(board[3][3]);
-    expect(subSections[4][2][2]).toBe(board[5][5]);
-    expect(subSections[5][0][0]).toBe(board[3][6]);
-    expect(subSections[5][2][2]).toBe(board[5][8]);
-    expect(subSections[6][0][0]).toBe(board[6][0]);
-    expect(subSections[6][2][2]).toBe(board[8][2]);
-    expect(subSections[7][0][0]).toBe(board[6][3]);
-    expect(subSections[7][2][2]).toBe(board[8][5]);
-    expect(subSections[8][0][0]).toBe(board[6][6]);
-    expect(subSections[8][2][2]).toBe(board[8][8]);
+    expect(subSections[0][0][0].state).toBe(board2D[0][0].state);
+    expect(subSections[0][2][2].state).toBe(board2D[1][2].state);
+    expect(subSections[1][0][0].state).toBe(board2D[0][3].state);
+    expect(subSections[1][2][2].state).toBe(board2D[2][5].state);
+    expect(subSections[2][0][0].state).toBe(board2D[0][6].state);
+    expect(subSections[2][2][2].state).toBe(board2D[2][8].state);
+    expect(subSections[3][0][0].state).toBe(board2D[4][0].state);
+    expect(subSections[3][2][2].state).toBe(board2D[6][2].state);
+    expect(subSections[4][0][0].state).toBe(board2D[3][3].state);
+    expect(subSections[4][2][2].state).toBe(board2D[5][5].state);
+    expect(subSections[5][0][0].state).toBe(board2D[3][6].state);
+    expect(subSections[5][2][2].state).toBe(board2D[5][8].state);
+    expect(subSections[6][0][0].state).toBe(board2D[6][0].state);
+    expect(subSections[6][2][2].state).toBe(board2D[8][2].state);
+    expect(subSections[7][0][0].state).toBe(board2D[6][3].state);
+    expect(subSections[7][2][2].state).toBe(board2D[8][5].state);
+    expect(subSections[8][0][0].state).toBe(board2D[6][6].state);
+    expect(subSections[8][2][2].state).toBe(board2D[8][8].state);
   });
 });

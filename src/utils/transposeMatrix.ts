@@ -1,9 +1,9 @@
 import convertTo2DArray from './convertTo2DArray';
 
-const transposeMatrix: (
-  array: BoardState[] | BoardState[][],
-) => BoardState[][] = (array) => {
-  let array2D: BoardState[][];
+const transposeMatrix: (array: BoardState[] | Tile[][]) => Tile[][] = (
+  array,
+) => {
+  let array2D: Tile[][];
 
   // Check if section is a 9 length array or
   // a 3x3 Matrix and assign to array2D
@@ -27,7 +27,7 @@ const transposeMatrix: (
         );
       }
     });
-    array2D = [...(array as BoardState[][])];
+    array2D = [...(array as Tile[][])];
   } else if (array.length === 9) {
     const isMatrix = array.some((item) => Array.isArray(item));
     if (isMatrix) {
@@ -38,7 +38,7 @@ const transposeMatrix: (
           );
         }
       });
-      array2D = [...(array as BoardState[][])];
+      array2D = [...(array as Tile[][])];
     } else {
       array2D = convertTo2DArray(array as BoardState[]);
     }
