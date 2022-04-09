@@ -3,6 +3,12 @@ import convertTo1DArray from '@src/utils/convertTo1DArray';
 const expectionMessage = 'arg should be a 3x3 or a 9x9 matrix';
 
 describe('convertTo1DArray', () => {
+  it('should throw an error if arg is an empty array', () => {
+    const emptyArray = new Array(9);
+
+    expect(() => convertTo1DArray(emptyArray)).toThrow(expectionMessage);
+  });
+
   it('should throw an error if arg is not a 3x3 array', () => {
     const wrongArray3x2 = new Array(3).fill(
       new Array(2).fill(BoardState.Empty),
