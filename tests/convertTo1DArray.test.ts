@@ -55,9 +55,9 @@ describe('convertTo1DArray', () => {
 
   it('should keep the order', () => {
     const array2D = [
-      [BoardState.Empty, BoardState.X, BoardState.Y],
-      [BoardState.Y, BoardState.Empty, BoardState.X],
-      [BoardState.X, BoardState.Y, BoardState.Empty],
+      [BoardState.Empty, BoardState.Player1, BoardState.Player2],
+      [BoardState.Player2, BoardState.Empty, BoardState.Player1],
+      [BoardState.Player1, BoardState.Player2, BoardState.Empty],
     ];
     const array1D = convertTo1DArray(array2D);
 
