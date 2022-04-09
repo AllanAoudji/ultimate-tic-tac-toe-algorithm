@@ -1,5 +1,7 @@
 import getSubSections from '@src/utils/getSubSections';
 
+const EXCEPTION_MESSAGE = 'arg should be an array with a length of 81';
+
 describe('getSubSections', () => {
   it('should throw an error if arg is not a 9x9 matrix', () => {
     const wrongBoard8x9 = new Array(8).fill(
@@ -8,10 +10,28 @@ describe('getSubSections', () => {
     const wrongBoard9x8 = new Array(9).fill(
       new Array(8).fill(BoardState.Empty),
     );
-    const exceptionMessage = 'arg should be an array with a length of 81';
 
-    expect(() => getSubSections(wrongBoard8x9)).toThrow(exceptionMessage);
-    expect(() => getSubSections(wrongBoard9x8)).toThrow(exceptionMessage);
+    expect(() => getSubSections(wrongBoard8x9)).toThrow(EXCEPTION_MESSAGE);
+    expect(() => getSubSections(wrongBoard9x8)).toThrow(EXCEPTION_MESSAGE);
+  });
+
+  it('should throw an error if an 1D array has not a length of 81', () => {
+    const wrongArray = new Array(78);
+
+    expect(() => getSubSections(wrongArray)).toThrow(EXCEPTION_MESSAGE);
+  });
+
+  it('should work with an 1D array of length 81', () => {
+    const array1D81 = new Array(81).fill(BoardState.Empty);
+    const subSections = getSubSections(array1D81);
+
+    expect(subSections.length).toBe(9);
+    subSections.forEach((subSection) => {
+      expect(subSection.length).toBe(3);
+      subSection.forEach((rows) => {
+        expect(rows.length).toBe(3);
+      });
+    });
   });
 
   it('should return an 9x3x3 matrix', () => {
