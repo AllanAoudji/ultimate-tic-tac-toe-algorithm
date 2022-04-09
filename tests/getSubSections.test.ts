@@ -1,6 +1,6 @@
 import getSubSections from '@src/utils/getSubSections';
 
-const EXCEPTION_MESSAGE = 'arg should be an array with a length of 81';
+const EXCEPTION_MESSAGE = 'arg should be a 81 length array or a 9x9 matrix';
 
 describe('getSubSections', () => {
   it('should throw an error if arg is not a 9x9 matrix', () => {

@@ -7,7 +7,7 @@ const getSubSections: (
 
   // Check if outer shape might match
   if (board.length !== 9 && board.length !== 81) {
-    throw new Error('arg should be an array with a length of 81');
+    throw new Error('arg should be a 81 length array or a 9x9 matrix');
   }
 
   // Check if whole shape might match
@@ -16,7 +16,7 @@ const getSubSections: (
   if (board.length === 9) {
     board.forEach((row) => {
       if (row.length !== 9) {
-        throw new Error('arg should be an array with a length of 81');
+        throw new Error('arg should be a 81 length array or a 9x9 matrix');
       }
     });
     array2D = [...(board as BoardState[][])];
