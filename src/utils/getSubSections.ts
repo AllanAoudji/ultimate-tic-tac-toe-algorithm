@@ -15,7 +15,7 @@ const getSubSections: (
   // to array2D
   if (board.length === 9) {
     board.forEach((row) => {
-      if (row.length !== 9) {
+      if (!Array.isArray(row) || row.length !== 9) {
         throw new Error('arg should be a 81 length array or a 9x9 matrix');
       }
     });
