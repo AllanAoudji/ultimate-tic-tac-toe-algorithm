@@ -29,19 +29,36 @@ describe('convertTo2DArray', () => {
     });
   });
 
+  it('should store 1D position', () => {
+    const array1D9: BoardState[] = new Array(9).fill(BoardState.Empty);
+    const array2D3x3 = convertTo2DArray(array1D9);
+
+    expect(array2D3x3[0][0].position1D).toBe(0);
+    expect(array2D3x3[0][1].position1D).toBe(1);
+    expect(array2D3x3[0][2].position1D).toBe(2);
+
+    expect(array2D3x3[1][0].position1D).toBe(3);
+    expect(array2D3x3[1][1].position1D).toBe(4);
+    expect(array2D3x3[1][2].position1D).toBe(5);
+
+    expect(array2D3x3[2][0].position1D).toBe(6);
+    expect(array2D3x3[2][1].position1D).toBe(7);
+    expect(array2D3x3[2][2].position1D).toBe(8);
+  });
+
   it('should keep order', () => {
     const array1D81: BoardState[] = new Array(81).fill(BoardState.Empty);
     const array1D9: BoardState[] = new Array(81).fill(BoardState.Empty);
     const array2D9x9 = convertTo2DArray(array1D81);
     const array2D3x3 = convertTo2DArray(array1D9);
 
-    expect(array2D9x9[0][0]).toBe(array1D81[0]);
-    expect(array2D9x9[1][0]).toBe(array1D81[9]);
-    expect(array2D9x9[1][1]).toBe(array1D81[10]);
-    expect(array2D9x9[2][0]).toBe(array1D81[18]);
+    expect(array2D9x9[0][0].state).toBe(array1D81[0]);
+    expect(array2D9x9[1][0].state).toBe(array1D81[9]);
+    expect(array2D9x9[1][1].state).toBe(array1D81[10]);
+    expect(array2D9x9[2][0].state).toBe(array1D81[18]);
 
-    expect(array2D3x3[0][0]).toBe(array1D9[0]);
-    expect(array2D3x3[1][0]).toBe(array1D9[3]);
-    expect(array2D3x3[2][0]).toBe(array1D9[6]);
+    expect(array2D3x3[0][0].state).toBe(array1D9[0]);
+    expect(array2D3x3[1][0].state).toBe(array1D9[3]);
+    expect(array2D3x3[2][0].state).toBe(array1D9[6]);
   });
 });
