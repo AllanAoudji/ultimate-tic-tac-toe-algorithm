@@ -33,4 +33,9 @@ declare global {
     x: number;
     y: number;
   }
+
+  interface Tile {
+    state: BoardState;
+    position1D: number;
+  }
 }
