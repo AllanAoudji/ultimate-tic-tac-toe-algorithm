@@ -35,6 +35,11 @@ declare global {
     y: number;
   }
 
+  interface Section {
+    position: Position;
+    tiles: Tile[][];
+  }
+
   interface Tile {
     state: BoardState;
     position1D: number;
