@@ -1,5 +1,3 @@
-When convertTo1DArray, item === Tile ? map Tile => number : number
-
 TODO Next
 create classes for Game/Board/Player
 
@@ -11,6 +9,7 @@ checkSectionStatus.ts
 checkGameStatus.ts
 pickMove.ts
 converrt1DBoard81ToBoard3X3 ([81] => {status, position}[3][3])
+=> getSubSection => forEach => checkIfWon
 createTimer
 
 Check player ([history].length %2)
