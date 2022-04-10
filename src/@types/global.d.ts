@@ -15,6 +15,7 @@ declare global {
     MiddleMiddle,
     MiddleLeft,
     BottomRight,
+    BottomMiddle,
     BottomLeft,
   }
 
