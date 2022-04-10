@@ -80,7 +80,7 @@ const checkIfWon: (
       if (
         !Array.isArray(row) ||
         Object.keys(row).length === 0 ||
-        row.length !== 3
+        row.length !== section.length
       ) {
         throw new Error('arg should be a 9 length array or a 9x9 matrix');
       }
