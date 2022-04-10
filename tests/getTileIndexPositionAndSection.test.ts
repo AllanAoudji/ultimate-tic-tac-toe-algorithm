@@ -1,10 +1,10 @@
-import getTileSection from '@src/utils/getTileSection';
+import getTileIndexPositionAndSection from '@src/utils/getTileIndexPositionAndSection';
 
-describe('getTileSection', () => {
+describe('getTileIndexPositionAndSection', () => {
   it('should throw an error if position is out of bound', () => {
     const wrongPosition = 81;
 
-    expect(() => getTileSection(wrongPosition)).toThrow(
+    expect(() => getTileIndexPositionAndSection(wrongPosition)).toThrow(
       'position out of bound',
     );
   });
@@ -22,7 +22,7 @@ describe('getTileSection', () => {
     ];
 
     tests.forEach((test) => {
-      expect(getTileSection(test[0])).toBe(test[1]);
+      expect(getTileIndexPositionAndSection(test[0])).toBe(test[1]);
     });
   });
 });
