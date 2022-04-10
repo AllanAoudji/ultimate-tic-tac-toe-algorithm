@@ -1,11 +1,12 @@
 import convertTo1DArray from './convertTo1DArray';
+import mapMatrix from './mapMatrix';
 
 const checkIfSectionIsFull: (section: BoardState[] | Tile[][]) => boolean = (
   section,
 ) => {
   let array1D: BoardState[];
 
-  if (Object.keys(section).length === 0) {
+  if (!Array.isArray(section) || Object.keys(section).length === 0) {
     throw new Error('arg should be a 9 length array or a 3x3 matrix');
   }
   if (section.length !== 9 && section.length !== 3) {
@@ -17,9 +18,7 @@ const checkIfSectionIsFull: (section: BoardState[] | Tile[][]) => boolean = (
         throw new Error('arg should be a 9 length array or a 3x3 matrix');
       }
     });
-    const matrixOfState = (section as Tile[][]).map((row) =>
-      row.map((tile) => tile.state),
-    );
+    const matrixOfState = mapMatrix(section as Tile[][], (tile) => tile.state);
     array1D = convertTo1DArray(matrixOfState);
   } else {
     array1D = [...(section as BoardState[])];
