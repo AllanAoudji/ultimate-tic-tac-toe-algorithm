@@ -31,8 +31,8 @@ describe('checkIfWon', () => {
   });
 
   it('should throw an error if arg matrix is not a matrix of tiles', () => {
-    const wrongMatrix1 = new Array(2).fill(new Array(3).fill(BoardState.Empty));
-    const wrongMatrix2 = new Array(3).fill(new Array(2).fill(BoardState.Empty));
+    const wrongMatrix1 = new Array(3).fill(new Array(3).fill(false));
+    const wrongMatrix2 = new Array(3).fill(new Array(3).fill({}));
 
     expect(() => checkIfWon(wrongMatrix1)).toThrow(
       'matrix arg should be a matrix of tile',
