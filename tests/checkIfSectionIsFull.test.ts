@@ -23,6 +23,34 @@ describe('checkIfSectionIsFull', () => {
     expect(() => checkIfSectionIsFull(wrongMatrix2)).toThrow(EXCEPTION_MESSAGE);
   });
 
+  it('should throw an error if arg matrix is not a matrix of tiles', () => {
+    const wrongMatrix1: any[][] = [
+      [0, 0, 0],
+      [0, 0, 0],
+      [0, 0, 0],
+    ];
+    const wrongMatrix2: any[][] = [
+      [{}, {}, {}],
+      [{}, {}, {}],
+      [{}, {}, {}],
+    ];
+
+    expect(() => checkIfSectionIsFull(wrongMatrix1)).toThrow(
+      'matrix arg should be a matrix of tile',
+    );
+    expect(() => checkIfSectionIsFull(wrongMatrix2)).toThrow(
+      'matrix arg should be a matrix of tile',
+    );
+  });
+
+  it('should throw an error if arg array is not an array of BoardState', () => {
+    const wrongArray = new Array(9).fill(true);
+
+    expect(() => checkIfSectionIsFull(wrongArray)).toThrow(
+      'array arg should be an array of boardState',
+    );
+  });
+
   it('should return true if each tile === Player_1 or Player_2', () => {
     const matrixOfBoardState = [
       [BoardState.Player1, BoardState.Player2, BoardState.Player1],
