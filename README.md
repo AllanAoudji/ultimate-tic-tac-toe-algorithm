@@ -12,6 +12,8 @@ converrt1DBoard81ToBoard3X3 ([81] => {status, position}[3][3])
 => getSubSection => forEach => checkIfWon
 createTimer
 
+single file for all ERRORS_MESSAGES
+
 Check player ([history].length %2)
 
 Move (if [history].length === 0 || getCurrentSection.isFull === play everywhere)
