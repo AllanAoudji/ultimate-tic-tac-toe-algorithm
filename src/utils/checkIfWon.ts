@@ -1,3 +1,5 @@
+import checkIfBoardState from './checkIfBoardState';
+import checkIfTile from './checkIfTile';
 import convertTo2DArray from './convertTo2DArray';
 import transposeMatrix from './transposeMatrix';
 
@@ -63,6 +65,10 @@ const checkIfWon: (
 ) => [BoardState, WiningLine] | BoardState.Empty = (section) => {
   let array2D: Tile[][];
 
+  if (!Array.isArray(section) || Object.keys(section).length === 0) {
+    throw new Error('arg should be a 9 length array or a 9x9 matrix');
+  }
+
   // Check if section is a 9 length array or
   // a 3x3 Matrix and assign to array2D
   // a 3x3 representation of section.
@@ -71,12 +77,26 @@ const checkIfWon: (
   }
   if (section.length === 3) {
     section.forEach((row) => {
-      if (!Array.isArray(row) || row.length !== 3) {
+      if (
+        !Array.isArray(row) ||
+        Object.keys(row).length === 0 ||
+        row.length !== 3
+      ) {
         throw new Error('arg should be a 9 length array or a 9x9 matrix');
       }
+      (row as Tile[]).forEach((tile) => {
+        if (!checkIfTile(tile)) {
+          throw new Error('matrix arg should be a matrix of tile');
+        }
+      });
     });
     array2D = [...(section as Tile[][])];
   } else {
+    section.forEach((boardState) => {
+      if (!checkIfBoardState(boardState)) {
+        throw new Error('array arg should be an array of boardState');
+      }
+    });
     array2D = convertTo2DArray(section as BoardState[]);
   }
 

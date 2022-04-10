@@ -30,6 +30,34 @@ describe('checkIfWon', () => {
     expect(() => checkIfWon(wrongMatrix)).toThrow(EXCEPTION_MESSAGE);
   });
 
+  it('should throw an error if arg matrix is not a matrix of tiles', () => {
+    const wrongMatrix1: any[][] = [
+      [0, 0, 0],
+      [0, 0, 0],
+      [0, 0, 0],
+    ];
+    const wrongMatrix2: any[][] = [
+      [{}, {}, {}],
+      [{}, {}, {}],
+      [{}, {}, {}],
+    ];
+
+    expect(() => checkIfWon(wrongMatrix1)).toThrow(
+      'matrix arg should be a matrix of tile',
+    );
+    expect(() => checkIfWon(wrongMatrix2)).toThrow(
+      'matrix arg should be a matrix of tile',
+    );
+  });
+
+  it('should throw an error if arg array is not a matrix of BoardState', () => {
+    const wrongArray = new Array(9).fill(true);
+
+    expect(() => checkIfWon(wrongArray)).toThrow(
+      'array arg should be an array of boardState',
+    );
+  });
+
   it('should work with an 1D array of BoardState', () => {
     const array1D: BoardState[] = new Array(9).fill(BoardState.Empty);
 
