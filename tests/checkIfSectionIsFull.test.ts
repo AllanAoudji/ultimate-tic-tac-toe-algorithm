@@ -24,16 +24,8 @@ describe('checkIfSectionIsFull', () => {
   });
 
   it('should throw an error if arg matrix is not a matrix of tiles', () => {
-    const wrongMatrix1: any[][] = [
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-    ];
-    const wrongMatrix2: any[][] = [
-      [{}, {}, {}],
-      [{}, {}, {}],
-      [{}, {}, {}],
-    ];
+    const wrongMatrix1: any[][] = new Array(9).fill(new Array(9).fill(0));
+    const wrongMatrix2: any[][] = new Array(9).fill(new Array(9).fill({}));
 
     expect(() => checkIfSectionIsFull(wrongMatrix1)).toThrow(
       'matrix arg should be a matrix of tile',
