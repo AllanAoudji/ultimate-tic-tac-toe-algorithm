@@ -1,4 +1,5 @@
 import convertTo2DArray from '@src/utils/convertTo2DArray';
+import createBoard from '@src/utils/createBoard';
 import getSubSections from '@src/utils/getSubSections';
 
 const EXCEPTION_MESSAGE = 'arg should be a 81 length array or a 9x9 matrix';
@@ -54,8 +55,8 @@ describe('getSubSections', () => {
 
     expect(subSections.length).toBe(9);
     subSections.forEach((subSection) => {
-      expect(subSection.length).toBe(3);
-      subSection.forEach((rows) => {
+      expect(subSection.tiles.length).toBe(3);
+      subSection.tiles.forEach((rows) => {
         expect(rows.length).toBe(3);
       });
     });
@@ -67,8 +68,8 @@ describe('getSubSections', () => {
 
     expect(subSections.length).toBe(9);
     subSections.forEach((subSection) => {
-      expect(subSection.length).toBe(3);
-      subSection.forEach((rows) => {
+      expect(subSection.tiles.length).toBe(3);
+      subSection.tiles.forEach((rows) => {
         expect(rows.length).toBe(3);
       });
     });
@@ -79,23 +80,40 @@ describe('getSubSections', () => {
     const board2D = convertTo2DArray(board1D);
     const subSections = getSubSections(board2D);
 
-    expect(subSections[0][0][0].state).toBe(board2D[0][0].state);
-    expect(subSections[0][2][2].state).toBe(board2D[1][2].state);
-    expect(subSections[1][0][0].state).toBe(board2D[0][3].state);
-    expect(subSections[1][2][2].state).toBe(board2D[2][5].state);
-    expect(subSections[2][0][0].state).toBe(board2D[0][6].state);
-    expect(subSections[2][2][2].state).toBe(board2D[2][8].state);
-    expect(subSections[3][0][0].state).toBe(board2D[4][0].state);
-    expect(subSections[3][2][2].state).toBe(board2D[6][2].state);
-    expect(subSections[4][0][0].state).toBe(board2D[3][3].state);
-    expect(subSections[4][2][2].state).toBe(board2D[5][5].state);
-    expect(subSections[5][0][0].state).toBe(board2D[3][6].state);
-    expect(subSections[5][2][2].state).toBe(board2D[5][8].state);
-    expect(subSections[6][0][0].state).toBe(board2D[6][0].state);
-    expect(subSections[6][2][2].state).toBe(board2D[8][2].state);
-    expect(subSections[7][0][0].state).toBe(board2D[6][3].state);
-    expect(subSections[7][2][2].state).toBe(board2D[8][5].state);
-    expect(subSections[8][0][0].state).toBe(board2D[6][6].state);
-    expect(subSections[8][2][2].state).toBe(board2D[8][8].state);
+    expect(subSections[0].tiles[0][0].state).toBe(board2D[0][0].state);
+    expect(subSections[0].tiles[2][2].state).toBe(board2D[1][2].state);
+    expect(subSections[1].tiles[0][0].state).toBe(board2D[0][3].state);
+    expect(subSections[1].tiles[2][2].state).toBe(board2D[2][5].state);
+    expect(subSections[2].tiles[0][0].state).toBe(board2D[0][6].state);
+    expect(subSections[2].tiles[2][2].state).toBe(board2D[2][8].state);
+    expect(subSections[3].tiles[0][0].state).toBe(board2D[4][0].state);
+    expect(subSections[3].tiles[2][2].state).toBe(board2D[6][2].state);
+    expect(subSections[4].tiles[0][0].state).toBe(board2D[3][3].state);
+    expect(subSections[4].tiles[2][2].state).toBe(board2D[5][5].state);
+    expect(subSections[5].tiles[0][0].state).toBe(board2D[3][6].state);
+    expect(subSections[5].tiles[2][2].state).toBe(board2D[5][8].state);
+    expect(subSections[6].tiles[0][0].state).toBe(board2D[6][0].state);
+    expect(subSections[6].tiles[2][2].state).toBe(board2D[8][2].state);
+    expect(subSections[7].tiles[0][0].state).toBe(board2D[6][3].state);
+    expect(subSections[7].tiles[2][2].state).toBe(board2D[8][5].state);
+    expect(subSections[8].tiles[0][0].state).toBe(board2D[6][6].state);
+    expect(subSections[8].tiles[2][2].state).toBe(board2D[8][8].state);
+  });
+
+  it('should return proper position', () => {
+    const board = createBoard();
+    const subSections = getSubSections(board);
+
+    expect(subSections[0].position).toBe(Position.TopLeft);
+    expect(subSections[1].position).toBe(Position.TopMiddle);
+    expect(subSections[2].position).toBe(Position.TopRight);
+
+    expect(subSections[3].position).toBe(Position.MiddleLeft);
+    expect(subSections[4].position).toBe(Position.MiddleMiddle);
+    expect(subSections[5].position).toBe(Position.MiddleRight);
+
+    expect(subSections[6].position).toBe(Position.BottomLeft);
+    expect(subSections[7].position).toBe(Position.BottomMiddle);
+    expect(subSections[8].position).toBe(Position.BottomRight);
   });
 });
