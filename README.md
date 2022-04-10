@@ -2,7 +2,6 @@ TODO Next
 create classes for Game/Board/Player
 
 Function TODO
-checkIfTileBelongToSection
 getCurrentPlayer.ts
 getCurrentSection.ts
 checkSectionStatus.ts
