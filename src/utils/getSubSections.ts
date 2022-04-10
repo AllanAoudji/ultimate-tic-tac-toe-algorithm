@@ -1,3 +1,5 @@
+import checkIfBoardState from './checkIfBoardState';
+import checkIfTile from './checkIfTile';
 import convertTo2DArray from './convertTo2DArray';
 
 const getSubSections: (board: Tile[][] | BoardState[]) => Tile[][][] = (
@@ -5,7 +7,7 @@ const getSubSections: (board: Tile[][] | BoardState[]) => Tile[][][] = (
 ) => {
   let array2D: Tile[][];
 
-  if (Object.keys(board).length === 0) {
+  if (!Array.isArray(board) || Object.keys(board).length === 0) {
     throw new Error('arg should be a 81 length array or a 9x9 matrix');
   }
   // Check if outer shape might match
@@ -18,12 +20,26 @@ const getSubSections: (board: Tile[][] | BoardState[]) => Tile[][][] = (
   // to array2D
   if (board.length === 9) {
     board.forEach((row) => {
-      if (!Array.isArray(row) || row.length !== 9) {
+      if (
+        !Array.isArray(row) ||
+        Object.keys(board).length === 0 ||
+        row.length !== 9
+      ) {
         throw new Error('arg should be a 81 length array or a 9x9 matrix');
       }
+      (row as Tile[]).forEach((tile) => {
+        if (!checkIfTile(tile)) {
+          throw new Error('matrix board should be a matrix of tile');
+        }
+      });
     });
     array2D = [...(board as Tile[][])];
   } else {
+    board.forEach((boardState) => {
+      if (!checkIfBoardState(boardState)) {
+        throw new Error('array board should be an array of boardState');
+      }
+    });
     array2D = convertTo2DArray(board as BoardState[]);
   }
 
