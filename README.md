@@ -3,6 +3,7 @@ create classes for Game/Board/Player
 
 Function TODO
 getCurrentPlayer.ts
+=> history % 2
 getCurrentSection.ts
 checkSectionStatus.ts
 checkGameStatus.ts
