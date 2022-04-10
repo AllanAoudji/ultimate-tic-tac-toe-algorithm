@@ -7,34 +7,39 @@ const getSubSections: (board: Tile[][] | BoardState[]) => Section[] = (
 ) => {
   let array2D: Tile[][];
 
+  // Check if board is a proper array.
   if (!Array.isArray(board) || Object.keys(board).length === 0) {
     throw new Error('arg should be a 81 length array or a 9x9 matrix');
   }
-  // Check if outer shape might match
+
+  // Check if outer shape might match.
   if (board.length !== 9 && board.length !== 81) {
     throw new Error('arg should be a 81 length array or a 9x9 matrix');
   }
 
-  // Check if whole shape might match
-  // and assign the 2D representation of the board
-  // to array2D
+  // Check 9x9 matrix...
   if (board.length === 9) {
     board.forEach((row) => {
+      // Check if each row is a 9 length array.
       if (
         !Array.isArray(row) ||
         Object.keys(board).length === 0 ||
-        row.length !== 9
+        row.length !== board.length
       ) {
         throw new Error('arg should be a 81 length array or a 9x9 matrix');
       }
+
+      // Check if each items in the matrix is a tile.
       (row as Tile[]).forEach((tile) => {
         if (!checkIfTile(tile)) {
           throw new Error('matrix board should be a matrix of tile');
         }
       });
     });
+
     array2D = [...(board as Tile[][])];
   } else {
+    // Check if each items isn a 1D array is a BoardState
     board.forEach((boardState) => {
       if (!checkIfBoardState(boardState)) {
         throw new Error('array board should be an array of boardState');
