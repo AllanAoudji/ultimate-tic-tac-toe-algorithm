@@ -1,3 +1,4 @@
+import mapMatrix from '@src/utils/mapMatrix';
 import transposeMatrix from '@src/utils/transposeMatrix';
 
 const EXCEPTION_MESSAGE =
@@ -28,27 +29,75 @@ describe('transposeMatrix', () => {
     expect(() => transposeMatrix(wrongMatrix)).toThrow(EXCEPTION_MESSAGE);
   });
 
-  it('should transpose a matrix', () => {
-    const matrix3x3 = new Array(3).fill(new Array(3).fill(Math.random()));
-    const transposedMatrix3x3 = transposeMatrix(matrix3x3);
+  it('should throw an error if arg matrix is not a matrix of tiles', () => {
+    const wrongMatrix1: any[][] = new Array(3).fill(new Array(3).fill(0));
+    const wrongMatrix2: any[][] = new Array(3).fill(new Array(3).fill({}));
+    const wrongMatrix3: any[][] = new Array(9).fill(new Array(9).fill(0));
+    const wrongMatrix4: any[][] = new Array(9).fill(new Array(9).fill({}));
 
-    expect(transposedMatrix3x3[0][0]).toBe(matrix3x3[0][0]);
-    expect(transposedMatrix3x3[0][1]).toBe(matrix3x3[1][0]);
-    expect(transposedMatrix3x3[0][2]).toBe(matrix3x3[2][0]);
-    expect(transposedMatrix3x3[1][0]).toBe(matrix3x3[0][1]);
-    expect(transposedMatrix3x3[1][1]).toBe(matrix3x3[1][1]);
-    expect(transposedMatrix3x3[1][2]).toBe(matrix3x3[2][1]);
-    expect(transposedMatrix3x3[2][0]).toBe(matrix3x3[0][2]);
-    expect(transposedMatrix3x3[2][1]).toBe(matrix3x3[1][2]);
-    expect(transposedMatrix3x3[2][2]).toBe(matrix3x3[2][2]);
+    expect(() => transposeMatrix(wrongMatrix1)).toThrow(
+      'matrix arg should be a matrix of tile',
+    );
+    expect(() => transposeMatrix(wrongMatrix2)).toThrow(
+      'matrix arg should be a matrix of tile',
+    );
+    expect(() => transposeMatrix(wrongMatrix3)).toThrow(
+      'matrix arg should be a matrix of tile',
+    );
+    expect(() => transposeMatrix(wrongMatrix4)).toThrow(
+      'matrix arg should be a matrix of tile',
+    );
+  });
+
+  it('should throw an error if arg array is not an array of BoardState', () => {
+    const wrongArray1 = new Array(9).fill(true);
+    const wrongArray2 = new Array(81).fill(true);
+
+    expect(() => transposeMatrix(wrongArray1)).toThrow(
+      'array arg should be an array of boardState',
+    );
+    expect(() => transposeMatrix(wrongArray2)).toThrow(
+      'array arg should be an array of boardState',
+    );
+  });
+
+  it('should transpose a matrix', () => {
+    const matrix3x3 = [
+      [BoardState.Empty, BoardState.Player1, BoardState.Player2],
+      [BoardState.Player1, BoardState.Player2, BoardState.Empty],
+      [BoardState.Player2, BoardState.Empty, BoardState.Player1],
+    ];
+    const matrix3x3Tile = mapMatrix(matrix3x3, (item) => ({
+      state: item,
+      position1D: 0,
+    }));
+    const transposedMatrix3x3 = transposeMatrix(matrix3x3Tile);
+
+    expect(transposedMatrix3x3[0][0].state).toBe(matrix3x3[0][0]);
+    expect(transposedMatrix3x3[0][1].state).toBe(matrix3x3[1][0]);
+    expect(transposedMatrix3x3[0][2].state).toBe(matrix3x3[2][0]);
+    expect(transposedMatrix3x3[1][0].state).toBe(matrix3x3[0][1]);
+    expect(transposedMatrix3x3[1][1].state).toBe(matrix3x3[1][1]);
+    expect(transposedMatrix3x3[1][2].state).toBe(matrix3x3[2][1]);
+    expect(transposedMatrix3x3[2][0].state).toBe(matrix3x3[0][2]);
+    expect(transposedMatrix3x3[2][1].state).toBe(matrix3x3[1][2]);
+    expect(transposedMatrix3x3[2][2].state).toBe(matrix3x3[2][2]);
   });
 
   it('should transpose a 1D array', () => {
-    const array1d9 = new Array(9).fill(Math.random());
-    const array1D81 = new Array(81).fill(Math.random());
+    const array1d9 = [
+      BoardState.Empty,
+      BoardState.Player1,
+      BoardState.Player2,
+      BoardState.Player1,
+      BoardState.Player2,
+      BoardState.Empty,
+      BoardState.Player2,
+      BoardState.Empty,
+      BoardState.Player1,
+    ];
 
     const transposedMatrix3x3 = transposeMatrix(array1d9);
-    const transposedMatrix9x9 = transposeMatrix(array1D81);
 
     expect(transposedMatrix3x3[0][0].state).toBe(array1d9[0]);
     expect(transposedMatrix3x3[0][1].state).toBe(array1d9[3]);
@@ -59,15 +108,5 @@ describe('transposeMatrix', () => {
     expect(transposedMatrix3x3[2][0].state).toBe(array1d9[2]);
     expect(transposedMatrix3x3[2][1].state).toBe(array1d9[5]);
     expect(transposedMatrix3x3[2][2].state).toBe(array1d9[8]);
-
-    expect(transposedMatrix9x9[0][0].state).toBe(array1D81[0]);
-    expect(transposedMatrix9x9[0][1].state).toBe(array1D81[9]);
-    expect(transposedMatrix9x9[0][2].state).toBe(array1D81[18]);
-    expect(transposedMatrix9x9[0][3].state).toBe(array1D81[27]);
-    expect(transposedMatrix9x9[0][4].state).toBe(array1D81[36]);
-    expect(transposedMatrix9x9[0][5].state).toBe(array1D81[56]);
-    expect(transposedMatrix9x9[0][6].state).toBe(array1D81[54]);
-    expect(transposedMatrix9x9[0][7].state).toBe(array1D81[63]);
-    expect(transposedMatrix9x9[0][8].state).toBe(array1D81[72]);
   });
 });

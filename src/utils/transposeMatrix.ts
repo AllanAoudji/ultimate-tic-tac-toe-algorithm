@@ -1,3 +1,5 @@
+import checkIfBoardState from './checkIfBoardState';
+import checkIfTile from './checkIfTile';
 import convertTo2DArray from './convertTo2DArray';
 
 const transposeMatrix: (array: BoardState[] | Tile[][]) => Tile[][] = (
@@ -8,7 +10,7 @@ const transposeMatrix: (array: BoardState[] | Tile[][]) => Tile[][] = (
   // Check if section is a 9 length array or
   // a 3x3 Matrix and assign to array2D
   // a 3x3 representation of section.
-  if (Object.keys(array).length === 0) {
+  if (!Array.isArray(array) || Object.keys(array).length === 0) {
     throw new Error(
       'arg should be a 9 or 81 length array or a 3x3 or 9x9 matrix',
     );
@@ -26,6 +28,11 @@ const transposeMatrix: (array: BoardState[] | Tile[][]) => Tile[][] = (
           'arg should be a 9 or 81 length array or a 3x3 or 9x9 matrix',
         );
       }
+      (row as Tile[]).forEach((tile) => {
+        if (!checkIfTile(tile)) {
+          throw new Error('matrix arg should be a matrix of tile');
+        }
+      });
     });
     array2D = [...(array as Tile[][])];
   } else if (array.length === 9) {
@@ -37,12 +44,27 @@ const transposeMatrix: (array: BoardState[] | Tile[][]) => Tile[][] = (
             'arg should be a 9 or 81 length array or a 3x3 or 9x9 matrix',
           );
         }
+        (row as Tile[]).forEach((tile) => {
+          if (!checkIfTile(tile)) {
+            throw new Error('matrix arg should be a matrix of tile');
+          }
+        });
       });
       array2D = [...(array as Tile[][])];
     } else {
+      array.forEach((item) => {
+        if (!checkIfBoardState(item)) {
+          throw new Error('array arg should be an array of boardState');
+        }
+      });
       array2D = convertTo2DArray(array as BoardState[]);
     }
   } else {
+    array.forEach((item) => {
+      if (!checkIfBoardState(item)) {
+        throw new Error('array arg should be an array of boardState');
+      }
+    });
     array2D = convertTo2DArray(array as BoardState[]);
   }
 
