@@ -8,7 +8,45 @@ describe('getTileIndexPositionAndSection', () => {
       'position out of bound',
     );
   });
-  it('should return proper index section', () => {
+
+  it('should return proper index', () => {
+    const tests = [
+      [0, 0],
+      [20, 8],
+      [3, 0],
+      [23, 8],
+      [6, 0],
+      [26, 8],
+      [29, 2],
+      [45, 6],
+      [32, 2],
+      [48, 6],
+    ];
+
+    tests.forEach((test) => {
+      expect(getTileIndexPositionAndSection(test[0]).index).toBe(test[1]);
+    });
+  });
+
+  it('should return proper position', () => {
+    const tests = [
+      [1, Position.TopMiddle],
+      [9, Position.MiddleLeft],
+      [11, Position.MiddleRight],
+      [19, Position.BottomMiddle],
+      [60, Position.TopLeft],
+      [62, Position.TopRight],
+      [70, Position.MiddleMiddle],
+      [78, Position.BottomLeft],
+      [80, Position.BottomRight],
+    ];
+
+    tests.forEach((test) => {
+      expect(getTileIndexPositionAndSection(test[0]).position).toBe(test[1]);
+    });
+  });
+
+  it('should return proper section', () => {
     const tests = [
       [0, 0],
       [3, 1],
@@ -22,7 +60,7 @@ describe('getTileIndexPositionAndSection', () => {
     ];
 
     tests.forEach((test) => {
-      expect(getTileIndexPositionAndSection(test[0])).toBe(test[1]);
+      expect(getTileIndexPositionAndSection(test[0]).section).toBe(test[1]);
     });
   });
 });
