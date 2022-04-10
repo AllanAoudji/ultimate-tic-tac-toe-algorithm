@@ -1,0 +1,39 @@
+TODO Next
+create classes for Game/Board/Player
+
+Function TODO:
+
+WinSection = <BoardState>(9)
+Because we can in a section already won,
+checkIfWon() may return the wrong player.
+We need a separate array to now if a section is won.
+
+getCurrentPlayer.ts
+==> function to know wich player is allow to play
+=> history % 2
+
+getPlayableSection.ts
+==> function to know on which section to play
+
+convertBoardToMatrix3x3 ([81] => {status, position}[3][3])
+==> convert the 9x9 board to a 3x3 board
+=> getSubSection => forEach => checkIfWon
+
+createTimers
+==> Each player should have a separate timer
+==> a timer can start, trigger function when finish
+==> reset when finish
+==> reset
+
+Create single file for all ERRORS_MESSAGES
+
+Move (if [history].length === 0 || getCurrentSection.isFull === play everywhere)
+=> check if move is valid (checkCurrentSection and if tile belong to this section)
+=> reset player timer
+=> save move to [history]
+=> if section was not won before => check if section is win
+=> if section.state = empty ==> Player(1|2) => check if game is win
+=> check new current section from this move
+=> trigger other player timer
+
+https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project
