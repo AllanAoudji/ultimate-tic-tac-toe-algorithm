@@ -27,7 +27,26 @@ createTimers
 
 Create single file for all ERRORS_MESSAGES
 
-Move (if [history].length === 0 || getCurrentSection.isFull === play everywhere)
+https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project
+
+Game()
+=> generate board
+=> generate Player
+=> generate history
+=> generate sectionsState
+=> win (BoardGame)
+=> activateTimer
+
+=> getActivePlayer
+=== Based on the history (if win === Empty, return false)
+=> getActiveSection
+=== Based on the history (if section === full, return false)
+
+Player()
+=> generate Timer
+=> generate Color
+
+=> Play (if [history].length === 0 || getCurrentSection.isFull === play everywhere)
 => check if move is valid (checkCurrentSection and if tile belong to this section)
 => reset player timer
 => save move to [history]
@@ -36,4 +55,8 @@ Move (if [history].length === 0 || getCurrentSection.isFull === play everywhere)
 => check new current section from this move
 => trigger other player timer
 
-https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project
+Timer()
+=> Time (default 1mn?)
+
+=> Play(callback)
+=> Reset()
