@@ -3,22 +3,6 @@ create classes for Game/Board/Player
 
 Function TODO:
 
-WinSection = <BoardState>(9)
-Because we can in a section already won,
-checkIfWon() may return the wrong player.
-We need a separate array to now if a section is won.
-
-getCurrentPlayer.ts
-==> function to know wich player is allow to play
-=> history % 2
-
-getPlayableSection.ts
-==> function to know on which section to play
-
-convertBoardToMatrix3x3 ([81] => {status, position}[3][3])
-==> convert the 9x9 board to a 3x3 board
-=> getSubSection => forEach => checkIfWon
-
 createTimers
 ==> Each player should have a separate timer
 ==> a timer can start, trigger function when finish
@@ -29,34 +13,18 @@ Create single file for all ERRORS_MESSAGES
 
 https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project
 
-Game()
-=> generate board
-=> generate Player
-=> generate history
-=> generate sectionsState
-=> win (BoardGame)
-=> activateTimer
-
-=> getActivePlayer
-=== Based on the history (if win === Empty, return false)
-=> getActiveSection
-=== Based on the history (if section === full, return false)
-
-Player()
-=> generate Timer
-=> generate Color
-
-=> Play (if [history].length === 0 || getCurrentSection.isFull === play everywhere)
-=> check if move is valid (checkCurrentSection and if tile belong to this section)
-=> reset player timer
-=> save move to [history]
-=> if section was not won before => check if section is win
-=> if section.state = empty ==> Player(1|2) => check if game is win
-=> check new current section from this move
-=> trigger other player timer
-
 Timer()
 => Time (default 1mn?)
-
 => Play(callback)
 => Reset()
+
+Better Naming for position
+=> Position => enum (top/middle/left/bottom etc...)
+=> Index1D => position of the 1D of the board => 0 - 80
+=> Index2D => position of the 2D of the board [0, 0] => [8, 8]
+=> BoardState should be TileState
+=> getNectMove.ts => getActiveSection.ts
+
+createBoard.ts => (rename) => generateBoard.ts
+
+move boardSections.ts | utils => assets
