@@ -40,7 +40,6 @@ declare global {
     activeSection: number;
     board: TileState[];
     history: number[];
-    players: [TileState.Player1, TileState.Player2];
     sectionsState: [TileState, WiningLine | null][];
     winner: TileState;
   }

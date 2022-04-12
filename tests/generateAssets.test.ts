@@ -36,16 +36,6 @@ describe('generateAssets', () => {
     expect(Object.keys(assets[history]).length).toBe(0);
   });
 
-  it('should return the two players', () => {
-    const players = 'players';
-
-    expect(assets).toHaveProperty(players);
-    expect(Array.isArray(assets[players])).toBe(true);
-    expect(assets[players].length).toBe(2);
-    expect(Object.keys(assets[players]).length).toBe(2);
-    expect(assets[players]).toEqual([TileState.Player1, TileState.Player2]);
-  });
-
   it('should return initial sections state', () => {
     const sectionsState = 'sectionsState';
 

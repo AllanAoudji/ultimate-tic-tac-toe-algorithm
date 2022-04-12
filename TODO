@@ -6,17 +6,19 @@ createTimers
 ==> reset when finish
 ==> reset
 
-Create single file for all ERRORS_MESSAGES
-
-https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project
-
 Timer()
 => Time (default 1mn?)
 => Play(callback)
 => Reset()
 
-Better Naming for position
+Create single file for all ERRORS_MESSAGES
 
-move boardSections.ts | utils => assets
+https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project
 
-CheckIfWon should return [Player1 | Player2, WiningLine] | [Empty, null]
+Play(assets)
+activeSection = getActiveSection(history, board, mode)
+if => checkIfTileBelongToSection(tile, activeSection) => OK
+if => checkIfWon(activeSection) => sectionsState[activeSection].push()/checkIfWon(sectionsState)
+history.push(tile)
+activePlayer = !Player
+return {updatedAssets}
