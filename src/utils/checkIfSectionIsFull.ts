@@ -1,4 +1,4 @@
-import checkIfBoardState from './checkIfBoardState';
+import checkIfTileState from './checkIfTileState';
 import checkIfTile from './checkIfTile';
 import convertTo1DArray from './convertTo1DArray';
 import mapMatrix from './mapMatrix';
@@ -33,7 +33,7 @@ const checkIfSectionIsFull: (section: TileState[] | Tile[][]) => boolean = (
     array1D = convertTo1DArray(matrixOfState);
   } else {
     section.forEach((tileState) => {
-      if (!checkIfBoardState(tileState)) {
+      if (!checkIfTileState(tileState)) {
         throw new Error('array arg should be an array of tileState');
       }
     });

@@ -1,4 +1,4 @@
-import checkIfBoardState from './checkIfBoardState';
+import checkIfTileState from './checkIfTileState';
 import checkIfTile from './checkIfTile';
 import convertTo2DArray from './convertTo2DArray';
 
@@ -41,7 +41,7 @@ const getSubSections: (board: Tile[][] | TileState[]) => Section[] = (
   } else {
     // Check if each items isn a 1D array is a TileState
     board.forEach((tileState) => {
-      if (!checkIfBoardState(tileState)) {
+      if (!checkIfTileState(tileState)) {
         throw new Error('array board should be an array of tileState');
       }
     });

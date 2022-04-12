@@ -1,4 +1,4 @@
-import checkIfBoardState from './checkIfBoardState';
+import checkIfTileState from './checkIfTileState';
 
 const checkIfTile: (item: any) => boolean = (item) => {
   if (typeof item !== 'object') {
@@ -11,7 +11,7 @@ const checkIfTile: (item: any) => boolean = (item) => {
     !keys.includes('position1D') ||
     typeof item.position1D !== 'number' ||
     !keys.includes('state') ||
-    !checkIfBoardState(item.state)
+    !checkIfTileState(item.state)
   ) {
     return false;
   }

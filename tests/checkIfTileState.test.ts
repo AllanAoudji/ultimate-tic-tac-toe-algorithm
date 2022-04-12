@@ -1,11 +1,11 @@
-import checkIfBoardState from '@src/utils/checkIfBoardState';
+import checkIfTileState from '@src/utils/checkIfTileState';
 
-describe('checkIfBoardState', () => {
+describe('checkIfTileState', () => {
   it('should return true if arg is a tileState', () => {
     const tileStates = [TileState.Empty, TileState.Player1, TileState.Player2];
 
     tileStates.forEach((tileState) => {
-      expect(checkIfBoardState(tileState)).toBe(true);
+      expect(checkIfTileState(tileState)).toBe(true);
     });
   });
 
@@ -21,7 +21,7 @@ describe('checkIfBoardState', () => {
     ];
 
     notTileState.forEach((notTileState) => {
-      expect(checkIfBoardState(notTileState)).toBe(false);
+      expect(checkIfTileState(notTileState)).toBe(false);
     });
   });
 });

@@ -1,4 +1,4 @@
-import checkIfBoardState from './checkIfBoardState';
+import checkIfTileState from './checkIfTileState';
 import checkIfTile from './checkIfTile';
 import convertTo2DArray from './convertTo2DArray';
 import transposeMatrix from './transposeMatrix';
@@ -93,7 +93,7 @@ const checkIfWon: (
     array2D = [...(section as Tile[][])];
   } else {
     section.forEach((tileState) => {
-      if (!checkIfBoardState(tileState)) {
+      if (!checkIfTileState(tileState)) {
         throw new Error('array arg should be an array of tileState');
       }
     });

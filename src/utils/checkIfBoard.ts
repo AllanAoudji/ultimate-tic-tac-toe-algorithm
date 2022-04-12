@@ -1,4 +1,4 @@
-import checkIfBoardState from './checkIfBoardState';
+import checkIfTileState from './checkIfTileState';
 import checkIfTile from './checkIfTile';
 
 const checkIfBoard: (board: any) => boolean = (board) => {
@@ -11,7 +11,7 @@ const checkIfBoard: (board: any) => boolean = (board) => {
   }
 
   if (board.length === 81) {
-    return board.every((item) => checkIfBoardState(item));
+    return board.every((item) => checkIfTileState(item));
   }
 
   if (board.length === 9) {
