@@ -1,5 +1,5 @@
 import convertTo2DArray from '@src/utils/convertTo2DArray';
-import createBoard from '@src/utils/createBoard';
+import generateAssets from '@src/utils/generateAssets';
 import getSubSections from '@src/utils/getSubSections';
 
 const EXCEPTION_MESSAGE = 'arg should be a 81 length array or a 9x9 matrix';
@@ -101,7 +101,7 @@ describe('getSubSections', () => {
   });
 
   it('should return proper position', () => {
-    const board = createBoard();
+    const {board} = generateAssets();
     const subSections = getSubSections(board);
 
     expect(subSections[0].position).toBe(Position.TopLeft);
