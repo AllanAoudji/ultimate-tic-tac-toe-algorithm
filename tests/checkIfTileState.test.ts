@@ -16,7 +16,7 @@ describe('checkIfTileState', () => {
       [TileState.Empty],
       {
         state: TileState.Empty,
-        position1D: 1,
+        index1D: 1,
       },
     ];
 

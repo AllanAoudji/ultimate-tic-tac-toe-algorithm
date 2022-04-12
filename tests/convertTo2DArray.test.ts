@@ -41,17 +41,17 @@ describe('convertTo2DArray', () => {
     const array1D9: TileState[] = new Array(9).fill(TileState.Empty);
     const array2D3x3 = convertTo2DArray(array1D9);
 
-    expect(array2D3x3[0][0].position1D).toBe(0);
-    expect(array2D3x3[0][1].position1D).toBe(1);
-    expect(array2D3x3[0][2].position1D).toBe(2);
+    expect(array2D3x3[0][0].index1D).toBe(0);
+    expect(array2D3x3[0][1].index1D).toBe(1);
+    expect(array2D3x3[0][2].index1D).toBe(2);
 
-    expect(array2D3x3[1][0].position1D).toBe(3);
-    expect(array2D3x3[1][1].position1D).toBe(4);
-    expect(array2D3x3[1][2].position1D).toBe(5);
+    expect(array2D3x3[1][0].index1D).toBe(3);
+    expect(array2D3x3[1][1].index1D).toBe(4);
+    expect(array2D3x3[1][2].index1D).toBe(5);
 
-    expect(array2D3x3[2][0].position1D).toBe(6);
-    expect(array2D3x3[2][1].position1D).toBe(7);
-    expect(array2D3x3[2][2].position1D).toBe(8);
+    expect(array2D3x3[2][0].index1D).toBe(6);
+    expect(array2D3x3[2][1].index1D).toBe(7);
+    expect(array2D3x3[2][2].index1D).toBe(8);
   });
 
   it('should keep order', () => {

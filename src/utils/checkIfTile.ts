@@ -8,8 +8,8 @@ const checkIfTile: (item: any) => boolean = (item) => {
   const keys = Object.keys(item);
   if (
     keys.length !== 2 ||
-    !keys.includes('position1D') ||
-    typeof item.position1D !== 'number' ||
+    !keys.includes('index1D') ||
+    typeof item.index1D !== 'number' ||
     !keys.includes('state') ||
     !checkIfTileState(item.state)
   ) {

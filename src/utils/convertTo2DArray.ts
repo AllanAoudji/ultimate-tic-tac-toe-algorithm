@@ -10,13 +10,13 @@ const convertTo2DArray: (array1D: TileState[]) => Tile[][] = (array1D) => {
     if (index % Math.sqrt(array1D.length) === 0) {
       rows.push([
         {
-          position1D: index,
+          index1D: index,
           state: key,
         },
       ]);
     } else {
       rows[rows.length - 1].push({
-        position1D: index,
+        index1D: index,
         state: key,
       });
     }

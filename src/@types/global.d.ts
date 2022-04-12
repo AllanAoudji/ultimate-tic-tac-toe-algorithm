@@ -45,7 +45,7 @@ declare global {
     winner: TileState;
   }
 
-  interface Position2D {
+  interface Index2D {
     x: number;
     y: number;
   }
@@ -57,6 +57,6 @@ declare global {
 
   interface Tile {
     state: TileState;
-    position1D: number;
+    index1D: number;
   }
 }

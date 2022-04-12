@@ -69,7 +69,7 @@ describe('transposeMatrix', () => {
     ];
     const matrix3x3Tile = mapMatrix(matrix3x3, (item) => ({
       state: item,
-      position1D: 0,
+      index1D: 0,
     }));
     const transposedMatrix3x3 = transposeMatrix(matrix3x3Tile);
 

@@ -6,7 +6,7 @@ const converToMatrixTile: (board: TileState[][]) => Tile[][] = (board) => {
   return board.map((row) =>
     row.map((item) => ({
       state: item,
-      position1D: 1,
+      index1D: 1,
     })),
   );
 };

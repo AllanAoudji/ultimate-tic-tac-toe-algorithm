@@ -16,9 +16,6 @@ Timer()
 => Reset()
 
 Better Naming for position
-=> Position => enum (top/middle/left/bottom etc...)
-=> Index1D => position of the 1D of the board => 0 - 80
-=> Index2D => position of the 2D of the board [0, 0] => [8, 8]
 
 move boardSections.ts | utils => assets
 

@@ -37,13 +37,13 @@ describe('checkIfBoard', () => {
     const wrongMatrixes = [
       new Array(9).fill({
         state: TileState.Empty,
-        position1D: 0,
+        index1D: 0,
       }),
       new Array(9).fill(new Array(9)),
       new Array(9).fill(
         new Array(8).fill({
           state: TileState.Empty,
-          position1D: 0,
+          index1D: 0,
         }),
       ),
     ];
@@ -57,12 +57,12 @@ describe('checkIfBoard', () => {
     const {board} = generateAssets();
     const wrongMatrix1 = convertTo2DArray(board);
     wrongMatrix1[0][0] = {
-      position1D: 10,
+      index1D: 10,
       state: TileState.Empty,
     };
     const wrongMatrix2: any[][] = convertTo2DArray(board);
     wrongMatrix2[0][0] = {
-      position1D: 0,
+      index1D: 0,
       state: 'not a state',
     };
 

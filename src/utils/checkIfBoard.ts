@@ -22,7 +22,7 @@ const checkIfBoard: (board: any) => boolean = (board) => {
         row.length === board.length &&
         row.every(
           (item, indexCol) =>
-            checkIfTile(item) && indexCol + indexRow * 9 === item.position1D,
+            checkIfTile(item) && indexCol + indexRow * 9 === item.index1D,
         ),
     );
   }

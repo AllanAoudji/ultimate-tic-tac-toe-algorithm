@@ -50,7 +50,7 @@ describe('checkIfSectionIsFull', () => {
       [TileState.Player1, TileState.Player2, TileState.Player1],
     ];
     const matrixOfTile = matrixOfTileState.map((row) =>
-      row.map((tile) => ({state: tile, position1D: 0})),
+      row.map((tile) => ({state: tile, index1D: 0})),
     );
 
     expect(checkIfSectionIsFull(matrixOfTile)).toBe(true);
