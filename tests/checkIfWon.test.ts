@@ -53,7 +53,7 @@ describe('checkIfWon', () => {
   it('should work with an 1D array of TileState', () => {
     const array1D: TileState[] = new Array(9).fill(TileState.Empty);
 
-    expect(checkIfWon(array1D)).toBe(TileState.Empty);
+    expect(checkIfWon(array1D)).toEqual([TileState.Empty, null]);
   });
 
   it('should return a winner if the top row has the same symbol', () => {
@@ -267,7 +267,7 @@ describe('checkIfWon', () => {
     ];
 
     tests.forEach((test) => {
-      expect(checkIfWon(test)).toBe(TileState.Empty);
+      expect(checkIfWon(test)).toEqual([TileState.Empty, null]);
     });
   });
 });

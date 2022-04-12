@@ -3,6 +3,9 @@ import checkIfTile from './checkIfTile';
 import convertTo2DArray from './convertTo2DArray';
 import transposeMatrix from './transposeMatrix';
 
+type WineType =
+  | [TileState.Player1 | TileState.Player2, WiningLine]
+  | [TileState.Empty, null];
 enum RowOrColumn {
   Row,
   Col,
@@ -11,12 +14,12 @@ enum RowOrColumn {
 const checkColumnsOrRows: (
   array: Tile[][],
   rowOrColumn: RowOrColumn,
-) => [TileState, WiningLine] | TileState.Empty = (array, rowOrColumn) => {
-  const state = array.reduce<[TileState, WiningLine] | TileState.Empty>(
+) => WineType = (array, rowOrColumn) => {
+  const state = array.reduce<WineType>(
     (previousValue, row, index) => {
       // If loop has already find a wining row/col,
       // return.
-      if (previousValue !== TileState.Empty) {
+      if (previousValue[0] !== TileState.Empty) {
         return previousValue;
       }
 
@@ -53,16 +56,14 @@ const checkColumnsOrRows: (
 
       // If no wining row/col has been found
       // return empty.
-      return TileState.Empty;
+      return [TileState.Empty, null];
     },
-    TileState.Empty,
+    [TileState.Empty, null],
   );
   return state;
 };
 
-const checkIfWon: (
-  section: TileState[] | Tile[][],
-) => [TileState, WiningLine] | TileState.Empty = (section) => {
+const checkIfWon: (section: TileState[] | Tile[][]) => WineType = (section) => {
   let array2D: Tile[][];
 
   if (!Array.isArray(section) || Object.keys(section).length === 0) {
@@ -102,14 +103,14 @@ const checkIfWon: (
 
   // Check if a row is wining.
   const stateRows = checkColumnsOrRows(array2D, RowOrColumn.Row);
-  if (stateRows !== TileState.Empty) {
+  if (stateRows[0] !== TileState.Empty) {
     return stateRows;
   }
 
   // Check if a column is wining.
   const transposeArray2D = transposeMatrix(array2D);
   const stateColumns = checkColumnsOrRows(transposeArray2D, RowOrColumn.Col);
-  if (stateColumns !== TileState.Empty) {
+  if (stateColumns[0] !== TileState.Empty) {
     return stateColumns;
   }
 
@@ -129,7 +130,7 @@ const checkIfWon: (
     return [array2D[0][2].state, WiningLine.TopRightBottomLeftDiagonal];
   }
 
-  return TileState.Empty;
+  return [TileState.Empty, null];
 };
 
 export default checkIfWon;

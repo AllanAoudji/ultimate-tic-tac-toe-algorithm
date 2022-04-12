@@ -49,7 +49,7 @@ const getActiveSection: (
 
   if (
     mode === Mode.Normal &&
-    checkIfWon(sections[index].tiles) !== TileState.Empty
+    checkIfWon(sections[index].tiles)[0] !== TileState.Empty
   ) {
     return null;
   } else if (
