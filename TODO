@@ -1,6 +1,3 @@
-TODO Next
-create classes for Game/Board/Player
-
 Function TODO:
 
 createTimers
@@ -25,6 +22,6 @@ Better Naming for position
 => BoardState should be TileState
 => getNectMove.ts => getActiveSection.ts
 
-createBoard.ts => (rename) => generateBoard.ts
-
 move boardSections.ts | utils => assets
+
+CheckIfWon should return [Player1 | Player2, WiningLine] | [Empty, null]
