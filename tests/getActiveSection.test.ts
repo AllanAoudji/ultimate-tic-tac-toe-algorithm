@@ -1,15 +1,15 @@
 import convertTo2DArray from '@src/utils/convertTo2DArray';
 import generateAssets from '@src/utils/generateAssets';
-import getNextMove from '@src/utils/getNextMove';
+import getActiveSection from '@src/utils/getActiveSection';
 
 const {board} = generateAssets();
 
-describe('getNextMove', () => {
+describe('getActiveSection', () => {
   it('should throw an error if first arg is not a valid history', () => {
     const wrongHistories: any[] = [0, 'string', true, {}, [100], new Array(9)];
 
     wrongHistories.forEach((wrongHistory) => {
-      expect(() => getNextMove(wrongHistory, board)).toThrow(
+      expect(() => getActiveSection(wrongHistory, board)).toThrow(
         'history should be valid',
       );
     });
@@ -18,14 +18,16 @@ describe('getNextMove', () => {
   it('should throw an error if second arg is not a valid board', () => {
     const wrongBoard: any[] = [];
 
-    expect(() => getNextMove([], wrongBoard)).toThrow('board should be valid');
+    expect(() => getActiveSection([], wrongBoard)).toThrow(
+      'board should be valid',
+    );
   });
 
   it('should throw an error if third arg is not a vlide mode', () => {
     const wrongModes: any[] = [10, 'string', true, {}, []];
 
     wrongModes.forEach((wrongMode) => {
-      expect(() => getNextMove([], board, wrongMode)).toThrow(
+      expect(() => getActiveSection([], board, wrongMode)).toThrow(
         'mode should be valid',
       );
     });
@@ -34,7 +36,7 @@ describe('getNextMove', () => {
   it('should return null if history.length === 0', () => {
     const emptyHistory: number[] = [];
 
-    expect(getNextMove(emptyHistory, board)).toBeNull();
+    expect(getActiveSection(emptyHistory, board)).toBeNull();
   });
 
   it('should return 0 if last item of history === 0/3/6/27/30/33/54/57/60', () => {
@@ -51,7 +53,7 @@ describe('getNextMove', () => {
     ];
 
     topLeftTiles.forEach((tile) => {
-      expect(getNextMove(tile, board)).toBe(0);
+      expect(getActiveSection(tile, board)).toBe(0);
     });
   });
 
@@ -69,7 +71,7 @@ describe('getNextMove', () => {
     ];
 
     topMiddleTiles.forEach((tile) => {
-      expect(getNextMove(tile, board)).toBe(1);
+      expect(getActiveSection(tile, board)).toBe(1);
     });
   });
 
@@ -77,7 +79,7 @@ describe('getNextMove', () => {
     const topRightTiles = [[2], [5], [8], [29], [32], [35], [56], [59], [62]];
 
     topRightTiles.forEach((tile) => {
-      expect(getNextMove(tile, board)).toBe(2);
+      expect(getActiveSection(tile, board)).toBe(2);
     });
   });
 
@@ -95,7 +97,7 @@ describe('getNextMove', () => {
     ];
 
     middleLeftTiles.forEach((tile) => {
-      expect(getNextMove(tile, board)).toBe(3);
+      expect(getActiveSection(tile, board)).toBe(3);
     });
   });
 
@@ -113,7 +115,7 @@ describe('getNextMove', () => {
     ];
 
     middleMiddleTiles.forEach((tile) => {
-      expect(getNextMove(tile, board)).toBe(4);
+      expect(getActiveSection(tile, board)).toBe(4);
     });
   });
 
@@ -131,7 +133,7 @@ describe('getNextMove', () => {
     ];
 
     middleRightTiles.forEach((tile) => {
-      expect(getNextMove(tile, board)).toBe(5);
+      expect(getActiveSection(tile, board)).toBe(5);
     });
   });
 
@@ -149,7 +151,7 @@ describe('getNextMove', () => {
     ];
 
     BottomLeftTiles.forEach((tile) => {
-      expect(getNextMove(tile, board)).toBe(6);
+      expect(getActiveSection(tile, board)).toBe(6);
     });
   });
 
@@ -167,7 +169,7 @@ describe('getNextMove', () => {
     ];
 
     BottomMiddleTiles.forEach((tile) => {
-      expect(getNextMove(tile, board)).toBe(7);
+      expect(getActiveSection(tile, board)).toBe(7);
     });
   });
 
@@ -185,7 +187,7 @@ describe('getNextMove', () => {
     ];
 
     BottomRightTiles.forEach((tile) => {
-      expect(getNextMove(tile, board)).toBe(8);
+      expect(getActiveSection(tile, board)).toBe(8);
     });
   });
 
@@ -205,9 +207,9 @@ describe('getNextMove', () => {
     winBoard3[52] = TileState.Player1;
     winBoard3[53] = TileState.Player1;
 
-    expect(getNextMove([0], winBoard1)).toBeNull();
-    expect(getNextMove([0], winBoard2)).toBeNull();
-    expect(getNextMove([17], winBoard3)).toBeNull();
+    expect(getActiveSection([0], winBoard1)).toBeNull();
+    expect(getActiveSection([0], winBoard2)).toBeNull();
+    expect(getActiveSection([17], winBoard3)).toBeNull();
   });
 
   it('should return null if mode === CONTINUE and the next section is full', () => {
@@ -233,14 +235,14 @@ describe('getNextMove', () => {
     winBoard2[76] = TileState.Player2;
     winBoard2[77] = TileState.Player2;
 
-    expect(getNextMove([6], winBoard1, Mode.Continue)).toBeNull();
-    expect(getNextMove([49], winBoard2, Mode.Continue)).toBeNull();
+    expect(getActiveSection([6], winBoard1, Mode.Continue)).toBeNull();
+    expect(getActiveSection([49], winBoard2, Mode.Continue)).toBeNull();
   });
 
   it('should work with a matrix board', () => {
     const {board} = generateAssets();
     const matrixBoard = convertTo2DArray(board);
 
-    expect(getNextMove([0], matrixBoard, Mode.Continue)).toBe(0);
+    expect(getActiveSection([0], matrixBoard, Mode.Continue)).toBe(0);
   });
 });

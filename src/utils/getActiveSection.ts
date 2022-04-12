@@ -8,7 +8,7 @@ import getSubSections from './getSubSections';
 import getTileIndexPositionAndSection from './getTileIndexPositionAndSection';
 import mapMatrix from './mapMatrix';
 
-const getNextMove: (
+const getActiveSection: (
   history: number[],
   board: TileState[] | Tile[][],
   mode?: Mode,
@@ -62,4 +62,4 @@ const getNextMove: (
   return index;
 };
 
-export default getNextMove;
+export default getActiveSection;
