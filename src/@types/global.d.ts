@@ -1,12 +1,6 @@
 export {};
 
 declare global {
-  const enum TileState {
-    Empty = 'EMPTY',
-    Player1 = 'X',
-    Player2 = 'Y',
-  }
-
   const enum Mode {
     Continue,
     Normal,
@@ -22,6 +16,12 @@ declare global {
     BottomRight,
     BottomMiddle,
     BottomLeft,
+  }
+
+  const enum TileState {
+    Empty = 'EMPTY',
+    Player1 = 'X',
+    Player2 = 'Y',
   }
 
   const enum WiningLine {
