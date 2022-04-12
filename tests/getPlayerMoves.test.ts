@@ -23,7 +23,7 @@ describe('getPlayerMove', () => {
     ];
 
     wrongHistories.forEach((wrongHistory) => {
-      expect(() => getPlayerMoves(BoardState.Player1, wrongHistory)).toThrow(
+      expect(() => getPlayerMoves(TileState.Player1, wrongHistory)).toThrow(
         'history should be valid',
       );
     });
@@ -66,7 +66,7 @@ describe('getPlayerMove', () => {
     ];
 
     player1Moves.forEach((player1Move) => {
-      expect(getPlayerMoves(BoardState.Player1, player1Move.history)).toEqual(
+      expect(getPlayerMoves(TileState.Player1, player1Move.history)).toEqual(
         player1Move.moves,
       );
     });
@@ -105,7 +105,7 @@ describe('getPlayerMove', () => {
     ];
 
     player2Moves.forEach((player2Move) => {
-      expect(getPlayerMoves(BoardState.Player2, player2Move.history)).toEqual(
+      expect(getPlayerMoves(TileState.Player2, player2Move.history)).toEqual(
         player2Move.moves,
       );
     });

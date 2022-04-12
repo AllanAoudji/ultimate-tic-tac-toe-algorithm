@@ -1,7 +1,7 @@
 export {};
 
 declare global {
-  const enum BoardState {
+  const enum TileState {
     Empty = 'EMPTY',
     Player1 = 'X',
     Player2 = 'Y',
@@ -36,13 +36,13 @@ declare global {
   }
 
   interface Assets {
-    activePlayer: BoardState.Player1 | BoardState.Player2;
+    activePlayer: TileState.Player1 | TileState.Player2;
     activeSection: number;
-    board: BoardState[];
+    board: TileState[];
     history: number[];
-    players: [BoardState.Player1, BoardState.Player2];
-    sectionsState: [BoardState, WiningLine | null][];
-    winner: BoardState;
+    players: [TileState.Player1, TileState.Player2];
+    sectionsState: [TileState, WiningLine | null][];
+    winner: TileState;
   }
 
   interface Position2D {
@@ -56,7 +56,7 @@ declare global {
   }
 
   interface Tile {
-    state: BoardState;
+    state: TileState;
     position1D: number;
   }
 }

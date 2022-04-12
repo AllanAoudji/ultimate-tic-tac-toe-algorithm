@@ -1,31 +1,27 @@
 import checkIfBoardState from '@src/utils/checkIfBoardState';
 
 describe('checkIfBoardState', () => {
-  it('should return true if arg is a boardState', () => {
-    const boardStates = [
-      BoardState.Empty,
-      BoardState.Player1,
-      BoardState.Player2,
-    ];
+  it('should return true if arg is a tileState', () => {
+    const tileStates = [TileState.Empty, TileState.Player1, TileState.Player2];
 
-    boardStates.forEach((boardState) => {
-      expect(checkIfBoardState(boardState)).toBe(true);
+    tileStates.forEach((tileState) => {
+      expect(checkIfBoardState(tileState)).toBe(true);
     });
   });
 
-  it('should return false if arg is not a boardState', () => {
-    const notBoardStates = [
-      'not a board state',
+  it('should return false if arg is not a tileState', () => {
+    const notTileState = [
+      'string',
       false,
-      [BoardState.Empty],
+      [TileState.Empty],
       {
-        state: BoardState.Empty,
+        state: TileState.Empty,
         position1D: 1,
       },
     ];
 
-    notBoardStates.forEach((notBoardState) => {
-      expect(checkIfBoardState(notBoardState)).toBe(false);
+    notTileState.forEach((notTileState) => {
+      expect(checkIfBoardState(notTileState)).toBe(false);
     });
   });
 });

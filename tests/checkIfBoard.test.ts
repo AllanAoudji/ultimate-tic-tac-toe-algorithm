@@ -21,14 +21,14 @@ describe('checkIfBoard', () => {
   });
 
   it('should return false if arg is not a 81 or a 9 length array', () => {
-    const wrongArray = new Array(10).fill(BoardState.Empty);
+    const wrongArray = new Array(10).fill(TileState.Empty);
 
     expect(checkIfBoard(wrongArray)).toBe(false);
   });
 
-  it('should return false if at least one of the item of the 9 length array is not a BoardState', () => {
-    const wrongArray = new Array(81).fill(BoardState.Empty);
-    wrongArray[0] = 'not a BoardState';
+  it('should return false if at least one of the item of the 9 length array is not a TileState', () => {
+    const wrongArray = new Array(81).fill(TileState.Empty);
+    wrongArray[0] = 'not a TileState';
 
     expect(checkIfBoard(wrongArray)).toBe(false);
   });
@@ -36,13 +36,13 @@ describe('checkIfBoard', () => {
   it('should return false is the 9 length array is not a square matrix', () => {
     const wrongMatrixes = [
       new Array(9).fill({
-        state: BoardState.Empty,
+        state: TileState.Empty,
         position1D: 0,
       }),
       new Array(9).fill(new Array(9)),
       new Array(9).fill(
         new Array(8).fill({
-          state: BoardState.Empty,
+          state: TileState.Empty,
           position1D: 0,
         }),
       ),
@@ -58,7 +58,7 @@ describe('checkIfBoard', () => {
     const wrongMatrix1 = convertTo2DArray(board);
     wrongMatrix1[0][0] = {
       position1D: 10,
-      state: BoardState.Empty,
+      state: TileState.Empty,
     };
     const wrongMatrix2: any[][] = convertTo2DArray(board);
     wrongMatrix2[0][0] = {

@@ -2,7 +2,7 @@ import checkIfBoardState from './checkIfBoardState';
 import checkIfTile from './checkIfTile';
 import convertTo2DArray from './convertTo2DArray';
 
-const getSubSections: (board: Tile[][] | BoardState[]) => Section[] = (
+const getSubSections: (board: Tile[][] | TileState[]) => Section[] = (
   board,
 ) => {
   let array2D: Tile[][];
@@ -39,13 +39,13 @@ const getSubSections: (board: Tile[][] | BoardState[]) => Section[] = (
 
     array2D = [...(board as Tile[][])];
   } else {
-    // Check if each items isn a 1D array is a BoardState
-    board.forEach((boardState) => {
-      if (!checkIfBoardState(boardState)) {
-        throw new Error('array board should be an array of boardState');
+    // Check if each items isn a 1D array is a TileState
+    board.forEach((tileState) => {
+      if (!checkIfBoardState(tileState)) {
+        throw new Error('array board should be an array of tileState');
       }
     });
-    array2D = convertTo2DArray(board as BoardState[]);
+    array2D = convertTo2DArray(board as TileState[]);
   }
 
   // Representation of a scan

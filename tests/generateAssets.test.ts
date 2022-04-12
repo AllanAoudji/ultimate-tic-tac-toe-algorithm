@@ -7,7 +7,7 @@ describe('generateAssets', () => {
     const activePlayer = 'activePlayer';
 
     expect(assets).toHaveProperty(activePlayer);
-    expect(assets[activePlayer]).toBe(BoardState.Player1);
+    expect(assets[activePlayer]).toBe(TileState.Player1);
   });
 
   it('should return initial active section', () => {
@@ -24,7 +24,7 @@ describe('generateAssets', () => {
     expect(Array.isArray(assets[board])).toBe(true);
     expect(assets[board].length).toBe(81);
     expect(Object.keys(assets[board]).length).toBe(81);
-    expect(assets[board].some((item) => item === BoardState.Empty)).toBe(true);
+    expect(assets[board].some((item) => item === TileState.Empty)).toBe(true);
   });
 
   it('should return initial history', () => {
@@ -43,7 +43,7 @@ describe('generateAssets', () => {
     expect(Array.isArray(assets[players])).toBe(true);
     expect(assets[players].length).toBe(2);
     expect(Object.keys(assets[players]).length).toBe(2);
-    expect(assets[players]).toEqual([BoardState.Player1, BoardState.Player2]);
+    expect(assets[players]).toEqual([TileState.Player1, TileState.Player2]);
   });
 
   it('should return initial sections state', () => {
@@ -54,7 +54,7 @@ describe('generateAssets', () => {
     expect(assets[sectionsState].length).toBe(9);
     expect(Object.keys(assets[sectionsState]).length).toBe(9);
     assets[sectionsState].forEach((sectionState) => {
-      expect(sectionState).toEqual([BoardState.Empty, null]);
+      expect(sectionState).toEqual([TileState.Empty, null]);
     });
   });
 
@@ -62,6 +62,6 @@ describe('generateAssets', () => {
     const winner = 'winner';
 
     expect(assets).toHaveProperty(winner);
-    expect(assets[winner]).toBe(BoardState.Empty);
+    expect(assets[winner]).toBe(TileState.Empty);
   });
 });

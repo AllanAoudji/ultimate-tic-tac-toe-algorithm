@@ -1,5 +1,5 @@
 const checkIfBoardState: (item: any) => boolean = (item) => {
-  const validState = [BoardState.Empty, BoardState.Player1, BoardState.Player2];
+  const validState = [TileState.Empty, TileState.Player1, TileState.Player2];
 
   return validState.includes(item);
 };

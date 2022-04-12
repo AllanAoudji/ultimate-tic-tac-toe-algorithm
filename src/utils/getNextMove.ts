@@ -10,10 +10,10 @@ import mapMatrix from './mapMatrix';
 
 const getNextMove: (
   history: number[],
-  board: BoardState[] | Tile[][],
+  board: TileState[] | Tile[][],
   mode?: Mode,
 ) => number | null = (history, board, mode = Mode.Normal) => {
-  let parseBoard: BoardState[];
+  let parseBoard: TileState[];
 
   if (!checkIfHistory(history)) {
     throw new Error('history should be valid');
@@ -29,7 +29,7 @@ const getNextMove: (
     const stateMatrix = mapMatrix(board as Tile[][], (tile) => tile.state);
     parseBoard = convertTo1DArray(stateMatrix);
   } else {
-    parseBoard = [...(board as BoardState[])];
+    parseBoard = [...(board as TileState[])];
   }
 
   if (history.length === 0) {
@@ -49,7 +49,7 @@ const getNextMove: (
 
   if (
     mode === Mode.Normal &&
-    checkIfWon(sections[index].tiles) !== BoardState.Empty
+    checkIfWon(sections[index].tiles) !== TileState.Empty
   ) {
     return null;
   } else if (

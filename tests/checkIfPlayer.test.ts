@@ -2,7 +2,7 @@ import checkIfPlayer from '@src/utils/checkIfPlayer';
 
 describe('checkIfPlayer', () => {
   it('should return true if arg[0] is a valid Player', () => {
-    const players = [BoardState.Player1, BoardState.Player2];
+    const players = [TileState.Player1, TileState.Player2];
 
     players.forEach((player) => {
       expect(checkIfPlayer(player)).toBe(true);
@@ -11,13 +11,13 @@ describe('checkIfPlayer', () => {
 
   it('should return false if arg is not a valid Player', () => {
     const notPlayer = [
-      BoardState.Empty,
+      TileState.Empty,
       'not a player',
       false,
       0,
-      [BoardState.Player1],
+      [TileState.Player1],
       {
-        player: BoardState.Player1,
+        player: TileState.Player1,
       },
     ];
 

@@ -12,19 +12,15 @@ describe('getSubSections', () => {
   });
 
   it('should throw an error if arg is not a 9x9 matrix', () => {
-    const wrongBoard8x9 = new Array(8).fill(
-      new Array(9).fill(BoardState.Empty),
-    );
-    const wrongBoard9x8 = new Array(9).fill(
-      new Array(8).fill(BoardState.Empty),
-    );
+    const wrongBoard8x9 = new Array(8).fill(new Array(9).fill(TileState.Empty));
+    const wrongBoard9x8 = new Array(9).fill(new Array(8).fill(TileState.Empty));
 
     expect(() => getSubSections(wrongBoard8x9)).toThrow(EXCEPTION_MESSAGE);
     expect(() => getSubSections(wrongBoard9x8)).toThrow(EXCEPTION_MESSAGE);
   });
 
   it('should throw an error if an 1D array has not a length of 81', () => {
-    const wrongArray = new Array(78).fill(BoardState.Empty);
+    const wrongArray = new Array(78).fill(TileState.Empty);
 
     expect(() => getSubSections(wrongArray)).toThrow(EXCEPTION_MESSAGE);
   });
@@ -41,16 +37,16 @@ describe('getSubSections', () => {
     );
   });
 
-  it('should throw an error if arg array is not an array of BoardState', () => {
+  it('should throw an error if arg array is not an array of TileState', () => {
     const wrongArray = new Array(81).fill(true);
 
     expect(() => getSubSections(wrongArray)).toThrow(
-      'array board should be an array of boardState',
+      'array board should be an array of tileState',
     );
   });
 
   it('should work with an 1D array of length 81', () => {
-    const array1D81 = new Array(81).fill(BoardState.Empty);
+    const array1D81 = new Array(81).fill(TileState.Empty);
     const subSections = getSubSections(array1D81);
 
     expect(subSections.length).toBe(9);
@@ -63,7 +59,7 @@ describe('getSubSections', () => {
   });
 
   it('should return an 9x3x3 matrix', () => {
-    const board: BoardState[] = new Array(81).fill(BoardState.Empty);
+    const board: TileState[] = new Array(81).fill(TileState.Empty);
     const subSections = getSubSections(convertTo2DArray(board));
 
     expect(subSections.length).toBe(9);
@@ -76,7 +72,7 @@ describe('getSubSections', () => {
   });
 
   it('should keep the order', () => {
-    const board1D: BoardState[] = new Array(81).fill(BoardState.Empty);
+    const board1D: TileState[] = new Array(81).fill(TileState.Empty);
     const board2D = convertTo2DArray(board1D);
     const subSections = getSubSections(board2D);
 

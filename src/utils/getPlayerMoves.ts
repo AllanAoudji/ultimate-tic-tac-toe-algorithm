@@ -2,7 +2,7 @@ import checkIfHistory from './checkIfHistory';
 import checkIfPlayer from './checkIfPlayer';
 
 const getPlayerMoves: (
-  player: BoardState.Player1 | BoardState.Player2,
+  player: TileState.Player1 | TileState.Player2,
   history: number[],
 ) => number[] = (player, history) => {
   if (!checkIfPlayer(player)) {
@@ -13,7 +13,7 @@ const getPlayerMoves: (
     throw new Error('history should be valid');
   }
 
-  if (player === BoardState.Player1) {
+  if (player === TileState.Player1) {
     return history.filter((item) => item % 2);
   }
 

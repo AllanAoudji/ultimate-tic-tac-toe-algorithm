@@ -191,19 +191,19 @@ describe('getNextMove', () => {
 
   it('should return null if mode === Normal and the next section is already won', () => {
     const {board: winBoard1} = generateAssets();
-    winBoard1[0] = BoardState.Player1;
-    winBoard1[1] = BoardState.Player1;
-    winBoard1[2] = BoardState.Player1;
+    winBoard1[0] = TileState.Player1;
+    winBoard1[1] = TileState.Player1;
+    winBoard1[2] = TileState.Player1;
 
     const {board: winBoard2} = generateAssets();
-    winBoard2[0] = BoardState.Player2;
-    winBoard2[10] = BoardState.Player2;
-    winBoard2[20] = BoardState.Player2;
+    winBoard2[0] = TileState.Player2;
+    winBoard2[10] = TileState.Player2;
+    winBoard2[20] = TileState.Player2;
 
     const {board: winBoard3} = generateAssets();
-    winBoard3[51] = BoardState.Player1;
-    winBoard3[52] = BoardState.Player1;
-    winBoard3[53] = BoardState.Player1;
+    winBoard3[51] = TileState.Player1;
+    winBoard3[52] = TileState.Player1;
+    winBoard3[53] = TileState.Player1;
 
     expect(getNextMove([0], winBoard1)).toBeNull();
     expect(getNextMove([0], winBoard2)).toBeNull();
@@ -212,26 +212,26 @@ describe('getNextMove', () => {
 
   it('should return null if mode === CONTINUE and the next section is full', () => {
     const {board: winBoard1} = generateAssets();
-    winBoard1[0] = BoardState.Player1;
-    winBoard1[1] = BoardState.Player1;
-    winBoard1[2] = BoardState.Player2;
-    winBoard1[9] = BoardState.Player2;
-    winBoard1[10] = BoardState.Player1;
-    winBoard1[11] = BoardState.Player1;
-    winBoard1[18] = BoardState.Player2;
-    winBoard1[19] = BoardState.Player1;
-    winBoard1[20] = BoardState.Player1;
+    winBoard1[0] = TileState.Player1;
+    winBoard1[1] = TileState.Player1;
+    winBoard1[2] = TileState.Player2;
+    winBoard1[9] = TileState.Player2;
+    winBoard1[10] = TileState.Player1;
+    winBoard1[11] = TileState.Player1;
+    winBoard1[18] = TileState.Player2;
+    winBoard1[19] = TileState.Player1;
+    winBoard1[20] = TileState.Player1;
 
     const {board: winBoard2} = generateAssets();
-    winBoard2[57] = BoardState.Player1;
-    winBoard2[58] = BoardState.Player2;
-    winBoard2[59] = BoardState.Player1;
-    winBoard2[66] = BoardState.Player1;
-    winBoard2[67] = BoardState.Player1;
-    winBoard2[68] = BoardState.Player2;
-    winBoard2[75] = BoardState.Player1;
-    winBoard2[76] = BoardState.Player2;
-    winBoard2[77] = BoardState.Player2;
+    winBoard2[57] = TileState.Player1;
+    winBoard2[58] = TileState.Player2;
+    winBoard2[59] = TileState.Player1;
+    winBoard2[66] = TileState.Player1;
+    winBoard2[67] = TileState.Player1;
+    winBoard2[68] = TileState.Player2;
+    winBoard2[75] = TileState.Player1;
+    winBoard2[76] = TileState.Player2;
+    winBoard2[77] = TileState.Player2;
 
     expect(getNextMove([6], winBoard1, Mode.Continue)).toBeNull();
     expect(getNextMove([49], winBoard2, Mode.Continue)).toBeNull();

@@ -4,7 +4,7 @@ describe('checkIfTile', () => {
   it('should return true if arg is a tile', () => {
     const tile: Tile = {
       position1D: 1,
-      state: BoardState.Empty,
+      state: TileState.Empty,
     };
 
     expect(checkIfTile(tile)).toBe(true);
@@ -14,7 +14,7 @@ describe('checkIfTile', () => {
     const notATiles = [
       {
         position1D: '1',
-        state: BoardState.Empty,
+        state: TileState.Empty,
       },
       {
         position1D: 1,
@@ -22,15 +22,15 @@ describe('checkIfTile', () => {
       },
       {
         position2D: 1,
-        state: BoardState.Player1,
+        state: TileState.Player1,
       },
       {
         position1D: 1,
-        status: BoardState.Player2,
+        status: TileState.Player2,
       },
       {
         position1D: 1,
-        state: BoardState.Player1,
+        state: TileState.Player1,
         other: true,
       },
       'string',
