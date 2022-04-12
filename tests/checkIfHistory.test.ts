@@ -44,4 +44,10 @@ describe('checkIfHistory', () => {
 
     expect(checkIfHistory(history)).toBe(true);
   });
+
+  it('should return true if arg is an empty array', () => {
+    const history: number[] = [];
+
+    expect(checkIfHistory(history)).toBe(true);
+  });
 });
