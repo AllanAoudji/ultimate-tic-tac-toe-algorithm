@@ -1,4 +1,3 @@
-import boardSections from '@src/utils/boardSections';
 import checkIfBoard from '@src/utils/checkIfBoard';
 import convertTo2DArray from '@src/utils/convertTo2DArray';
 import generateAssets from '@src/utils/generateAssets';

@@ -1,4 +1,4 @@
-import boardSection from './boardSections';
+import boardSection from '../assets/boardSections';
 
 const checkIfTileBelongToSection: (
   position: number,
