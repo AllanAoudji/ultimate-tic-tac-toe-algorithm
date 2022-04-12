@@ -7,6 +7,11 @@ declare global {
     Player2 = 'Y',
   }
 
+  const enum Mode {
+    Continue,
+    Normal,
+  }
+
   const enum Position {
     TopRight,
     TopMiddle,
