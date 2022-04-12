@@ -30,6 +30,16 @@ declare global {
     TopRightBottomLeftDiagonal,
   }
 
+  interface Assets {
+    activePlayer: BoardState.Player1 | BoardState.Player2;
+    activeSection: number;
+    board: BoardState[];
+    history: number[];
+    players: [BoardState.Player1, BoardState.Player2];
+    sectionsState: [BoardState, WiningLine | null][];
+    winner: BoardState;
+  }
+
   interface Position2D {
     x: number;
     y: number;
