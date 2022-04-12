@@ -1,5 +1,8 @@
 Function TODO:
 
+checkIfBoard
+checkIfMode
+
 createTimers
 ==> Each player should have a separate timer
 ==> a timer can start, trigger function when finish
