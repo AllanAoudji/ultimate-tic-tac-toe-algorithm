@@ -14,7 +14,7 @@ describe('generateAssets', () => {
     const activeSection = 'activeSection';
 
     expect(assets).toHaveProperty(activeSection);
-    expect(assets[activeSection]).toBe(0);
+    expect(assets[activeSection]).toBe(null);
   });
 
   it('should return initial board', () => {

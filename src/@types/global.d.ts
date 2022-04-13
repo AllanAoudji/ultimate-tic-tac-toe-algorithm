@@ -37,7 +37,7 @@ declare global {
 
   interface Assets {
     activePlayer: TileState.Player1 | TileState.Player2;
-    activeSection: number;
+    activeSection: number | null;
     board: TileState[];
     history: number[];
     sectionsState: [TileState, WiningLine | null][];
