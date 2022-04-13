@@ -16,11 +16,10 @@ Create single file for all ERRORS_MESSAGES
 https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project
 
 Play(assets)
-activeSection = getActiveSection(history, board, mode)
-if => checkIfTileBelongToSection(tile, activeSection) => OK
 if => checkIfWon(activeSection) => sectionStates[activeSection].push()/checkIfWon(sectionStates)
 history.push(tile)
 activePlayer = !Player
 return {updatedAssets}
 
-Rename
+assets.winner should be a sectionState
+remove assets.activePlayer (should be based on history) => getActivePlayer
