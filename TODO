@@ -18,10 +18,9 @@ https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-proje
 Play(assets)
 activeSection = getActiveSection(history, board, mode)
 if => checkIfTileBelongToSection(tile, activeSection) => OK
-if => checkIfWon(activeSection) => sectionsState[activeSection].push()/checkIfWon(sectionsState)
+if => checkIfWon(activeSection) => sectionStates[activeSection].push()/checkIfWon(sectionStates)
 history.push(tile)
 activePlayer = !Player
 return {updatedAssets}
 
 Rename
-Assets.sectionsState => Assets.sectionStates

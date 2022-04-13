@@ -37,13 +37,13 @@ describe('generateAssets', () => {
   });
 
   it('should return initial sections state', () => {
-    const sectionsState = 'sectionsState';
+    const sectionStates = 'sectionStates';
 
-    expect(assets).toHaveProperty(sectionsState);
-    expect(Array.isArray(assets[sectionsState])).toBe(true);
-    expect(assets[sectionsState].length).toBe(9);
-    expect(Object.keys(assets[sectionsState]).length).toBe(9);
-    assets[sectionsState].forEach((sectionState) => {
+    expect(assets).toHaveProperty(sectionStates);
+    expect(Array.isArray(assets[sectionStates])).toBe(true);
+    expect(assets[sectionStates].length).toBe(9);
+    expect(Object.keys(assets[sectionStates]).length).toBe(9);
+    assets[sectionStates].forEach((sectionState) => {
       expect(sectionState).toEqual([TileState.Empty, null]);
     });
   });

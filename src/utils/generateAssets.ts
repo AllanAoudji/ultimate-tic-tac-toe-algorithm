@@ -3,7 +3,7 @@ const generateAssets: () => Assets = () => ({
   activeSection: null,
   board: new Array(81).fill(TileState.Empty),
   history: [],
-  sectionsState: new Array(9).fill([TileState.Empty, null]),
+  sectionStates: new Array(9).fill([TileState.Empty, null]),
   winner: TileState.Empty,
 });
 

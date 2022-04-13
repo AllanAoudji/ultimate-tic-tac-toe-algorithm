@@ -1,7 +1,7 @@
 import checkIfSectionState from './checkIfSectionState';
 import checkIfTileState from './checkIfTileState';
 
-const checkIfSectionsState: (arg: any) => boolean = (arg) => {
+const checkIfSectionStates: (arg: any) => boolean = (arg) => {
   if (
     !Array.isArray(arg) ||
     Object.keys(arg).length === 0 ||
@@ -13,4 +13,4 @@ const checkIfSectionsState: (arg: any) => boolean = (arg) => {
   return true;
 };
 
-export default checkIfSectionsState;
+export default checkIfSectionStates;
