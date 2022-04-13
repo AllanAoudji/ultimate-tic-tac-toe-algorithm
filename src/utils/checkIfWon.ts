@@ -3,9 +3,6 @@ import checkIfTile from './checkIfTile';
 import convertTo2DArray from './convertTo2DArray';
 import transposeMatrix from './transposeMatrix';
 
-type WineType =
-  | [TileState.Player1 | TileState.Player2, WiningLine]
-  | [TileState.Empty, null];
 enum RowOrColumn {
   Row,
   Col,
@@ -14,8 +11,8 @@ enum RowOrColumn {
 const checkColumnsOrRows: (
   array: Tile[][],
   rowOrColumn: RowOrColumn,
-) => WineType = (array, rowOrColumn) => {
-  const state = array.reduce<WineType>(
+) => SectionState = (array, rowOrColumn) => {
+  const state = array.reduce<SectionState>(
     (previousValue, row, index) => {
       // If loop has already find a wining row/col,
       // return.
@@ -63,7 +60,9 @@ const checkColumnsOrRows: (
   return state;
 };
 
-const checkIfWon: (section: TileState[] | Tile[][]) => WineType = (section) => {
+const checkIfWon: (section: TileState[] | Tile[][]) => SectionState = (
+  section,
+) => {
   let array2D: Tile[][];
 
   if (!Array.isArray(section) || Object.keys(section).length === 0) {
