@@ -22,3 +22,6 @@ if => checkIfWon(activeSection) => sectionsState[activeSection].push()/checkIfWo
 history.push(tile)
 activePlayer = !Player
 return {updatedAssets}
+
+Rename
+Assets.sectionsState => Assets.sectionStates
