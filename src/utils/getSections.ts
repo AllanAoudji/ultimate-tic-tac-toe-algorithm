@@ -1,10 +1,8 @@
-import checkIfBoardState from './checkIfBoardState';
+import checkIfTileState from './checkIfTileState';
 import checkIfTile from './checkIfTile';
 import convertTo2DArray from './convertTo2DArray';
 
-const getSubSections: (board: Tile[][] | BoardState[]) => Section[] = (
-  board,
-) => {
+const getSections: (board: Tile[][] | TileState[]) => Section[] = (board) => {
   let array2D: Tile[][];
 
   // Check if board is a proper array.
@@ -39,13 +37,13 @@ const getSubSections: (board: Tile[][] | BoardState[]) => Section[] = (
 
     array2D = [...(board as Tile[][])];
   } else {
-    // Check if each items isn a 1D array is a BoardState
-    board.forEach((boardState) => {
-      if (!checkIfBoardState(boardState)) {
-        throw new Error('array board should be an array of boardState');
+    // Check if each items isn a 1D array is a TileState
+    board.forEach((tileState) => {
+      if (!checkIfTileState(tileState)) {
+        throw new Error('array board should be an array of tileState');
       }
     });
-    array2D = convertTo2DArray(board as BoardState[]);
+    array2D = convertTo2DArray(board as TileState[]);
   }
 
   // Representation of a scan
@@ -63,7 +61,7 @@ const getSubSections: (board: Tile[][] | BoardState[]) => Section[] = (
   ];
 
   // Split 9x9 board to 9 different slices
-  const subSections = slices.reduce<Section[]>((rows, key) => {
+  const sections = slices.reduce<Section[]>((rows, key) => {
     const section = array2D
       .slice(key[2], key[3] + 1)
       .map((boardIndex) => boardIndex.slice(key[0], key[1] + 1));
@@ -74,7 +72,7 @@ const getSubSections: (board: Tile[][] | BoardState[]) => Section[] = (
     return rows;
   }, []);
 
-  return subSections;
+  return sections;
 };
 
-export default getSubSections;
+export default getSections;

@@ -1,10 +1,9 @@
 export {};
 
 declare global {
-  const enum BoardState {
-    Empty = 'EMPTY',
-    Player1 = 'X',
-    Player2 = 'Y',
+  const enum Mode {
+    Continue,
+    Normal,
   }
 
   const enum Position {
@@ -19,6 +18,12 @@ declare global {
     BottomLeft,
   }
 
+  const enum TileState {
+    Empty = 'EMPTY',
+    Player1 = 'X',
+    Player2 = 'Y',
+  }
+
   const enum WiningLine {
     TopRow,
     MiddleRow,
@@ -30,7 +35,16 @@ declare global {
     TopRightBottomLeftDiagonal,
   }
 
-  interface Position2D {
+  interface Assets {
+    activeSection: number | null;
+    board: TileState[];
+    history: number[];
+    mode: Mode;
+    sectionStates: SectionState[];
+    winner: SectionState;
+  }
+
+  interface Index2D {
     x: number;
     y: number;
   }
@@ -41,7 +55,11 @@ declare global {
   }
 
   interface Tile {
-    state: BoardState;
-    position1D: number;
+    state: TileState;
+    index1D: number;
   }
+
+  type SectionState =
+    | [TileState.Player1 | TileState.Player2, WiningLine]
+    | [TileState.Empty, null];
 }

@@ -1,4 +1,4 @@
-import boardSections from './boardSections';
+import boardSections from '../assets/boardSections';
 
 interface IndexPositionAndSection {
   index: number;

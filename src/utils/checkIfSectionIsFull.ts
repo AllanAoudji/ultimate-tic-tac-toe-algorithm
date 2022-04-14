@@ -1,12 +1,12 @@
-import checkIfBoardState from './checkIfBoardState';
+import checkIfTileState from './checkIfTileState';
 import checkIfTile from './checkIfTile';
 import convertTo1DArray from './convertTo1DArray';
 import mapMatrix from './mapMatrix';
 
-const checkIfSectionIsFull: (section: BoardState[] | Tile[][]) => boolean = (
+const checkIfSectionIsFull: (section: TileState[] | Tile[][]) => boolean = (
   section,
 ) => {
-  let array1D: BoardState[];
+  let array1D: TileState[];
 
   if (!Array.isArray(section) || Object.keys(section).length === 0) {
     throw new Error('arg should be a 9 length array or a 3x3 matrix');
@@ -32,15 +32,15 @@ const checkIfSectionIsFull: (section: BoardState[] | Tile[][]) => boolean = (
     const matrixOfState = mapMatrix(section as Tile[][], (tile) => tile.state);
     array1D = convertTo1DArray(matrixOfState);
   } else {
-    section.forEach((boardState) => {
-      if (!checkIfBoardState(boardState)) {
-        throw new Error('array arg should be an array of boardState');
+    section.forEach((tileState) => {
+      if (!checkIfTileState(tileState)) {
+        throw new Error('array arg should be an array of tileState');
       }
     });
-    array1D = [...(section as BoardState[])];
+    array1D = [...(section as TileState[])];
   }
 
-  const isNotFull = array1D.some((tile) => tile === BoardState.Empty);
+  const isNotFull = array1D.some((tile) => tile === TileState.Empty);
 
   return !isNotFull;
 };

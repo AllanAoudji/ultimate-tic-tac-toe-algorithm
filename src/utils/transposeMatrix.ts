@@ -1,8 +1,8 @@
-import checkIfBoardState from './checkIfBoardState';
+import checkIfTileState from './checkIfTileState';
 import checkIfTile from './checkIfTile';
 import convertTo2DArray from './convertTo2DArray';
 
-const transposeMatrix: (array: BoardState[] | Tile[][]) => Tile[][] = (
+const transposeMatrix: (array: TileState[] | Tile[][]) => Tile[][] = (
   array,
 ) => {
   let array2D: Tile[][];
@@ -66,21 +66,21 @@ const transposeMatrix: (array: BoardState[] | Tile[][]) => Tile[][] = (
       // Check for 9 length 1D array
     } else {
       array.forEach((item) => {
-        if (!checkIfBoardState(item)) {
-          throw new Error('array arg should be an array of boardState');
+        if (!checkIfTileState(item)) {
+          throw new Error('array arg should be an array of tileState');
         }
       });
-      array2D = convertTo2DArray(array as BoardState[]);
+      array2D = convertTo2DArray(array as TileState[]);
     }
 
     // Check for 81 length 1D array
   } else {
     array.forEach((item) => {
-      if (!checkIfBoardState(item)) {
-        throw new Error('array arg should be an array of boardState');
+      if (!checkIfTileState(item)) {
+        throw new Error('array arg should be an array of tileState');
       }
     });
-    array2D = convertTo2DArray(array as BoardState[]);
+    array2D = convertTo2DArray(array as TileState[]);
   }
 
   const transposedArray2D = array2D[0].map((_, colIndex) =>

@@ -12,7 +12,7 @@ describe('transposeMatrix', () => {
   });
 
   it('should throw an error if arg is not a 9/81 length array', () => {
-    const wrongArray: BoardState[] = new Array(3).fill(0);
+    const wrongArray: TileState[] = new Array(3).fill(0);
 
     expect(() => transposeMatrix(wrongArray)).toThrow(EXCEPTION_MESSAGE);
   });
@@ -49,27 +49,27 @@ describe('transposeMatrix', () => {
     );
   });
 
-  it('should throw an error if arg array is not an array of BoardState', () => {
+  it('should throw an error if arg array is not an array of TileState', () => {
     const wrongArray1 = new Array(9).fill(true);
     const wrongArray2 = new Array(81).fill(true);
 
     expect(() => transposeMatrix(wrongArray1)).toThrow(
-      'array arg should be an array of boardState',
+      'array arg should be an array of tileState',
     );
     expect(() => transposeMatrix(wrongArray2)).toThrow(
-      'array arg should be an array of boardState',
+      'array arg should be an array of tileState',
     );
   });
 
   it('should transpose a matrix', () => {
     const matrix3x3 = [
-      [BoardState.Empty, BoardState.Player1, BoardState.Player2],
-      [BoardState.Player1, BoardState.Player2, BoardState.Empty],
-      [BoardState.Player2, BoardState.Empty, BoardState.Player1],
+      [TileState.Empty, TileState.Player1, TileState.Player2],
+      [TileState.Player1, TileState.Player2, TileState.Empty],
+      [TileState.Player2, TileState.Empty, TileState.Player1],
     ];
     const matrix3x3Tile = mapMatrix(matrix3x3, (item) => ({
       state: item,
-      position1D: 0,
+      index1D: 0,
     }));
     const transposedMatrix3x3 = transposeMatrix(matrix3x3Tile);
 
@@ -86,15 +86,15 @@ describe('transposeMatrix', () => {
 
   it('should transpose a 1D array', () => {
     const array1d9 = [
-      BoardState.Empty,
-      BoardState.Player1,
-      BoardState.Player2,
-      BoardState.Player1,
-      BoardState.Player2,
-      BoardState.Empty,
-      BoardState.Player2,
-      BoardState.Empty,
-      BoardState.Player1,
+      TileState.Empty,
+      TileState.Player1,
+      TileState.Player2,
+      TileState.Player1,
+      TileState.Player2,
+      TileState.Empty,
+      TileState.Player2,
+      TileState.Empty,
+      TileState.Player1,
     ];
 
     const transposedMatrix3x3 = transposeMatrix(array1d9);
