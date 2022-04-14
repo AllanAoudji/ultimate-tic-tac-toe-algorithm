@@ -1,5 +1,3 @@
-Function TODO:
-
 createTimers
 ==> Each player should have a separate timer
 ==> a timer can start, trigger function when finish
@@ -14,9 +12,3 @@ Timer()
 Create single file for all ERRORS_MESSAGES
 
 https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project
-
-Play(assets)
-if => checkIfWon(activeSection) => sectionStates[activeSection].push()/checkIfWon(sectionStates)
-history.push(tile)
-activePlayer = !Player
-return {updatedAssets}
