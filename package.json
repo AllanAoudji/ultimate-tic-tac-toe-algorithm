@@ -1,6 +1,6 @@
 {
   "name": "ultimate-tic-tac-toe-algorithm",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Ultimate Tic Tic Toe Algorithm",
   "author": "AZIHubert <allan.aoudji@protonmail.com>",
   "license": "MIT",
@@ -17,8 +17,7 @@
     "@src": "dist"
   },
   "scripts": {
-    "build": "tsc && yarn copy-dts",
-    "copy-dts": "copyfiles -u 1 \"src/**/*.d.ts\" lib",
+    "build": "tsc",
     "dev": "nodemon --exec ts-node src/index.ts",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
