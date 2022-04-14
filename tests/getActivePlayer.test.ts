@@ -18,7 +18,7 @@ describe('getActivePlayer', () => {
     });
   });
 
-  it('should return first player (0) if history.length is even', () => {
+  it('should return first player if history.length is even', () => {
     const evenHistories = [
       [],
       [1, 2],
@@ -28,7 +28,7 @@ describe('getActivePlayer', () => {
     ];
 
     evenHistories.forEach((evenHistory) => {
-      expect(getActivePlayer(evenHistory)).toBe(0);
+      expect(getActivePlayer(evenHistory)).toBe(TileState.Player1);
     });
   });
 
@@ -41,7 +41,7 @@ describe('getActivePlayer', () => {
     ];
 
     oddHistories.forEach((oddHistory) => {
-      expect(getActivePlayer(oddHistory)).toBe(1);
+      expect(getActivePlayer(oddHistory)).toBe(TileState.Player2);
     });
   });
 });

@@ -22,7 +22,3 @@ activePlayer = !Player
 return {updatedAssets}
 
 assets.winner should be a sectionState
-remove assets.activePlayer (should be based on history) => getActivePlayer
-
-Assets
-history.length should be equal => num of Player1/Player2 in Board

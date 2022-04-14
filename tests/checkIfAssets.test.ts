@@ -13,28 +13,13 @@ describe('checkIfAssets', () => {
   it("should return false if arg doesn't have 6 properties", () => {
     const wrongArgs = [
       {},
-      {activePlayer: TileState.Player1},
-      {activePlayer: TileState.Player1, activeSection: 0},
+      {board: new Array(81).fill(TileState.Empty)},
+      {board: new Array(81).fill(TileState.Empty), activeSection: 0},
     ];
 
     wrongArgs.forEach((wrongArg) => {
       expect(checkIfAssets(wrongArg)).toBe(false);
     });
-  });
-
-  it('should return false if arg.activePlayer does not exist', () => {
-    const wrongAssets: any = generateAssets();
-    delete wrongAssets.activePlayer;
-    wrongAssets.activePlayers = TileState.Empty;
-
-    expect(checkIfAssets(wrongAssets)).toBe(false);
-  });
-
-  it('should return false if arg.activePlayer is not a player', () => {
-    const wrongAssets: any = generateAssets();
-    wrongAssets.activePlayer = 'string';
-
-    expect(checkIfAssets(wrongAssets)).toBe(false);
   });
 
   it('should return false if arg.board does not exist', () => {

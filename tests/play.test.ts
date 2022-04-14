@@ -72,7 +72,7 @@ describe('play', () => {
     const assets2 = generateAssets();
     assets2.board[8] = TileState.Player2;
     assets2.board[26] = TileState.Player2;
-    assets2.activePlayer = TileState.Player2;
+    assets2.history = [5];
     const {sectionStates: sectionStates2} = play(17, assets2);
     const expectedSectionStates2 = [...sectionStates2];
     expectedSectionStates2[2] = [TileState.Player2, WiningLine.RightColumn];
@@ -106,17 +106,9 @@ describe('play', () => {
     assets3.sectionStates[2] = [TileState.Player2, WiningLine.BottomRow];
     assets3.board[0] = TileState.Player2;
     assets3.board[10] = TileState.Player2;
-    assets3.activePlayer = TileState.Player2;
+    assets3.history = [3];
     const {winner: winner3} = play(20, assets3);
     expect(winner3).toBe(TileState.Player2);
-  });
-
-  it('should return active player', () => {
-    const assets = generateAssets();
-    const returnAssets1 = play(0, assets);
-    expect(returnAssets1.activePlayer).toBe(TileState.Player2);
-    const returnAssets2 = play(1, returnAssets1);
-    expect(returnAssets2.activePlayer).toBe(TileState.Player1);
   });
 
   it('should return active section', () => {

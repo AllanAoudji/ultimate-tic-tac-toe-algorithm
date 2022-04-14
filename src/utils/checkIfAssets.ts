@@ -8,8 +8,7 @@ import checkIfTileState from './checkIfTileState';
 const checkIfAssets: (item: any) => boolean = (item) => {
   if (
     typeof item !== 'object' ||
-    Object.keys(item).length !== 7 ||
-    !checkIfPlayer(item.activePlayer) ||
+    Object.keys(item).length !== 6 ||
     !checkIfBoard(item.board) ||
     !checkIfHistory(item.history) ||
     !checkIfSectionStates(item.sectionStates) ||

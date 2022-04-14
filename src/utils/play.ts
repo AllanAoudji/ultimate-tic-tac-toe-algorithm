@@ -1,6 +1,7 @@
 import checkIfAssets from './checkIfAssets';
 import checkIfTileBelongToSection from './checkIfTileBelongToSection';
 import checkIfWon from './checkIfWon';
+import getActivePlayer from './getActivePlayer';
 import getActiveSection from './getActiveSection';
 import getSubSections from './getSubSections';
 import getTileIndexPositionAndSection from './getTileIndexPositionAndSection';
@@ -35,7 +36,8 @@ const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
 
   // Update board
   const board = [...assets.board];
-  board[tile] = assets.activePlayer;
+  const activePlayer = getActivePlayer(assets.history);
+  board[tile] = activePlayer;
 
   // Check if current section is win by this move.
   const {section} = getTileIndexPositionAndSection(tile);
@@ -53,15 +55,8 @@ const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
     }
   }
 
-  // Update active player
-  const activePlayer =
-    assets.activePlayer === TileState.Player1
-      ? TileState.Player2
-      : TileState.Player1;
-
   const test = getActiveSection(history, board, assets.mode);
   return {
-    activePlayer,
     activeSection: test,
     board,
     history,

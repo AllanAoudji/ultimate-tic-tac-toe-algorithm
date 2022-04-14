@@ -4,13 +4,6 @@ import generateAssets from '@src/utils/generateAssets';
 const assets = generateAssets();
 
 describe('generateAssets', () => {
-  it('should return initial active player', () => {
-    const activePlayer = 'activePlayer';
-
-    expect(assets).toHaveProperty(activePlayer);
-    expect(assets[activePlayer]).toBe(TileState.Player1);
-  });
-
   it('should return initial active section', () => {
     const activeSection = 'activeSection';
 
