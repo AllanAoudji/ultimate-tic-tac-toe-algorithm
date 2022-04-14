@@ -40,6 +40,7 @@ declare global {
     activeSection: number | null;
     board: TileState[];
     history: number[];
+    mode: Mode;
     sectionStates: SectionState[];
     winner: TileState;
   }

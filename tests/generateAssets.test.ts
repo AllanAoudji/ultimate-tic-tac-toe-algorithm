@@ -1,3 +1,4 @@
+import checkIfMode from '@src/utils/checkIfMode';
 import generateAssets from '@src/utils/generateAssets';
 
 const assets = generateAssets();
@@ -36,6 +37,13 @@ describe('generateAssets', () => {
     expect(Object.keys(assets[history]).length).toBe(0);
   });
 
+  it('should return initial mode', () => {
+    const mode = 'mode';
+
+    expect(assets).toHaveProperty(mode);
+    expect(checkIfMode(assets.mode)).toBe(true);
+  });
+
   it('should return initial sections state', () => {
     const sectionStates = 'sectionStates';
 
@@ -53,5 +61,19 @@ describe('generateAssets', () => {
 
     expect(assets).toHaveProperty(winner);
     expect(assets[winner]).toBe(TileState.Empty);
+  });
+
+  it('should change assets.mode based on arg option', () => {
+    const assets1 = generateAssets();
+    const assets2 = generateAssets({
+      mode: Mode.Continue,
+    });
+    const assets3 = generateAssets({
+      mode: Mode.Normal,
+    });
+
+    expect(assets1.mode).toBe(Mode.Normal);
+    expect(assets2.mode).toBe(Mode.Continue);
+    expect(assets3.mode).toBe(Mode.Normal);
   });
 });

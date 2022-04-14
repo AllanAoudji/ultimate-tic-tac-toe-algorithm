@@ -17,9 +17,11 @@ const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
     throw new Error('invalid move');
   }
 
-  // TODO:
-  // last arg should be assets.mode
-  const activeSection = getActiveSection(assets.history, assets.board);
+  const activeSection = getActiveSection(
+    assets.history,
+    assets.board,
+    assets.mode,
+  );
 
   if (
     activeSection !== null &&
@@ -43,7 +45,7 @@ const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
     const {tiles} = getSubSections(board)[section];
     const sectionIsWin = checkIfWon(tiles);
     // If section is won...
-    if (sectionIsWin[0]) {
+    if (sectionIsWin[0] !== TileState.Empty) {
       // ...update assets.sectionStates
       sectionStates[section] = sectionIsWin;
       // ...and check if game if won
@@ -57,12 +59,13 @@ const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
       ? TileState.Player2
       : TileState.Player1;
 
-  const test = getActiveSection(history, board);
+  const test = getActiveSection(history, board, assets.mode);
   return {
     activePlayer,
     activeSection: test,
     board,
     history,
+    mode: assets.mode,
     sectionStates,
     winner,
   };

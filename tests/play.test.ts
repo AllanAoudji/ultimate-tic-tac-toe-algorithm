@@ -53,6 +53,13 @@ describe('play', () => {
     // should play more when returned assets gonna be valid
   });
 
+  it('should return same mode as assets.mode arg', () => {
+    const assets = generateAssets();
+
+    const {mode} = play(0, assets);
+    expect(mode).toBe(assets.mode);
+  });
+
   it('should update accordingly sectionStates if play allow to win a section', () => {
     const assets1 = generateAssets();
     assets1.board[0] = TileState.Player1;
