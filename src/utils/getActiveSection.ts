@@ -1,3 +1,5 @@
+import {Mode, Tile, TileState} from '@src/types';
+
 import checkIfBoard from './checkIfBoard';
 import checkIfHistory from './checkIfHistory';
 import checkIfMode from './checkIfMode';

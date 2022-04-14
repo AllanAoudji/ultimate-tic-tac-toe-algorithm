@@ -1,3 +1,4 @@
+import {Tile, TileState} from '@src/types';
 import checkIfTile from '@src/utils/checkIfTile';
 
 describe('checkIfTile', () => {

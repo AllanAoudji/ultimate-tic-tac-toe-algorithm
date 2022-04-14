@@ -1,3 +1,4 @@
+import {TileState} from '@src/types';
 import checkIfAssets from '@src/utils/checkIfAssets';
 import generateAssets from '@src/utils/generateAssets';
 

@@ -1,3 +1,5 @@
+import {WiningLine} from '@src/types';
+
 const checkIfWiningLine: (arg: any) => boolean = (arg) => {
   const validState = [
     WiningLine.TopRow,

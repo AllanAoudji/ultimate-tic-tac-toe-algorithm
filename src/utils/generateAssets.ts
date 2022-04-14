@@ -1,3 +1,5 @@
+import {Assets, Mode, TileState} from '@src/types';
+
 interface Option {
   mode?: Mode;
 }

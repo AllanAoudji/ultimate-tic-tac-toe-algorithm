@@ -1,3 +1,5 @@
+import {TileState} from '@src/types';
+
 const checkIfPlayer: (item: any) => boolean = (item) => {
   const validPlayer = [TileState.Player1, TileState.Player2];
 

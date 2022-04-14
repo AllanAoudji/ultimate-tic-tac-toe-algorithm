@@ -1,3 +1,4 @@
+import {TileState} from '@src/types';
 import checkIfPlayer from '@src/utils/checkIfPlayer';
 
 describe('checkIfPlayer', () => {

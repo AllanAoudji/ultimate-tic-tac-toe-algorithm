@@ -1,7 +1,9 @@
-const getPosition2DFrom1D: (
-  position: number,
-  squareSize?: number,
-) => Index2D = (position, squareSize = 9) => {
+import {Index2D} from '@src/types';
+
+const getIndex2DFrom1D: (position: number, squareSize?: number) => Index2D = (
+  position,
+  squareSize = 9,
+) => {
   if (position >= squareSize * squareSize) {
     throw new Error('position out of bound');
   }
@@ -12,4 +14,4 @@ const getPosition2DFrom1D: (
   return {x, y};
 };
 
-export default getPosition2DFrom1D;
+export default getIndex2DFrom1D;

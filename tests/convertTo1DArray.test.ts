@@ -1,3 +1,4 @@
+import {TileState} from '@src/types';
 import convertTo1DArray from '@src/utils/convertTo1DArray';
 
 const expectionMessage = 'arg should be a 3x3 or a 9x9 matrix';

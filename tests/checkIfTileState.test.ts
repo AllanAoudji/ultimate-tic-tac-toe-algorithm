@@ -1,3 +1,4 @@
+import {TileState} from '@src/types';
 import checkIfTileState from '@src/utils/checkIfTileState';
 
 describe('checkIfTileState', () => {

@@ -1,3 +1,4 @@
+import {WiningLine} from '@src/types';
 import checkIfWiningLine from '@src/utils/checkIfWiningLine';
 
 describe('checkIfWiningLine', () => {

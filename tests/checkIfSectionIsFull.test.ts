@@ -1,3 +1,4 @@
+import {TileState} from '@src/types';
 import checkIfSectionIsFull from '@src/utils/checkIfSectionIsFull';
 
 const EXCEPTION_MESSAGE = 'arg should be a 9 length array or a 3x3 matrix';

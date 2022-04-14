@@ -1,3 +1,5 @@
+import {Index2D} from '@src/types';
+
 const getIndex1DFrom2D: (position: Index2D, squareSize?: number) => number = (
   {x, y},
   squareSize = 9,
