@@ -1,6 +1,6 @@
 {
   "name": "ultimate-tic-tac-toe-algorithm",
-  "version": "1.0.17",
+  "version": "1.0.19",
   "description": "Ultimate Tic Tic Toe Algorithm",
   "author": "AZIHubert <allan.aoudji@protonmail.com>",
   "license": "MIT",
@@ -21,6 +21,7 @@
     "dev": "nodemon --exec ts-node src/index.ts",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
+    "postbuild": "copyfiles package.json lib",
     "prebuild": "rimraf lib",
     "start": "ts-node-dev --respawn src/index.ts",
     "test": "jest",
