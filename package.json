@@ -1,14 +1,11 @@
 {
   "name": "ultimate-tic-tac-toe-algorithm",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Ultimate Tic Tic Toe Algorithm",
   "author": "AZIHubert <allan.aoudji@protonmail.com>",
   "license": "MIT",
-  "files": [
-    "lib"
-  ],
   "types": "lib/index.d.ts",
-  "main": "lib/index",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/AZIHubert/ultimate-tic-tac-toe-algorithm"
