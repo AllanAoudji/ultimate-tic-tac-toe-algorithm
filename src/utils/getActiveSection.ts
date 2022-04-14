@@ -4,7 +4,7 @@ import checkIfMode from './checkIfMode';
 import checkIfSectionIsFull from './checkIfSectionIsFull';
 import checkIfWon from './checkIfWon';
 import convertTo1DArray from './convertTo1DArray';
-import getSubSections from './getSubSections';
+import getSections from './getSections';
 import getTileIndexPositionAndSection from './getTileIndexPositionAndSection';
 import mapMatrix from './mapMatrix';
 
@@ -40,7 +40,7 @@ const getActiveSection: (
     history[history.length - 1],
   );
 
-  const sections = getSubSections(parseBoard);
+  const sections = getSections(parseBoard);
   const index = sections.findIndex((item) => item.position === position);
 
   if (index === -1) {

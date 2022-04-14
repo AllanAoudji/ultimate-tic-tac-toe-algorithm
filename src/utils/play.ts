@@ -3,7 +3,7 @@ import checkIfTileBelongToSection from './checkIfTileBelongToSection';
 import checkIfWon from './checkIfWon';
 import getActivePlayer from './getActivePlayer';
 import getActiveSection from './getActiveSection';
-import getSubSections from './getSubSections';
+import getSections from './getSections';
 import getTileIndexPositionAndSection from './getTileIndexPositionAndSection';
 import mapMatrix from './mapMatrix';
 
@@ -44,7 +44,7 @@ const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
   const sectionStates = [...assets.sectionStates];
   let winner = assets.winner;
   if (assets.sectionStates[section][1] === null) {
-    const {tiles} = getSubSections(board)[section];
+    const {tiles} = getSections(board)[section];
     const sectionIsWin = checkIfWon(tiles);
     // If section is won...
     if (sectionIsWin[0] !== TileState.Empty) {

@@ -2,9 +2,7 @@ import checkIfTileState from './checkIfTileState';
 import checkIfTile from './checkIfTile';
 import convertTo2DArray from './convertTo2DArray';
 
-const getSubSections: (board: Tile[][] | TileState[]) => Section[] = (
-  board,
-) => {
+const getSections: (board: Tile[][] | TileState[]) => Section[] = (board) => {
   let array2D: Tile[][];
 
   // Check if board is a proper array.
@@ -63,7 +61,7 @@ const getSubSections: (board: Tile[][] | TileState[]) => Section[] = (
   ];
 
   // Split 9x9 board to 9 different slices
-  const subSections = slices.reduce<Section[]>((rows, key) => {
+  const sections = slices.reduce<Section[]>((rows, key) => {
     const section = array2D
       .slice(key[2], key[3] + 1)
       .map((boardIndex) => boardIndex.slice(key[0], key[1] + 1));
@@ -74,7 +72,7 @@ const getSubSections: (board: Tile[][] | TileState[]) => Section[] = (
     return rows;
   }, []);
 
-  return subSections;
+  return sections;
 };
 
-export default getSubSections;
+export default getSections;
