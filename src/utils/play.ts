@@ -51,7 +51,7 @@ const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
       // ...update assets.sectionStates
       sectionStates[section] = sectionIsWin;
       // ...and check if game if won
-      winner = checkIfWon(sectionStates.map((tile) => tile[0]))[0];
+      winner = checkIfWon(sectionStates.map((tile) => tile[0]));
     }
   }
 

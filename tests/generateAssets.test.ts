@@ -53,7 +53,7 @@ describe('generateAssets', () => {
     const winner = 'winner';
 
     expect(assets).toHaveProperty(winner);
-    expect(assets[winner]).toBe(TileState.Empty);
+    expect(assets[winner]).toEqual([TileState.Empty, null]);
   });
 
   it('should change assets.mode based on arg option', () => {

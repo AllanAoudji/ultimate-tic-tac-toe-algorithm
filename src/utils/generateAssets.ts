@@ -8,7 +8,7 @@ const generateAssets: (options?: Option) => Assets = (option = {}) => ({
   history: [],
   mode: option.mode === undefined ? Mode.Normal : option.mode,
   sectionStates: new Array(9).fill([TileState.Empty, null]),
-  winner: TileState.Empty,
+  winner: [TileState.Empty, null],
 });
 
 export default generateAssets;

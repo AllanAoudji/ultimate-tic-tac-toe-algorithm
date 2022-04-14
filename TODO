@@ -20,5 +20,3 @@ if => checkIfWon(activeSection) => sectionStates[activeSection].push()/checkIfWo
 history.push(tile)
 activePlayer = !Player
 return {updatedAssets}
-
-assets.winner should be a sectionState

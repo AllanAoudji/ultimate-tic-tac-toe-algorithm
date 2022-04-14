@@ -95,11 +95,14 @@ describe('play', () => {
     assets1.board[60] = TileState.Player1;
     assets1.board[61] = TileState.Player1;
     const {winner: winner1} = play(62, assets1);
-    expect(winner1).toBe(TileState.Player1);
+    expect(winner1).toEqual([
+      TileState.Player1,
+      WiningLine.TopLeftBottomRightDiagonal,
+    ]);
 
     const assets2 = generateAssets();
     const {winner: winner2} = play(7, assets2);
-    expect(winner2).toBe(TileState.Empty);
+    expect(winner2).toEqual([TileState.Empty, null]);
 
     const assets3 = generateAssets();
     assets3.sectionStates[1] = [TileState.Player2, WiningLine.BottomRow];
@@ -108,7 +111,7 @@ describe('play', () => {
     assets3.board[10] = TileState.Player2;
     assets3.history = [3];
     const {winner: winner3} = play(20, assets3);
-    expect(winner3).toBe(TileState.Player2);
+    expect(winner3).toEqual([TileState.Player2, WiningLine.TopRow]);
   });
 
   it('should return active section', () => {

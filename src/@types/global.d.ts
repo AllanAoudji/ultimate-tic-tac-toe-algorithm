@@ -41,7 +41,7 @@ declare global {
     history: number[];
     mode: Mode;
     sectionStates: SectionState[];
-    winner: TileState;
+    winner: SectionState;
   }
 
   interface Index2D {
