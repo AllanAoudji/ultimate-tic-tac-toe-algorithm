@@ -1,10 +1,18 @@
 {
   "name": "ultimate-tic-tac-toe-algorithm",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "description": "Ultimate Tic Tic Toe Algorithm",
-  "main": "index.js",
   "author": "AZIHubert <allan.aoudji@protonmail.com>",
   "license": "MIT",
+  "files": [
+    "lib"
+  ],
+  "types": "src/index.d.ts",
+  "main": "lib/index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AZIHubert/ultimate-tic-tac-toe-algorithm"
+  },
   "_moduleAliases": {
     "@src": "dist"
   },
@@ -13,6 +21,7 @@
     "dev": "nodemon --exec ts-node src/index.ts",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
+    "prebuild": "rimraf lib",
     "start": "ts-node-dev --respawn src/index.ts",
     "test": "jest",
     "test-watch": "jest --watchAll"
