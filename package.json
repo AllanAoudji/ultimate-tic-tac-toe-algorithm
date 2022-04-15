@@ -1,6 +1,6 @@
 {
   "name": "ultimate-tic-tac-toe-algorithm",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Ultimate Tic Tic Toe Algorithm",
   "author": "AZIHubert <allan.aoudji@protonmail.com>",
   "license": "MIT",
@@ -10,6 +10,9 @@
     "type": "git",
     "url": "https://github.com/AZIHubert/ultimate-tic-tac-toe-algorithm"
   },
+  "files": [
+    "lib/**/*"
+  ],
   "scripts": {
     "build": "tsc --project tsconfig.build.json && tsc-alias",
     "dev": "nodemon --exec ts-node src/index.ts",
