@@ -1,3 +1,4 @@
+import {TileState, WiningLine} from '@src/types';
 import checkIfSectionStates from '@src/utils/checkIfSectionStates';
 
 describe('checkIfSectionStates', () => {

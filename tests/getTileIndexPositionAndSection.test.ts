@@ -1,3 +1,4 @@
+import {Position} from '@src/types';
 import getTileIndexPositionAndSection from '@src/utils/getTileIndexPositionAndSection';
 
 describe('getTileIndexPositionAndSection', () => {

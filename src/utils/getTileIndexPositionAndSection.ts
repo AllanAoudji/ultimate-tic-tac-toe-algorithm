@@ -1,3 +1,5 @@
+import {Position} from '@src/types';
+
 import boardSections from '../assets/boardSections';
 
 interface IndexPositionAndSection {

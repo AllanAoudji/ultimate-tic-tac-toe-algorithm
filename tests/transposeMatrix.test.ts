@@ -1,3 +1,4 @@
+import {Tile, TileState} from '@src/types';
 import mapMatrix from '@src/utils/mapMatrix';
 import transposeMatrix from '@src/utils/transposeMatrix';
 

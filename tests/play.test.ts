@@ -1,3 +1,4 @@
+import {TileState, WiningLine} from '@src/types';
 import generateAssets from '@src/utils/generateAssets';
 import play from '@src/utils/play';
 

@@ -1,3 +1,5 @@
+import {TileState} from '@src/types';
+
 import checkIfTileState from './checkIfTileState';
 import checkIfWiningLine from './checkIfWiningLine';
 

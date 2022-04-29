@@ -1,3 +1,5 @@
+import {Position, Section, Tile, TileState} from '@src/types';
+
 import checkIfTileState from './checkIfTileState';
 import checkIfTile from './checkIfTile';
 import convertTo2DArray from './convertTo2DArray';

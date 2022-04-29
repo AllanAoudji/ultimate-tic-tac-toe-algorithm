@@ -1,3 +1,4 @@
+import {TileState} from '@src/types';
 import convertTo2DArray from '@src/utils/convertTo2DArray';
 
 describe('convertTo2DArray', () => {

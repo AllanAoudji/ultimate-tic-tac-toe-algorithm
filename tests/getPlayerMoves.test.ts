@@ -1,3 +1,4 @@
+import {TileState} from '@src/types';
 import getPlayerMoves from '@src/utils/getPlayerMoves';
 
 describe('getPlayerMove', () => {

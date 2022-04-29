@@ -1,3 +1,4 @@
+import {TileState} from '@src/types';
 import getActivePlayer from '@src/utils/getActivePlayer';
 
 describe('getActivePlayer', () => {

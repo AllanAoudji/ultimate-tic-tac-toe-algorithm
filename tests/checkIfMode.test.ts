@@ -1,3 +1,4 @@
+import {Mode} from '@src/types';
 import checkIfMode from '@src/utils/checkIfMode';
 
 describe('checkIfMode', () => {

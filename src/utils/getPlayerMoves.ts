@@ -1,3 +1,5 @@
+import {TileState} from '@src/types';
+
 import checkIfHistory from './checkIfHistory';
 import checkIfPlayer from './checkIfPlayer';
 

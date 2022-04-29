@@ -1,3 +1,5 @@
+import {TileState} from '@src/types';
+
 const convertTo1DArray: (array2D: TileState[][]) => TileState[] = (array2D) => {
   if (!Array.isArray(array2D) || Object.keys(array2D).length === 0) {
     throw new Error('arg should be a 3x3 or a 9x9 matrix');

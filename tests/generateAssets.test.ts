@@ -1,3 +1,4 @@
+import {Mode, TileState} from '@src/types';
 import checkIfMode from '@src/utils/checkIfMode';
 import generateAssets from '@src/utils/generateAssets';
 
