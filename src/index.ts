@@ -8,8 +8,28 @@ import getSections from './utils/getSections';
 import mapMatrix from './utils/mapMatrix';
 import play from './utils/play';
 import transposeMatrix from './utils/transposeMatrix';
+import {
+  Assets,
+  Index2D,
+  Mode,
+  Position,
+  Section,
+  SectionState,
+  Tile,
+  TileState,
+  WiningLine,
+} from './types';
 
 export {
+  Assets,
+  Index2D,
+  Mode,
+  Position,
+  Section,
+  SectionState,
+  Tile,
+  TileState,
+  WiningLine,
   convertTo1DArray,
   convertTo2DArray,
   generateAssets,

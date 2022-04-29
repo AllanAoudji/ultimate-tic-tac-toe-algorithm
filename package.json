@@ -15,12 +15,14 @@
   ],
   "scripts": {
     "build": "tsc --project tsconfig.build.json && tsc-alias",
+    "clean": "rimraf lib",
     "dev": "nodemon --exec ts-node src/index.ts",
+    "prepublish": "yarn clean",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
     "postbuild": "copyfiles package.json lib && node lib/SetupPackage.js && cd .\\lib\\ && npm pack",
-    "prebuild": "rimraf lib",
-    "pub": "cd .\\lib\\ && yarn publish",
+    "prebuild": "yarn clean",
+    "pub": "yarn build && cd .\\lib\\ && yarn publish && yarn clean",
     "start": "ts-node-dev --respawn src/index.ts",
     "test": "jest",
     "test-watch": "jest --watchAll"
