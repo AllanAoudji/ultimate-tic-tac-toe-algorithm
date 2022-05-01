@@ -7,7 +7,6 @@ import getActivePlayer from './getActivePlayer';
 import getActiveSection from './getActiveSection';
 import getSections from './getSections';
 import getTileIndexPositionAndSection from './getTileIndexPositionAndSection';
-import mapMatrix from './mapMatrix';
 
 const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
   if (tile >= 81) {
@@ -26,10 +25,7 @@ const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
     assets.mode,
   );
 
-  if (
-    activeSection !== null &&
-    !checkIfTileBelongToSection(tile, activeSection)
-  ) {
+  if (!checkIfTileBelongToSection(tile, activeSection)) {
     throw new Error('invalid move');
   }
 

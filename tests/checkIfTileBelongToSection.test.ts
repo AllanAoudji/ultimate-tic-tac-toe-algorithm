@@ -17,6 +17,10 @@ describe('checkIfTileBelongToSection', () => {
     );
   });
 
+  it('should return true if section number is null', () => {
+    expect(checkIfTileBelongToSection(0, null)).toBe(true);
+  });
+
   it('should return true if a tile belong to a section', () => {
     const sections = [
       [0, 1, 2, 9, 10, 11, 18, 19, 20],
