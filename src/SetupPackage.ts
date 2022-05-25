@@ -18,18 +18,13 @@ function main() {
   if (sourceObj.types.startsWith('lib/')) {
     sourceObj.types = sourceObj.types.slice(4);
   }
-  if (typeof sourceObj.version === 'string') {
-    const version = sourceObj.version.split('.');
-    if (version.length === 3) {
-      sourceObj.version = `${parseInt(version[0], 10)}.${parseInt(
-        version[1],
-        10,
-      )}.${parseInt(version[2], 10) + 1}`;
-    }
-  }
   fs.writeFileSync(
     `${__dirname}/package.json`,
     Buffer.from(JSON.stringify(sourceObj, null, 2), 'utf-8'),
+  );
+  fs.writeFileSync(
+    `${__dirname}/version.txt`,
+    Buffer.from(sourceObj.version, 'utf-8'),
   );
 
   fs.copyFileSync(`${__dirname}/../.npmignore`, `${__dirname}/.npmignore`);
