@@ -14,41 +14,20 @@ const converToMatrixTile: (board: TileState[][]) => Tile[][] = (board) => {
 
 describe('checkIfWon', () => {
   it('should throw error if is not a 9 length array', () => {
-    const wrongArray: TileState[] = new Array(8);
+    const wrongSections: any[] = [
+      new Array(8),
+      new Array(2).fill(new Array(3)),
+      new Array(3).fill(new Array(2)),
+      new Array(3).fill(new Array(3).fill(false)),
+      new Array(3).fill(new Array(3).fill({})),
+      new Array(9).fill(true),
+    ];
 
-    expect(() => checkIfWon(wrongArray)).toThrow(EXCEPTION_MESSAGE);
-  });
-
-  it('should return error if is not a 3x3 matrix', () => {
-    const wrongMatrix: Tile[][] = new Array(2).fill(new Array(3));
-
-    expect(() => checkIfWon(wrongMatrix)).toThrow(EXCEPTION_MESSAGE);
-  });
-
-  it('should throw an error if is not a square matrix', () => {
-    const wrongMatrix: Tile[][] = new Array(3).fill(new Array(2));
-
-    expect(() => checkIfWon(wrongMatrix)).toThrow(EXCEPTION_MESSAGE);
-  });
-
-  it('should throw an error if arg matrix is not a matrix of tiles', () => {
-    const wrongMatrix1 = new Array(3).fill(new Array(3).fill(false));
-    const wrongMatrix2 = new Array(3).fill(new Array(3).fill({}));
-
-    expect(() => checkIfWon(wrongMatrix1)).toThrow(
-      'matrix arg should be a matrix of tile',
-    );
-    expect(() => checkIfWon(wrongMatrix2)).toThrow(
-      'matrix arg should be a matrix of tile',
-    );
-  });
-
-  it('should throw an error if arg array is not a matrix of TileState', () => {
-    const wrongArray = new Array(9).fill(true);
-
-    expect(() => checkIfWon(wrongArray)).toThrow(
-      'array arg should be an array of tileState',
-    );
+    wrongSections.forEach((wrongSection) => {
+      expect(() => checkIfWon(wrongSection)).toThrow(
+        'section should be valid.',
+      );
+    });
   });
 
   it('should work with an 1D array of TileState', () => {

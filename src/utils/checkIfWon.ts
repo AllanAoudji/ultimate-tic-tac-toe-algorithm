@@ -1,9 +1,8 @@
 import {SectionState, Tile, TileState, WiningLine} from '@src/types';
 
-import checkIfTileState from './checkIfTileState';
-import checkIfTile from './checkIfTile';
 import convertTo2DArray from './convertTo2DArray';
 import transposeMatrix from './transposeMatrix';
+import checkIfSection from './checkIfSection';
 
 enum RowOrColumn {
   Row,
@@ -67,38 +66,13 @@ const checkIfWon: (section: TileState[] | Tile[][]) => SectionState = (
 ) => {
   let array2D: Tile[][];
 
-  if (!Array.isArray(section) || Object.keys(section).length === 0) {
-    throw new Error('arg should be a 9 length array or a 9x9 matrix');
+  if (!checkIfSection(section)) {
+    throw new Error('section should be valid.');
   }
 
-  // Check if section is a 9 length array or
-  // a 3x3 Matrix and assign to array2D
-  // a 3x3 representation of section.
-  if (section.length !== 9 && section.length !== 3) {
-    throw new Error('arg should be a 9 length array or a 9x9 matrix');
-  }
   if (section.length === 3) {
-    section.forEach((row) => {
-      if (
-        !Array.isArray(row) ||
-        Object.keys(row).length === 0 ||
-        row.length !== section.length
-      ) {
-        throw new Error('arg should be a 9 length array or a 9x9 matrix');
-      }
-      (row as Tile[]).forEach((tile) => {
-        if (!checkIfTile(tile)) {
-          throw new Error('matrix arg should be a matrix of tile');
-        }
-      });
-    });
     array2D = [...(section as Tile[][])];
   } else {
-    section.forEach((tileState) => {
-      if (!checkIfTileState(tileState)) {
-        throw new Error('array arg should be an array of tileState');
-      }
-    });
     array2D = convertTo2DArray(section as TileState[]);
   }
 

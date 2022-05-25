@@ -1,5 +1,4 @@
 import checkIfSectionState from './checkIfSectionState';
-import checkIfTileState from './checkIfTileState';
 
 const checkIfSectionStates: (arg: any) => boolean = (arg) => {
   if (

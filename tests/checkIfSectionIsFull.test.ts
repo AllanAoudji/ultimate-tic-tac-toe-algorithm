@@ -1,46 +1,20 @@
 import {TileState} from '@src/types';
 import checkIfSectionIsFull from '@src/utils/checkIfSectionIsFull';
 
-const EXCEPTION_MESSAGE = 'arg should be a 9 length array or a 3x3 matrix';
-
 describe('checkIfSectionIsFull', () => {
-  it('should throw an error if arg is an empty array', () => {
-    const emptyArray = new Array(9);
+  it('should throw an error property is not a valid section', () => {
+    const emptyArray = [
+      new Array(9),
+      new Array(8).fill(TileState.Empty),
+      new Array(2).fill(new Array(3).fill(TileState.Empty)),
+      new Array(3).fill(new Array(2).fill(TileState.Empty)),
+      new Array(3).fill(new Array(3).fill(0)),
+      new Array(3).fill(new Array(3).fill({})),
+      new Array(9).fill(true),
+    ];
 
-    expect(() => checkIfSectionIsFull(emptyArray)).toThrow(EXCEPTION_MESSAGE);
-  });
-
-  it('should throw an error if arg is not a 9 length array', () => {
-    const wrongArray = new Array(8).fill(TileState.Empty);
-
-    expect(() => checkIfSectionIsFull(wrongArray)).toThrow(EXCEPTION_MESSAGE);
-  });
-
-  it('should throw an error if arg is not a 3x3 matrix', () => {
-    const wrongMatrix1 = new Array(2).fill(new Array(3).fill(TileState.Empty));
-    const wrongMatrix2 = new Array(3).fill(new Array(2).fill(TileState.Empty));
-
-    expect(() => checkIfSectionIsFull(wrongMatrix1)).toThrow(EXCEPTION_MESSAGE);
-    expect(() => checkIfSectionIsFull(wrongMatrix2)).toThrow(EXCEPTION_MESSAGE);
-  });
-
-  it('should throw an error if arg matrix is not a matrix of tiles', () => {
-    const wrongMatrix1: any[][] = new Array(3).fill(new Array(3).fill(0));
-    const wrongMatrix2: any[][] = new Array(3).fill(new Array(3).fill({}));
-
-    expect(() => checkIfSectionIsFull(wrongMatrix1)).toThrow(
-      'matrix arg should be a matrix of tile',
-    );
-    expect(() => checkIfSectionIsFull(wrongMatrix2)).toThrow(
-      'matrix arg should be a matrix of tile',
-    );
-  });
-
-  it('should throw an error if arg array is not an array of TileState', () => {
-    const wrongArray = new Array(9).fill(true);
-
-    expect(() => checkIfSectionIsFull(wrongArray)).toThrow(
-      'array arg should be an array of tileState',
+    expect(() => checkIfSectionIsFull(emptyArray)).toThrow(
+      'section should be valid.',
     );
   });
 
