@@ -21,16 +21,13 @@ const checkIfValidSection: (
     throw new Error('mode should be valid.');
   }
 
-  const section = getSections(board)[sectionIndex];
+  const {tiles} = getSections(board)[sectionIndex];
 
-  if (checkIfSectionIsFull(section.tiles)) {
+  if (checkIfSectionIsFull(tiles)) {
     return false;
   }
 
-  if (
-    mode === Mode.Normal &&
-    checkIfWon(section.tiles)[0] !== TileState.Empty
-  ) {
+  if (mode === Mode.Normal && checkIfWon(tiles)[0] !== TileState.Empty) {
     return false;
   }
 

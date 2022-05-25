@@ -3,48 +3,18 @@ import {Position, Section, Tile, TileState} from '@src/types';
 import checkIfTileState from './checkIfTileState';
 import checkIfTile from './checkIfTile';
 import convertTo2DArray from './convertTo2DArray';
+import checkIfBoard from './checkIfBoard';
 
 const getSections: (board: Tile[][] | TileState[]) => Section[] = (board) => {
   let array2D: Tile[][];
 
-  // Check if board is a proper array.
-  if (!Array.isArray(board) || Object.keys(board).length === 0) {
-    throw new Error('arg should be a 81 length array or a 9x9 matrix');
+  if (!checkIfBoard(board)) {
+    throw new Error('board should be valid.');
   }
 
-  // Check if outer shape might match.
-  if (board.length !== 9 && board.length !== 81) {
-    throw new Error('arg should be a 81 length array or a 9x9 matrix');
-  }
-
-  // Check 9x9 matrix...
   if (board.length === 9) {
-    board.forEach((row) => {
-      // Check if each row is a 9 length array.
-      if (
-        !Array.isArray(row) ||
-        Object.keys(board).length === 0 ||
-        row.length !== board.length
-      ) {
-        throw new Error('arg should be a 81 length array or a 9x9 matrix');
-      }
-
-      // Check if each items in the matrix is a tile.
-      (row as Tile[]).forEach((tile) => {
-        if (!checkIfTile(tile)) {
-          throw new Error('matrix board should be a matrix of tile');
-        }
-      });
-    });
-
     array2D = [...(board as Tile[][])];
   } else {
-    // Check if each items isn a 1D array is a TileState
-    board.forEach((tileState) => {
-      if (!checkIfTileState(tileState)) {
-        throw new Error('array board should be an array of tileState');
-      }
-    });
     array2D = convertTo2DArray(board as TileState[]);
   }
 

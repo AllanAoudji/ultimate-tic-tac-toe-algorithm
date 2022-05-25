@@ -3,47 +3,17 @@ import convertTo2DArray from '@src/utils/convertTo2DArray';
 import generateAssets from '@src/utils/generateAssets';
 import getSections from '@src/utils/getSections';
 
-const EXCEPTION_MESSAGE = 'arg should be a 81 length array or a 9x9 matrix';
-
 describe('getSections', () => {
-  it('should throw an error if arg is an empty array', () => {
-    const emptyArray = new Array(9);
+  it('should throw an error if property is not a valid board', () => {
+    const wrongBoards: any[] = [
+      new Array(9),
+      new Array(8).fill(new Array(9).fill(TileState.Empty)),
+      new Array(9).fill(new Array(8).fill(TileState.Empty)),
+    ];
 
-    expect(() => getSections(emptyArray)).toThrow(EXCEPTION_MESSAGE);
-  });
-
-  it('should throw an error if arg is not a 9x9 matrix', () => {
-    const wrongBoard8x9 = new Array(8).fill(new Array(9).fill(TileState.Empty));
-    const wrongBoard9x8 = new Array(9).fill(new Array(8).fill(TileState.Empty));
-
-    expect(() => getSections(wrongBoard8x9)).toThrow(EXCEPTION_MESSAGE);
-    expect(() => getSections(wrongBoard9x8)).toThrow(EXCEPTION_MESSAGE);
-  });
-
-  it('should throw an error if an 1D array has not a length of 81', () => {
-    const wrongArray = new Array(78).fill(TileState.Empty);
-
-    expect(() => getSections(wrongArray)).toThrow(EXCEPTION_MESSAGE);
-  });
-
-  it('should throw an error if arg matrix is not a matrix of tiles', () => {
-    const wrongMatrix1: any[][] = new Array(9).fill(new Array(9).fill(0));
-    const wrongMatrix2: any[][] = new Array(9).fill(new Array(9).fill({}));
-
-    expect(() => getSections(wrongMatrix1)).toThrow(
-      'matrix board should be a matrix of tile',
-    );
-    expect(() => getSections(wrongMatrix2)).toThrow(
-      'matrix board should be a matrix of tile',
-    );
-  });
-
-  it('should throw an error if arg array is not an array of TileState', () => {
-    const wrongArray = new Array(81).fill(true);
-
-    expect(() => getSections(wrongArray)).toThrow(
-      'array board should be an array of tileState',
-    );
+    wrongBoards.forEach((wrongBoard) => {
+      expect(() => getSections(wrongBoard)).toThrow('board should be valid.');
+    });
   });
 
   it('should work with an 1D array of length 81', () => {
