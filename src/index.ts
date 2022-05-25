@@ -1,4 +1,5 @@
 import checkIfTileBelongToSection from './utils/checkIfTileBelongToSection';
+import checkIfValidSection from './utils/checkIfValidSection';
 import convertTo1DArray from './utils/convertTo1DArray';
 import convertTo2DArray from './utils/convertTo2DArray';
 import generateAssets from './utils/generateAssets';
@@ -32,6 +33,7 @@ export {
   TileState,
   WiningLine,
   checkIfTileBelongToSection,
+  checkIfValidSection,
   convertTo1DArray,
   convertTo2DArray,
   generateAssets,
