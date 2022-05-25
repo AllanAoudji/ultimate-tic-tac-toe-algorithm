@@ -12,3 +12,10 @@ Timer()
 Create single file for all ERRORS_MESSAGES
 
 https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project
+
+Check if section is valid =>
+{props} => board, section, mode
+get tile of the section,
+if section is full, return false,
+if mode === Normal and section is already won, return false
+return true
