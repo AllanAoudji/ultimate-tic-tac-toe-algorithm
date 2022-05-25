@@ -1,6 +1,6 @@
 {
   "name": "ultimate-tic-tac-toe-algorithm",
-  "version": "1.2.2",
+  "version": "1.0.0",
   "description": "Ultimate Tic Tic Toe Algorithm",
   "author": "AZIHubert <allan.aoudji@protonmail.com>",
   "license": "MIT",
@@ -22,7 +22,7 @@
     "lint-and-fix": "eslint . --ext .ts --fix",
     "postbuild": "copyfiles package.json lib && node lib/SetupPackage.js && cd .\\lib\\ && npm pack",
     "prebuild": "yarn clean",
-    "pub": "yarn build && cd .\\lib\\ && yarn publish && yarn clean",
+    "pub": "yarn build && cd .\\lib\\ && yarn publish",
     "start": "ts-node-dev --respawn src/index.ts",
     "test": "jest",
     "test-watch": "jest --watchAll"

@@ -4,10 +4,10 @@ const checkIfTileBelongToSection: (
   position: number,
   sectionNumber: number | null,
 ) => boolean = (position, sectionNumber) => {
-  if (position >= 81) {
+  if (position < 0 || position >= 81) {
     throw new Error('position out of range');
   }
-  if (sectionNumber && sectionNumber >= 9) {
+  if (sectionNumber && (sectionNumber < 0 || sectionNumber >= 9)) {
     throw new Error('sectionNumber out of range');
   }
 

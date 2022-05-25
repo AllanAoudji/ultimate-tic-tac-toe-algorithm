@@ -3,15 +3,18 @@ import {Position} from '@src/types';
 import boardSections from '../assets/boardSections';
 
 interface IndexPositionAndSection {
+  // Current position relative to the section
   index: number;
+  // Current enum position relative to the section
   position: Position;
+  // Index of the relative section
   section: number;
 }
 
 const getTileIndexPositionAndSection: (
   position: number,
 ) => IndexPositionAndSection = (position) => {
-  if (position >= 81) {
+  if (position < 0 || position >= 81) {
     throw new Error('position out of bound');
   }
 
