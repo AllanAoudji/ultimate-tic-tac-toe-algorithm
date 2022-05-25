@@ -17,6 +17,7 @@ const getActiveSection: (
 ) => number | null = (history, board, mode = Mode.Normal) => {
   let parseBoard: TileState[];
 
+  // Check if given props are valids
   if (!checkIfHistory(history)) {
     throw new Error('history should be valid');
   }
@@ -27,6 +28,7 @@ const getActiveSection: (
     throw new Error('mode should be valid');
   }
 
+  // Get a flat board
   if (board.length === 9) {
     const stateMatrix = mapMatrix(board as Tile[][], (tile) => tile.state);
     parseBoard = convertTo1DArray(stateMatrix);
@@ -34,10 +36,13 @@ const getActiveSection: (
     parseBoard = [...(board as TileState[])];
   }
 
+  // If is the first move,
+  // return null (current player can play everywhere)
   if (history.length === 0) {
     return null;
   }
 
+  // Get position of the last play ...
   const {position} = getTileIndexPositionAndSection(
     history[history.length - 1],
   );
@@ -45,15 +50,23 @@ const getActiveSection: (
   const sections = getSections(parseBoard);
   const index = sections.findIndex((item) => item.position === position);
 
+  // Should never be reached ...
   if (index === -1) {
     throw new Error('position not found');
   }
 
+  // If mode === normal,
+  // and the active section is already won,
+  // current player can play everywhere else
   if (
     mode === Mode.Normal &&
     checkIfWon(sections[index].tiles)[0] !== TileState.Empty
   ) {
     return null;
+
+    // If mode === contine
+    // the current player can play everywhere
+    // only if the active section is full
   } else if (
     mode === Mode.Continue &&
     checkIfSectionIsFull(sections[index].tiles)

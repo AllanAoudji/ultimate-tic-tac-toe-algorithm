@@ -2,6 +2,7 @@ import {Mode, TileState} from '@src/types';
 import convertTo2DArray from '@src/utils/convertTo2DArray';
 import generateAssets from '@src/utils/generateAssets';
 import getActiveSection from '@src/utils/getActiveSection';
+import * as getSections from '@src/utils/getSections';
 
 const {board} = generateAssets();
 
@@ -245,5 +246,10 @@ describe('getActiveSection', () => {
     const matrixBoard = convertTo2DArray(board);
 
     expect(getActiveSection([0], matrixBoard, Mode.Continue)).toBe(0);
+  });
+
+  it('should throw an error if no valid position was found', () => {
+    jest.spyOn(getSections, 'default').mockReturnValue([]);
+    expect(() => getActiveSection([1], board)).toThrow('position not found');
   });
 });
