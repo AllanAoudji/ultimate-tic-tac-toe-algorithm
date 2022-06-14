@@ -1,22 +1,16 @@
 import {Position, Section, Tile, TileState} from '@src/types';
 
-import checkIfTileState from './checkIfTileState';
-import checkIfTile from './checkIfTile';
 import convertTo2DArray from './convertTo2DArray';
-import checkIfBoard from './checkIfBoard';
+import checkIfHistory from './checkIfHistory';
+import generateBoardFromHistory from './generateBoardFromHistory';
 
-const getSections: (board: Tile[][] | TileState[]) => Section[] = (board) => {
-  let array2D: Tile[][];
-
-  if (!checkIfBoard(board)) {
+const getSections: (history: number[]) => Section[] = (history) => {
+  if (!checkIfHistory(history)) {
     throw new Error('board should be valid.');
   }
 
-  if (board.length === 9) {
-    array2D = [...(board as Tile[][])];
-  } else {
-    array2D = convertTo2DArray(board as TileState[]);
-  }
+  const board = generateBoardFromHistory(history);
+  const array2D = convertTo2DArray(board);
 
   // Representation of a scan
   // of each sub board that might be splitted

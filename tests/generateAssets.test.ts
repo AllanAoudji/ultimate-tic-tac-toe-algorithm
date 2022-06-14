@@ -12,16 +12,6 @@ describe('generateAssets', () => {
     expect(assets[activeSection]).toBe(null);
   });
 
-  it('should return initial board', () => {
-    const board = 'board';
-
-    expect(assets).toHaveProperty(board);
-    expect(Array.isArray(assets[board])).toBe(true);
-    expect(assets[board].length).toBe(81);
-    expect(Object.keys(assets[board]).length).toBe(81);
-    expect(assets[board].some((item) => item === TileState.Empty)).toBe(true);
-  });
-
   it('should return initial history', () => {
     const history = 'history';
 

@@ -4,32 +4,22 @@ import generateAssets from '@src/utils/generateAssets';
 import getActiveSection from '@src/utils/getActiveSection';
 import * as getSections from '@src/utils/getSections';
 
-const {board} = generateAssets();
-
 describe('getActiveSection', () => {
   it('should throw an error if first arg is not a valid history', () => {
     const wrongHistories: any[] = [0, 'string', true, {}, [100], new Array(9)];
 
     wrongHistories.forEach((wrongHistory) => {
-      expect(() => getActiveSection(wrongHistory, board)).toThrow(
+      expect(() => getActiveSection(wrongHistory)).toThrow(
         'history should be valid',
       );
     });
-  });
-
-  it('should throw an error if second arg is not a valid board', () => {
-    const wrongBoard: any[] = [];
-
-    expect(() => getActiveSection([], wrongBoard)).toThrow(
-      'board should be valid',
-    );
   });
 
   it('should throw an error if third arg is not a vlide mode', () => {
     const wrongModes: any[] = [10, 'string', true, {}, []];
 
     wrongModes.forEach((wrongMode) => {
-      expect(() => getActiveSection([], board, wrongMode)).toThrow(
+      expect(() => getActiveSection([], wrongMode)).toThrow(
         'mode should be valid',
       );
     });
@@ -38,7 +28,7 @@ describe('getActiveSection', () => {
   it('should return null if history.length === 0', () => {
     const emptyHistory: number[] = [];
 
-    expect(getActiveSection(emptyHistory, board)).toBeNull();
+    expect(getActiveSection(emptyHistory)).toBeNull();
   });
 
   it('should return 0 if last item of history === 0/3/6/27/30/33/54/57/60', () => {
@@ -55,7 +45,7 @@ describe('getActiveSection', () => {
     ];
 
     topLeftTiles.forEach((tile) => {
-      expect(getActiveSection(tile, board)).toBe(0);
+      expect(getActiveSection(tile)).toBe(0);
     });
   });
 
@@ -73,7 +63,7 @@ describe('getActiveSection', () => {
     ];
 
     topMiddleTiles.forEach((tile) => {
-      expect(getActiveSection(tile, board)).toBe(1);
+      expect(getActiveSection(tile)).toBe(1);
     });
   });
 
@@ -81,7 +71,7 @@ describe('getActiveSection', () => {
     const topRightTiles = [[2], [5], [8], [29], [32], [35], [56], [59], [62]];
 
     topRightTiles.forEach((tile) => {
-      expect(getActiveSection(tile, board)).toBe(2);
+      expect(getActiveSection(tile)).toBe(2);
     });
   });
 
@@ -99,7 +89,7 @@ describe('getActiveSection', () => {
     ];
 
     middleLeftTiles.forEach((tile) => {
-      expect(getActiveSection(tile, board)).toBe(3);
+      expect(getActiveSection(tile)).toBe(3);
     });
   });
 
@@ -117,7 +107,7 @@ describe('getActiveSection', () => {
     ];
 
     middleMiddleTiles.forEach((tile) => {
-      expect(getActiveSection(tile, board)).toBe(4);
+      expect(getActiveSection(tile)).toBe(4);
     });
   });
 
@@ -135,7 +125,7 @@ describe('getActiveSection', () => {
     ];
 
     middleRightTiles.forEach((tile) => {
-      expect(getActiveSection(tile, board)).toBe(5);
+      expect(getActiveSection(tile)).toBe(5);
     });
   });
 
@@ -153,7 +143,7 @@ describe('getActiveSection', () => {
     ];
 
     BottomLeftTiles.forEach((tile) => {
-      expect(getActiveSection(tile, board)).toBe(6);
+      expect(getActiveSection(tile)).toBe(6);
     });
   });
 
@@ -171,7 +161,7 @@ describe('getActiveSection', () => {
     ];
 
     BottomMiddleTiles.forEach((tile) => {
-      expect(getActiveSection(tile, board)).toBe(7);
+      expect(getActiveSection(tile)).toBe(7);
     });
   });
 
@@ -189,67 +179,22 @@ describe('getActiveSection', () => {
     ];
 
     BottomRightTiles.forEach((tile) => {
-      expect(getActiveSection(tile, board)).toBe(8);
+      expect(getActiveSection(tile)).toBe(8);
     });
   });
 
   it('should return null if mode === Normal and the next section is already won', () => {
-    const {board: winBoard1} = generateAssets();
-    winBoard1[0] = TileState.Player1;
-    winBoard1[1] = TileState.Player1;
-    winBoard1[2] = TileState.Player1;
-
-    const {board: winBoard2} = generateAssets();
-    winBoard2[0] = TileState.Player2;
-    winBoard2[10] = TileState.Player2;
-    winBoard2[20] = TileState.Player2;
-
-    const {board: winBoard3} = generateAssets();
-    winBoard3[51] = TileState.Player1;
-    winBoard3[52] = TileState.Player1;
-    winBoard3[53] = TileState.Player1;
-
-    expect(getActiveSection([0], winBoard1)).toBeNull();
-    expect(getActiveSection([0], winBoard2)).toBeNull();
-    expect(getActiveSection([17], winBoard3)).toBeNull();
+    expect(getActiveSection([77, 1, 67, 2, 44, 0])).toBeNull();
   });
 
   it('should return null if mode === CONTINUE and the next section is full', () => {
-    const {board: winBoard1} = generateAssets();
-    winBoard1[0] = TileState.Player1;
-    winBoard1[1] = TileState.Player1;
-    winBoard1[2] = TileState.Player2;
-    winBoard1[9] = TileState.Player2;
-    winBoard1[10] = TileState.Player1;
-    winBoard1[11] = TileState.Player1;
-    winBoard1[18] = TileState.Player2;
-    winBoard1[19] = TileState.Player1;
-    winBoard1[20] = TileState.Player1;
-
-    const {board: winBoard2} = generateAssets();
-    winBoard2[57] = TileState.Player1;
-    winBoard2[58] = TileState.Player2;
-    winBoard2[59] = TileState.Player1;
-    winBoard2[66] = TileState.Player1;
-    winBoard2[67] = TileState.Player1;
-    winBoard2[68] = TileState.Player2;
-    winBoard2[75] = TileState.Player1;
-    winBoard2[76] = TileState.Player2;
-    winBoard2[77] = TileState.Player2;
-
-    expect(getActiveSection([6], winBoard1, Mode.Continue)).toBeNull();
-    expect(getActiveSection([49], winBoard2, Mode.Continue)).toBeNull();
-  });
-
-  it('should work with a matrix board', () => {
-    const {board} = generateAssets();
-    const matrixBoard = convertTo2DArray(board);
-
-    expect(getActiveSection([0], matrixBoard, Mode.Continue)).toBe(0);
+    expect(
+      getActiveSection([0, 1, 2, 9, 10, 11, 18, 19, 20, 6], Mode.Continue),
+    ).toBeNull();
   });
 
   it('should throw an error if no valid position was found', () => {
     jest.spyOn(getSections, 'default').mockReturnValue([]);
-    expect(() => getActiveSection([1], board)).toThrow('position not found');
+    expect(() => getActiveSection([1])).toThrow('position not found');
   });
 });

@@ -10,9 +10,9 @@ describe('play', () => {
     expect(() => play(wrongTile, assets)).toThrow('tile out of bound');
   });
 
-  it('should throw an error if assets is not an assets', () => {
+  it('should throw an error if assets is invalide', () => {
     const wrongAssets: any = generateAssets();
-    delete wrongAssets.board;
+    delete wrongAssets.history;
 
     expect(() => play(0, wrongAssets)).toThrow('assets should be valid');
   });
@@ -43,17 +43,6 @@ describe('play', () => {
     expect(history).toEqual([...assets.history, 1]);
   });
 
-  it('should update board', () => {
-    const assets = generateAssets();
-
-    const {board: board1} = play(0, assets);
-    const returnedBoard1 = [...assets.board];
-    returnedBoard1[0] = TileState.Player1;
-    expect(board1).toEqual(returnedBoard1);
-
-    // should play more when returned assets gonna be valid
-  });
-
   it('should return same mode as assets.mode arg', () => {
     const assets = generateAssets();
 
@@ -63,17 +52,14 @@ describe('play', () => {
 
   it('should update accordingly sectionStates if play allow to win a section', () => {
     const assets1 = generateAssets();
-    assets1.board[0] = TileState.Player1;
-    assets1.board[1] = TileState.Player1;
+    assets1.history.push(0, 80, 1, 30);
     const {sectionStates: sectionStates1} = play(2, assets1);
     const expectedSectionStates1 = [...sectionStates1];
     expectedSectionStates1[0] = [TileState.Player1, WiningLine.TopRow];
     expect(sectionStates1).toEqual(expectedSectionStates1);
 
     const assets2 = generateAssets();
-    assets2.board[8] = TileState.Player2;
-    assets2.board[26] = TileState.Player2;
-    assets2.history = [5];
+    assets2.history.push(0, 8, 1, 26, 5);
     const {sectionStates: sectionStates2} = play(17, assets2);
     const expectedSectionStates2 = [...sectionStates2];
     expectedSectionStates2[2] = [TileState.Player2, WiningLine.RightColumn];
@@ -93,8 +79,7 @@ describe('play', () => {
     const assets1 = generateAssets();
     assets1.sectionStates[0] = [TileState.Player1, WiningLine.BottomRow];
     assets1.sectionStates[4] = [TileState.Player1, WiningLine.BottomRow];
-    assets1.board[60] = TileState.Player1;
-    assets1.board[61] = TileState.Player1;
+    assets1.history.push(60, 0, 61, 77);
     const {winner: winner1} = play(62, assets1);
     expect(winner1).toEqual([
       TileState.Player1,
@@ -108,9 +93,7 @@ describe('play', () => {
     const assets3 = generateAssets();
     assets3.sectionStates[1] = [TileState.Player2, WiningLine.BottomRow];
     assets3.sectionStates[2] = [TileState.Player2, WiningLine.BottomRow];
-    assets3.board[0] = TileState.Player2;
-    assets3.board[10] = TileState.Player2;
-    assets3.history = [3];
+    assets3.history.push(60, 0, 61, 10, 3);
     const {winner: winner3} = play(20, assets3);
     expect(winner3).toEqual([TileState.Player2, WiningLine.TopRow]);
   });

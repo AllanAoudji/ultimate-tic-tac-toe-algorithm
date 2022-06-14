@@ -1,18 +1,20 @@
-import {Mode, Tile, TileState} from '@src/types';
+import {Mode, TileState} from '@src/types';
 
 import checkIfBoard from './checkIfBoard';
+import checkIfHistory from './checkIfHistory';
 import checkIfMode from './checkIfMode';
 import checkIfSectionIsFull from './checkIfSectionIsFull';
 import checkIfWon from './checkIfWon';
+import generateBoardFromHistory from './generateBoardFromHistory';
 import getSections from './getSections';
 
 const checkIfValidSection: (
-  board: Tile[][] | TileState[],
+  history: number[],
   sectionIndex: number,
   mode?: Mode,
-) => boolean = (board, sectionIndex, mode = Mode.Normal) => {
-  if (!checkIfBoard(board)) {
-    throw new Error('board should be valid.');
+) => boolean = (history, sectionIndex, mode = Mode.Normal) => {
+  if (!checkIfHistory(history)) {
+    throw new Error('history should be valid.');
   }
   if (sectionIndex < 0 || sectionIndex > 8) {
     throw new Error('sectionIndex should be contain between 0 and 8.');
@@ -21,7 +23,7 @@ const checkIfValidSection: (
     throw new Error('mode should be valid.');
   }
 
-  const {tiles} = getSections(board)[sectionIndex];
+  const {tiles} = getSections(history)[sectionIndex];
 
   if (checkIfSectionIsFull(tiles)) {
     return false;

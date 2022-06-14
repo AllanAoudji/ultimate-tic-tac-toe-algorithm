@@ -16,22 +16,8 @@ describe('getSections', () => {
     });
   });
 
-  it('should work with an 1D array of length 81', () => {
-    const array1D81 = new Array(81).fill(TileState.Empty);
-    const sections = getSections(array1D81);
-
-    expect(sections.length).toBe(9);
-    sections.forEach((subSection) => {
-      expect(subSection.tiles.length).toBe(3);
-      subSection.tiles.forEach((rows) => {
-        expect(rows.length).toBe(3);
-      });
-    });
-  });
-
   it('should return an 9x3x3 matrix', () => {
-    const board: TileState[] = new Array(81).fill(TileState.Empty);
-    const sections = getSections(convertTo2DArray(board));
+    const sections = getSections([]);
 
     expect(sections.length).toBe(9);
     sections.forEach((subSection) => {
@@ -45,7 +31,7 @@ describe('getSections', () => {
   it('should keep the order', () => {
     const board1D: TileState[] = new Array(81).fill(TileState.Empty);
     const board2D = convertTo2DArray(board1D);
-    const sections = getSections(board2D);
+    const sections = getSections([]);
 
     expect(sections[0].tiles[0][0].state).toBe(board2D[0][0].state);
     expect(sections[0].tiles[2][2].state).toBe(board2D[1][2].state);
@@ -68,8 +54,7 @@ describe('getSections', () => {
   });
 
   it('should return proper position', () => {
-    const {board} = generateAssets();
-    const sections = getSections(board);
+    const sections = getSections([]);
 
     expect(sections[0].position).toBe(Position.TopLeft);
     expect(sections[1].position).toBe(Position.TopMiddle);

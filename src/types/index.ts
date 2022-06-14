@@ -34,7 +34,6 @@ export enum WiningLine {
 
 export interface Assets {
   activeSection: number | null;
-  board: TileState[];
   history: number[];
   mode: Mode;
   sectionStates: SectionState[];
