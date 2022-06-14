@@ -1,5 +1,5 @@
 import checkIfValidSection from '@src/utils/checkIfValidSection';
-import {Mode, TileState} from '@src/types';
+import {Mode} from '@src/types';
 
 describe('checkIfValidSection', () => {
   it('should throw an error if first parameter is not a valid board', () => {

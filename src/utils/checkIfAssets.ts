@@ -1,4 +1,3 @@
-import checkIfBoard from './checkIfBoard';
 import checkIfHistory from './checkIfHistory';
 import checkIfMode from './checkIfMode';
 import checkIfSectionState from './checkIfSectionState';

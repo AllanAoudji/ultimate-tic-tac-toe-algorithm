@@ -1,6 +1,5 @@
 import {Position, TileState} from '@src/types';
 import convertTo2DArray from '@src/utils/convertTo2DArray';
-import generateAssets from '@src/utils/generateAssets';
 import getSections from '@src/utils/getSections';
 
 describe('getSections', () => {

@@ -76,8 +76,6 @@ describe('checkIfBoard', () => {
   });
 
   it('should return true if arg is a valid 1D board', () => {
-    const {history} = generateAssets();
-
     expect(checkIfBoard(board)).toBe(true);
   });
 

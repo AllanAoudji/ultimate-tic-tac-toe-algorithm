@@ -1,4 +1,4 @@
-import {Position, Section, Tile, TileState} from '@src/types';
+import {Position, Section} from '@src/types';
 
 import convertTo2DArray from './convertTo2DArray';
 import checkIfHistory from './checkIfHistory';

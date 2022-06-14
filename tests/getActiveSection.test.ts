@@ -1,6 +1,4 @@
-import {Mode, TileState} from '@src/types';
-import convertTo2DArray from '@src/utils/convertTo2DArray';
-import generateAssets from '@src/utils/generateAssets';
+import {Mode} from '@src/types';
 import getActiveSection from '@src/utils/getActiveSection';
 import * as getSections from '@src/utils/getSections';
 

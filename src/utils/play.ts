@@ -3,7 +3,6 @@ import {Assets, TileState} from '@src/types';
 import checkIfAssets from './checkIfAssets';
 import checkIfTileBelongToSection from './checkIfTileBelongToSection';
 import checkIfWon from './checkIfWon';
-import generateBoardFromHistory from './generateBoardFromHistory';
 import getActiveSection from './getActiveSection';
 import getSections from './getSections';
 import getTileIndexPositionAndSection from './getTileIndexPositionAndSection';

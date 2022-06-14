@@ -1,11 +1,9 @@
 import {Mode, TileState} from '@src/types';
 
-import checkIfBoard from './checkIfBoard';
 import checkIfHistory from './checkIfHistory';
 import checkIfMode from './checkIfMode';
 import checkIfSectionIsFull from './checkIfSectionIsFull';
 import checkIfWon from './checkIfWon';
-import generateBoardFromHistory from './generateBoardFromHistory';
 import getSections from './getSections';
 
 const checkIfValidSection: (

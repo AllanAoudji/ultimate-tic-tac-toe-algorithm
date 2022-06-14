@@ -4,7 +4,6 @@ import checkIfHistory from './checkIfHistory';
 import checkIfMode from './checkIfMode';
 import checkIfSectionIsFull from './checkIfSectionIsFull';
 import checkIfWon from './checkIfWon';
-import generateBoardFromHistory from './generateBoardFromHistory';
 import getSections from './getSections';
 import getTileIndexPositionAndSection from './getTileIndexPositionAndSection';
 
@@ -12,8 +11,6 @@ const getActiveSection: (history: number[], mode?: Mode) => number | null = (
   history,
   mode = Mode.Normal,
 ) => {
-  let parseBoard: TileState[];
-
   // Check if given props are valids
   if (!checkIfHistory(history)) {
     throw new Error('history should be valid');
