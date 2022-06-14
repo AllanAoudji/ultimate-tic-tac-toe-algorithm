@@ -16,10 +16,10 @@ const getPlayerMoves: (
   }
 
   if (player === TileState.Player1) {
-    return history.filter((item) => item % 2);
+    return history.filter((_, index) => index % 2 === 0);
   }
 
-  return history.filter((item) => item % 2 === 0);
+  return history.filter((_, index) => index % 2);
 };
 
 export default getPlayerMoves;

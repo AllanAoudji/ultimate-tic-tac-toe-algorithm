@@ -19,3 +19,5 @@ get tile of the section,
 if section is full, return false,
 if mode === Normal and section is already won, return false
 return true
+
+checkIfHistory => all item should be different
