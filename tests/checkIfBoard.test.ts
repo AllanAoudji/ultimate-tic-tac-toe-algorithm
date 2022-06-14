@@ -2,8 +2,11 @@ import {TileState} from '@src/types';
 import checkIfBoard from '@src/utils/checkIfBoard';
 import convertTo2DArray from '@src/utils/convertTo2DArray';
 import generateAssets from '@src/utils/generateAssets';
+import generateBoardFromHistory from '@src/utils/generateBoardFromHistory';
 
 describe('checkIfBoard', () => {
+  const board = new Array(81).fill(TileState.Empty);
+
   it('should return false if arg is not an array', () => {
     const notAnArrays = ['string', 0, true, {}];
 
@@ -54,13 +57,15 @@ describe('checkIfBoard', () => {
   });
 
   it('should return false if at least one item of the square matrix is not a valid tile', () => {
-    const {board} = generateAssets();
+    const {history} = generateAssets();
     const wrongMatrix1 = convertTo2DArray(board);
     wrongMatrix1[0][0] = {
       index1D: 10,
       state: TileState.Empty,
     };
-    const wrongMatrix2: any[][] = convertTo2DArray(board);
+    const wrongMatrix2: any[][] = convertTo2DArray(
+      generateBoardFromHistory(history),
+    );
     wrongMatrix2[0][0] = {
       index1D: 0,
       state: 'not a state',
@@ -71,14 +76,10 @@ describe('checkIfBoard', () => {
   });
 
   it('should return true if arg is a valid 1D board', () => {
-    const {board} = generateAssets();
-
     expect(checkIfBoard(board)).toBe(true);
   });
 
   it('should return true if arg is a valid 2D board', () => {
-    const {board} = generateAssets();
-
     expect(checkIfBoard(convertTo2DArray(board))).toBe(true);
   });
 });

@@ -3,7 +3,6 @@ import {Assets, TileState} from '@src/types';
 import checkIfAssets from './checkIfAssets';
 import checkIfTileBelongToSection from './checkIfTileBelongToSection';
 import checkIfWon from './checkIfWon';
-import getActivePlayer from './getActivePlayer';
 import getActiveSection from './getActiveSection';
 import getSections from './getSections';
 import getTileIndexPositionAndSection from './getTileIndexPositionAndSection';
@@ -19,11 +18,7 @@ const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
     throw new Error('invalid move');
   }
 
-  const activeSection = getActiveSection(
-    assets.history,
-    assets.board,
-    assets.mode,
-  );
+  const activeSection = getActiveSection(assets.history, assets.mode);
 
   if (!checkIfTileBelongToSection(tile, activeSection)) {
     throw new Error('invalid move');
@@ -32,17 +27,12 @@ const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
   // Upadate history
   const history = [...assets.history, tile];
 
-  // Update board
-  const board = [...assets.board];
-  const activePlayer = getActivePlayer(assets.history);
-  board[tile] = activePlayer;
-
   // Check if current section is win by this move.
   const {section} = getTileIndexPositionAndSection(tile);
   const sectionStates = [...assets.sectionStates];
   let winner = assets.winner;
   if (assets.sectionStates[section][1] === null) {
-    const {tiles} = getSections(board)[section];
+    const {tiles} = getSections(history)[section];
     const sectionIsWin = checkIfWon(tiles);
     // If section is won...
     if (sectionIsWin[0] !== TileState.Empty) {
@@ -53,10 +43,9 @@ const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
     }
   }
 
-  const test = getActiveSection(history, board, assets.mode);
+  const test = getActiveSection(history, assets.mode);
   return {
     activeSection: test,
-    board,
     history,
     mode: assets.mode,
     sectionStates,

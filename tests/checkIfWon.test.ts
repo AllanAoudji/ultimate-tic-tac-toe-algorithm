@@ -1,8 +1,6 @@
 import {Tile, TileState, WiningLine} from '@src/types';
 import checkIfWon from '@src/utils/checkIfWon';
 
-const EXCEPTION_MESSAGE = 'arg should be a 9 length array or a 9x9 matrix';
-
 const converToMatrixTile: (board: TileState[][]) => Tile[][] = (board) => {
   return board.map((row) =>
     row.map((item) => ({
