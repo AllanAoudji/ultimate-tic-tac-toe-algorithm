@@ -5,13 +5,6 @@ import generateAssets from '@src/utils/generateAssets';
 const assets = generateAssets();
 
 describe('generateAssets', () => {
-  it('should return initial active section', () => {
-    const activeSection = 'activeSection';
-
-    expect(assets).toHaveProperty(activeSection);
-    expect(assets[activeSection]).toBe(null);
-  });
-
   it('should return initial history', () => {
     const history = 'history';
 
@@ -26,18 +19,6 @@ describe('generateAssets', () => {
 
     expect(assets).toHaveProperty(mode);
     expect(checkIfMode(assets.mode)).toBe(true);
-  });
-
-  it('should return initial sections state', () => {
-    const sectionStates = 'sectionStates';
-
-    expect(assets).toHaveProperty(sectionStates);
-    expect(Array.isArray(assets[sectionStates])).toBe(true);
-    expect(assets[sectionStates].length).toBe(9);
-    expect(Object.keys(assets[sectionStates]).length).toBe(9);
-    assets[sectionStates].forEach((sectionState) => {
-      expect(sectionState).toEqual([TileState.Empty, null]);
-    });
   });
 
   it('should return initial winner', () => {

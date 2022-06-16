@@ -29,26 +29,19 @@ const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
 
   // Check if current section is win by this move.
   const {section} = getTileIndexPositionAndSection(tile);
-  const sectionStates = [...assets.sectionStates];
   let winner = assets.winner;
-  if (assets.sectionStates[section][1] === null) {
-    const {tiles} = getSections(history)[section];
-    const sectionIsWin = checkIfWon(tiles);
-    // If section is won...
-    if (sectionIsWin[0] !== TileState.Empty) {
-      // ...update assets.sectionStates
-      sectionStates[section] = sectionIsWin;
-      // ...and check if game if won
-      winner = checkIfWon(sectionStates.map((tile) => tile[0]));
-    }
+  const sections = getSections(history);
+  const {tiles} = sections[section];
+  const sectionIsWin = checkIfWon(tiles);
+  if (sectionIsWin[0] !== TileState.Empty) {
+    winner = checkIfWon(
+      sections.map((section) => checkIfWon(section.tiles)[0]),
+    );
   }
 
-  const test = getActiveSection(history, assets.mode);
   return {
-    activeSection: test,
     history,
     mode: assets.mode,
-    sectionStates,
     winner,
   };
 };
