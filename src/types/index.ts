@@ -28,6 +28,7 @@ export enum WiningLine {
   LeftColumn,
   MiddleColumn,
   RightColumn,
+  Surrender,
   TopLeftBottomRightDiagonal,
   TopRightBottomLeftDiagonal,
 }
