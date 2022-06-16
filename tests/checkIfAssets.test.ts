@@ -11,7 +11,7 @@ describe('checkIfAssets', () => {
     });
   });
 
-  it("should return false if arg doesn't have 5 properties", () => {
+  it("should return false if arg doesn't have 3 properties", () => {
     const wrongArgs = [
       {},
       {board: new Array(81).fill(TileState.Empty)},
@@ -34,21 +34,6 @@ describe('checkIfAssets', () => {
   it('should return false if arg.history is not a valid history', () => {
     const wrongAssets: any = generateAssets();
     wrongAssets.history = new Array(1);
-
-    expect(checkIfAssets(wrongAssets)).toBe(false);
-  });
-
-  it('should return false if arg.sectionStates does not exist', () => {
-    const wrongAssets: any = generateAssets();
-    delete wrongAssets.sectionStates;
-    wrongAssets.sectionStates = [];
-
-    expect(checkIfAssets(wrongAssets)).toBe(false);
-  });
-
-  it('should return false if arg.sectionStates is not a valid sectionStates', () => {
-    const wrongAssets: any = generateAssets();
-    wrongAssets.sectionStates = new Array(9);
 
     expect(checkIfAssets(wrongAssets)).toBe(false);
   });

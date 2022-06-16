@@ -33,10 +33,8 @@ export enum WiningLine {
 }
 
 export interface Assets {
-  activeSection: number | null;
   history: number[];
   mode: Mode;
-  sectionStates: SectionState[];
   winner: SectionState;
 }
 
