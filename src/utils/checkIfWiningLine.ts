@@ -8,9 +8,10 @@ const checkIfWiningLine: (arg: any) => boolean = (arg) => {
     WiningLine.LeftColumn,
     WiningLine.MiddleColumn,
     WiningLine.RightColumn,
-    WiningLine.Surrender,
     WiningLine.TopLeftBottomRightDiagonal,
     WiningLine.TopRightBottomLeftDiagonal,
+    WiningLine.Surrender,
+    WiningLine.Equality,
   ];
 
   return validState.includes(arg);

@@ -1,6 +1,7 @@
-import {Assets, TileState} from '@src/types';
+import {Assets, TileState, WiningLine} from '@src/types';
 
 import checkIfAssets from './checkIfAssets';
+import checkIfSectionIsFull from './checkIfSectionIsFull';
 import checkIfTileBelongToSection from './checkIfTileBelongToSection';
 import checkIfWon from './checkIfWon';
 import getActiveSection from './getActiveSection';
@@ -37,6 +38,21 @@ const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
     winner = checkIfWon(
       sections.map((section) => checkIfWon(section.tiles)[0]),
     );
+  }
+
+  // Check if equality
+  // If there is no winner...
+  // ... Every section should be won or full (no winner on this section)
+  if (winner[0] === TileState.Empty) {
+    if (
+      sections.every(
+        (section) =>
+          checkIfSectionIsFull(section.tiles) ||
+          checkIfWon(section.tiles)[0] !== TileState.Empty,
+      )
+    ) {
+      winner = [TileState.Empty, WiningLine.Equality];
+    }
   }
 
   return {

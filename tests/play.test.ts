@@ -53,7 +53,45 @@ describe('play', () => {
   it('section is won by the move, check if game is won', () => {
     const assets = generateAssets();
     assets.history.push(0, 80, 1, 79, 2, 78, 3, 59, 4, 58, 5, 40, 6, 39, 7, 32);
-    const {winner: winner1} = play(8, assets);
-    expect(winner1).toEqual([TileState.Player1, WiningLine.TopRow]);
+    const {winner} = play(8, assets);
+    expect(winner).toEqual([TileState.Player1, WiningLine.TopRow]);
+  });
+
+  it('returns equality', () => {
+    const assets = generateAssets();
+    assets.history.push(
+      0,
+      3,
+      1,
+      4,
+      2,
+      5,
+      6,
+      27,
+      7,
+      28,
+      9,
+      29,
+      30,
+      33,
+      31,
+      34,
+      32,
+      35,
+      57,
+      54,
+      58,
+      55,
+      59,
+      56,
+      78,
+      60,
+      70,
+      61,
+      80,
+      62,
+    );
+    const {winner} = play(8, assets);
+    expect(winner).toEqual([TileState.Empty, WiningLine.Equality]);
   });
 });
