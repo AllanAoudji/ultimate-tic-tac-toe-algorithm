@@ -25,9 +25,10 @@ describe('checkIfWiningLine', () => {
       WiningLine.LeftColumn,
       WiningLine.MiddleColumn,
       WiningLine.RightColumn,
-      WiningLine.Surrender,
       WiningLine.TopLeftBottomRightDiagonal,
       WiningLine.TopRightBottomLeftDiagonal,
+      WiningLine.Draw,
+      WiningLine.Surrender,
     ];
 
     winingLines.forEach((winingLine) => {
