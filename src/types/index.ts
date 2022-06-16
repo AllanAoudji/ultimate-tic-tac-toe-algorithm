@@ -30,7 +30,7 @@ export enum WiningLine {
   RightColumn,
   TopLeftBottomRightDiagonal,
   TopRightBottomLeftDiagonal,
-  Equality,
+  Draw,
   Surrender,
 }
 
@@ -58,4 +58,4 @@ export interface Tile {
 export type SectionState =
   | [TileState.Player1 | TileState.Player2, WiningLine]
   | [TileState.Empty, null]
-  | [TileState.Empty, WiningLine.Equality];
+  | [TileState.Empty, WiningLine.Draw];

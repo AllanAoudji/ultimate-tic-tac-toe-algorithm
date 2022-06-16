@@ -57,7 +57,7 @@ describe('play', () => {
     expect(winner).toEqual([TileState.Player1, WiningLine.TopRow]);
   });
 
-  it('returns equality', () => {
+  it('returns draw', () => {
     const assets = generateAssets();
     assets.history.push(
       0,
@@ -92,6 +92,6 @@ describe('play', () => {
       62,
     );
     const {winner} = play(8, assets);
-    expect(winner).toEqual([TileState.Empty, WiningLine.Equality]);
+    expect(winner).toEqual([TileState.Empty, WiningLine.Draw]);
   });
 });

@@ -40,7 +40,7 @@ const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
     );
   }
 
-  // Check if equality
+  // Check if draw
   // If there is no winner...
   // ... Every section should be won or full (no winner on this section)
   if (winner[0] === TileState.Empty) {
@@ -51,7 +51,7 @@ const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
           checkIfWon(section.tiles)[0] !== TileState.Empty,
       )
     ) {
-      winner = [TileState.Empty, WiningLine.Equality];
+      winner = [TileState.Empty, WiningLine.Draw];
     }
   }
 
