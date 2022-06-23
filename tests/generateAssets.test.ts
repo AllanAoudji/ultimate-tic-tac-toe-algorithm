@@ -1,5 +1,6 @@
 import {Mode, TileState} from '@src/types';
 import checkIfMode from '@src/utils/checkIfMode';
+import checkIfSectionStates from '@src/utils/checkIfSectionStates';
 import generateAssets from '@src/utils/generateAssets';
 
 const assets = generateAssets();
@@ -19,6 +20,11 @@ describe('generateAssets', () => {
 
     expect(assets).toHaveProperty(mode);
     expect(checkIfMode(assets.mode)).toBe(true);
+  });
+
+  it('should return initial sectionStates', () => {
+    expect(assets).toHaveProperty('sectionStates');
+    expect(checkIfSectionStates(assets.sectionStates)).toBe(true);
   });
 
   it('should return initial winner', () => {
