@@ -1,4 +1,4 @@
-import {Tile, TileState, WiningLine} from '@src/types';
+import {Tile, TileState, WinningLine} from '@src/types';
 import checkIfWon from '@src/utils/checkIfWon';
 
 const converToMatrixTile: (board: TileState[][]) => Tile[][] = (board) => {
@@ -48,11 +48,11 @@ describe('checkIfWon', () => {
 
     expect(checkIfWon(winBoardPlayer1)).toEqual([
       TileState.Player1,
-      WiningLine.TopRow,
+      WinningLine.TopRow,
     ]);
     expect(checkIfWon(winBoardPlayer2)).toEqual([
       TileState.Player2,
-      WiningLine.TopRow,
+      WinningLine.TopRow,
     ]);
   });
 
@@ -70,11 +70,11 @@ describe('checkIfWon', () => {
 
     expect(checkIfWon(winBoardPlayer1)).toEqual([
       TileState.Player1,
-      WiningLine.MiddleRow,
+      WinningLine.MiddleRow,
     ]);
     expect(checkIfWon(winBoardPlayer2)).toEqual([
       TileState.Player2,
-      WiningLine.MiddleRow,
+      WinningLine.MiddleRow,
     ]);
   });
 
@@ -92,11 +92,11 @@ describe('checkIfWon', () => {
 
     expect(checkIfWon(winBoardPlayer1)).toEqual([
       TileState.Player1,
-      WiningLine.BottomRow,
+      WinningLine.BottomRow,
     ]);
     expect(checkIfWon(winBoardPlayer2)).toEqual([
       TileState.Player2,
-      WiningLine.BottomRow,
+      WinningLine.BottomRow,
     ]);
   });
 
@@ -114,11 +114,11 @@ describe('checkIfWon', () => {
 
     expect(checkIfWon(winBoardPlayer1)).toEqual([
       TileState.Player1,
-      WiningLine.LeftColumn,
+      WinningLine.LeftColumn,
     ]);
     expect(checkIfWon(winBoardPlayer2)).toEqual([
       TileState.Player2,
-      WiningLine.LeftColumn,
+      WinningLine.LeftColumn,
     ]);
   });
 
@@ -136,11 +136,11 @@ describe('checkIfWon', () => {
 
     expect(checkIfWon(winBoardPlayer1)).toEqual([
       TileState.Player1,
-      WiningLine.MiddleColumn,
+      WinningLine.MiddleColumn,
     ]);
     expect(checkIfWon(winBoardPlayer2)).toEqual([
       TileState.Player2,
-      WiningLine.MiddleColumn,
+      WinningLine.MiddleColumn,
     ]);
   });
 
@@ -158,11 +158,11 @@ describe('checkIfWon', () => {
 
     expect(checkIfWon(winBoardPlayer1)).toEqual([
       TileState.Player1,
-      WiningLine.RightColumn,
+      WinningLine.RightColumn,
     ]);
     expect(checkIfWon(winBoardPlayer2)).toEqual([
       TileState.Player2,
-      WiningLine.RightColumn,
+      WinningLine.RightColumn,
     ]);
   });
 
@@ -180,11 +180,11 @@ describe('checkIfWon', () => {
 
     expect(checkIfWon(winBoardPlayer1)).toEqual([
       TileState.Player1,
-      WiningLine.TopLeftBottomRightDiagonal,
+      WinningLine.TopLeftBottomRightDiagonal,
     ]);
     expect(checkIfWon(winBoardPlayer2)).toEqual([
       TileState.Player2,
-      WiningLine.TopLeftBottomRightDiagonal,
+      WinningLine.TopLeftBottomRightDiagonal,
     ]);
   });
 
@@ -202,11 +202,11 @@ describe('checkIfWon', () => {
 
     expect(checkIfWon(winBoardPlayer1)).toEqual([
       TileState.Player1,
-      WiningLine.TopRightBottomLeftDiagonal,
+      WinningLine.TopRightBottomLeftDiagonal,
     ]);
     expect(checkIfWon(winBoardPlayer2)).toEqual([
       TileState.Player2,
-      WiningLine.TopRightBottomLeftDiagonal,
+      WinningLine.TopRightBottomLeftDiagonal,
     ]);
   });
 

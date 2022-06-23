@@ -1,4 +1,4 @@
-import {TileState, WiningLine} from '@src/types';
+import {TileState, WinningLine} from '@src/types';
 import generateAssets from '@src/utils/generateAssets';
 import play from '@src/utils/play';
 
@@ -54,7 +54,7 @@ describe('play', () => {
     const assets = generateAssets();
     assets.history.push(0, 80, 1, 79, 2, 78, 3, 59, 4, 58, 5, 40, 6, 39, 7, 32);
     const {winner} = play(8, assets);
-    expect(winner).toEqual([TileState.Player1, WiningLine.TopRow]);
+    expect(winner).toEqual([TileState.Player1, WinningLine.TopRow]);
   });
 
   it('returns draw', () => {
@@ -92,6 +92,6 @@ describe('play', () => {
       62,
     );
     const {winner} = play(8, assets);
-    expect(winner).toEqual([TileState.Empty, WiningLine.Draw]);
+    expect(winner).toEqual([TileState.Empty, WinningLine.Draw]);
   });
 });

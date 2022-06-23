@@ -24,7 +24,7 @@ import {
   SectionState,
   Tile,
   TileState,
-  WiningLine,
+  WinningLine,
 } from './types';
 
 export {
@@ -36,7 +36,7 @@ export {
   SectionState,
   Tile,
   TileState,
-  WiningLine,
+  WinningLine,
   checkIfSectionIsFull,
   checkIfTileBelongToSection,
   checkIfValidSection,

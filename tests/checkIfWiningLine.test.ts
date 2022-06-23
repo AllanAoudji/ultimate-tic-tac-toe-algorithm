@@ -1,38 +1,38 @@
-import {WiningLine} from '@src/types';
-import checkIfWiningLine from '@src/utils/checkIfWiningLine';
+import {WinningLine} from '@src/types';
+import checkIfWinningLine from '@src/utils/checkIfWinningLine';
 
-describe('checkIfWiningLine', () => {
-  it('should return false if arg is not a WiningLine', () => {
-    const notWiningLines = [
+describe('checkIfWinningLine', () => {
+  it('should return false if arg is not a WinningLine', () => {
+    const notWinningLines = [
       'string',
       false,
-      [WiningLine.BottomRow],
+      [WinningLine.BottomRow],
       {
-        winingLine: WiningLine.BottomRow,
+        WinningLine: WinningLine.BottomRow,
       },
     ];
 
-    notWiningLines.forEach((notWiningLine) => {
-      expect(checkIfWiningLine(notWiningLine)).toBe(false);
+    notWinningLines.forEach((notWinningLine) => {
+      expect(checkIfWinningLine(notWinningLine)).toBe(false);
     });
   });
 
-  it('should return true if arg is a WiningLine', () => {
-    const winingLines = [
-      WiningLine.TopRow,
-      WiningLine.MiddleRow,
-      WiningLine.BottomRow,
-      WiningLine.LeftColumn,
-      WiningLine.MiddleColumn,
-      WiningLine.RightColumn,
-      WiningLine.TopLeftBottomRightDiagonal,
-      WiningLine.TopRightBottomLeftDiagonal,
-      WiningLine.Draw,
-      WiningLine.Surrender,
+  it('should return true if arg is a WinningLine', () => {
+    const winningLines = [
+      WinningLine.TopRow,
+      WinningLine.MiddleRow,
+      WinningLine.BottomRow,
+      WinningLine.LeftColumn,
+      WinningLine.MiddleColumn,
+      WinningLine.RightColumn,
+      WinningLine.TopLeftBottomRightDiagonal,
+      WinningLine.TopRightBottomLeftDiagonal,
+      WinningLine.Draw,
+      WinningLine.Surrender,
     ];
 
-    winingLines.forEach((winingLine) => {
-      expect(checkIfWiningLine(winingLine)).toBe(true);
+    winningLines.forEach((winningLine) => {
+      expect(checkIfWinningLine(winningLine)).toBe(true);
     });
   });
 });

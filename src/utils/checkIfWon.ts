@@ -1,4 +1,4 @@
-import {SectionState, Tile, TileState, WiningLine} from '@src/types';
+import {SectionState, Tile, TileState, WinningLine} from '@src/types';
 
 import convertTo2DArray from './convertTo2DArray';
 import transposeMatrix from './transposeMatrix';
@@ -34,20 +34,20 @@ const checkColumnsOrRows: (
         if (index === 0) {
           const place =
             rowOrColumn === RowOrColumn.Row
-              ? WiningLine.TopRow
-              : WiningLine.LeftColumn;
+              ? WinningLine.TopRow
+              : WinningLine.LeftColumn;
           return [row[0].state, place];
         } else if (index === 1) {
           const place =
             rowOrColumn === RowOrColumn.Row
-              ? WiningLine.MiddleRow
-              : WiningLine.MiddleColumn;
+              ? WinningLine.MiddleRow
+              : WinningLine.MiddleColumn;
           return [row[0].state, place];
         } else {
           const place =
             rowOrColumn === RowOrColumn.Row
-              ? WiningLine.BottomRow
-              : WiningLine.RightColumn;
+              ? WinningLine.BottomRow
+              : WinningLine.RightColumn;
           return [row[0].state, place];
         }
       }
@@ -95,14 +95,14 @@ const checkIfWon: (section: TileState[] | Tile[][]) => SectionState = (
     array2D[1][1].state === array2D[2][2].state &&
     array2D[0][0].state !== TileState.Empty
   ) {
-    return [array2D[0][0].state, WiningLine.TopLeftBottomRightDiagonal];
+    return [array2D[0][0].state, WinningLine.TopLeftBottomRightDiagonal];
   }
   if (
     array2D[0][2].state === array2D[1][1].state &&
     array2D[1][1].state === array2D[2][0].state &&
     array2D[0][2].state !== TileState.Empty
   ) {
-    return [array2D[0][2].state, WiningLine.TopRightBottomLeftDiagonal];
+    return [array2D[0][2].state, WinningLine.TopRightBottomLeftDiagonal];
   }
 
   return [TileState.Empty, null];

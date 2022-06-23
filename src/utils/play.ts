@@ -1,4 +1,4 @@
-import {Assets, TileState, WiningLine} from '@src/types';
+import {Assets, TileState, WinningLine} from '@src/types';
 
 import checkIfAssets from './checkIfAssets';
 import checkIfSectionIsFull from './checkIfSectionIsFull';
@@ -51,7 +51,7 @@ const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
           checkIfWon(section.tiles)[0] !== TileState.Empty,
       )
     ) {
-      winner = [TileState.Empty, WiningLine.Draw];
+      winner = [TileState.Empty, WinningLine.Draw];
     }
   }
 

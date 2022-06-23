@@ -1,7 +1,7 @@
 import {TileState} from '@src/types';
 
 import checkIfTileState from './checkIfTileState';
-import checkIfWiningLine from './checkIfWiningLine';
+import checkIfWinningLine from './checkIfWinningLine';
 
 const checkIfSectionState: (arg: any) => boolean = (arg) => {
   if (
@@ -19,7 +19,7 @@ const checkIfSectionState: (arg: any) => boolean = (arg) => {
 
   if (
     (arg[0] === TileState.Player1 || arg[0] === TileState.Player2) &&
-    !checkIfWiningLine(arg[1])
+    !checkIfWinningLine(arg[1])
   ) {
     return false;
   }
