@@ -1,3 +1,4 @@
+import checkIfSectionIsFull from './utils/checkIfSectionIsFull';
 import checkIfTileBelongToSection from './utils/checkIfTileBelongToSection';
 import checkIfValidSection from './utils/checkIfValidSection';
 import checkIfWon from './utils/checkIfWon';
@@ -36,6 +37,7 @@ export {
   Tile,
   TileState,
   WiningLine,
+  checkIfSectionIsFull,
   checkIfTileBelongToSection,
   checkIfValidSection,
   checkIfWon,
