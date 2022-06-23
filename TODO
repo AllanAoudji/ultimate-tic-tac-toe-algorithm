@@ -12,3 +12,8 @@ Timer()
 Create single file for all ERRORS_MESSAGES
 
 https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project
+
+checkIfHistoryAndSectionStatesAreValid.ts
+pour chaque sectionState qui est soit gagné soit draw
+vérifier si les Tile de l'history correspondent
+use checkIfHistoryAndSectionStatesAreValid to play()
