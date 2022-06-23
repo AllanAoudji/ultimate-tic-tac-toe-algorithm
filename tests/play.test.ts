@@ -52,46 +52,25 @@ describe('play', () => {
 
   it('section is won by the move, check if game is won', () => {
     const assets = generateAssets();
-    assets.history.push(0, 80, 1, 79, 2, 78, 3, 59, 4, 58, 5, 40, 6, 39, 7, 32);
+    assets.history.push(6, 39, 7, 32);
+    assets.sectionStates[0] = [TileState.Player1, WinningLine.TopRow];
+    assets.sectionStates[1] = [TileState.Player1, WinningLine.TopRow];
     const {winner} = play(8, assets);
     expect(winner).toEqual([TileState.Player1, WinningLine.TopRow]);
   });
 
   it('returns draw', () => {
     const assets = generateAssets();
-    assets.history.push(
-      0,
-      3,
-      1,
-      4,
-      2,
-      5,
-      6,
-      27,
-      7,
-      28,
-      9,
-      29,
-      30,
-      33,
-      31,
-      34,
-      32,
-      35,
-      57,
-      54,
-      58,
-      55,
-      59,
-      56,
-      78,
-      60,
-      70,
-      61,
-      80,
-      62,
-    );
-    const {winner} = play(8, assets);
+    assets.history.push(69, 60, 70, 61, 80);
+    assets.sectionStates[0] = [TileState.Player1, WinningLine.BottomRow];
+    assets.sectionStates[1] = [TileState.Player2, WinningLine.BottomRow];
+    assets.sectionStates[2] = [TileState.Player2, WinningLine.BottomRow];
+    assets.sectionStates[3] = [TileState.Player2, WinningLine.BottomRow];
+    assets.sectionStates[4] = [TileState.Player2, WinningLine.BottomRow];
+    assets.sectionStates[5] = [TileState.Player1, WinningLine.BottomRow];
+    assets.sectionStates[6] = [TileState.Player1, WinningLine.BottomRow];
+    assets.sectionStates[7] = [TileState.Player1, WinningLine.BottomRow];
+    const {winner} = play(62, assets);
     expect(winner).toEqual([TileState.Empty, WinningLine.Draw]);
   });
 });

@@ -1,7 +1,6 @@
 import {Assets, TileState, WinningLine} from '@src/types';
 
 import checkIfAssets from './checkIfAssets';
-import checkIfSectionIsFull from './checkIfSectionIsFull';
 import checkIfTileBelongToSection from './checkIfTileBelongToSection';
 import checkIfWon from './checkIfWon';
 import getActiveSection from './getActiveSection';
@@ -25,39 +24,29 @@ const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
     throw new Error('invalid move');
   }
 
-  // Upadate history
+  // Update history
   const history = [...assets.history, tile];
 
   // Check if current section is win by this move.
-  const {section} = getTileIndexPositionAndSection(tile);
-  let winner = assets.winner;
   const sections = getSections(history);
-  const {tiles} = sections[section];
+  const {section: sectionIndex} = getTileIndexPositionAndSection(tile);
+  const sectionStates = [...assets.sectionStates];
+  const {tiles} = sections[sectionIndex];
   const sectionIsWin = checkIfWon(tiles);
-  if (sectionIsWin[0] !== TileState.Empty) {
-    winner = checkIfWon(
-      sections.map((section) => checkIfWon(section.tiles)[0]),
-    );
-  }
+  let winner = assets.winner;
 
-  // Check if draw
-  // If there is no winner...
-  // ... Every section should be won or full (no winner on this section)
-  if (winner[0] === TileState.Empty) {
-    if (
-      sections.every(
-        (section) =>
-          checkIfSectionIsFull(section.tiles) ||
-          checkIfWon(section.tiles)[0] !== TileState.Empty,
-      )
-    ) {
-      winner = [TileState.Empty, WinningLine.Draw];
-    }
+  if (
+    sectionIsWin[0] !== TileState.Empty ||
+    sectionIsWin[1] === WinningLine.Draw
+  ) {
+    sectionStates[sectionIndex] = sectionIsWin;
+    winner = checkIfWon(sectionStates.map((sectionState) => sectionState[0]));
   }
 
   return {
     history,
     mode: assets.mode,
+    sectionStates,
     winner,
   };
 };
