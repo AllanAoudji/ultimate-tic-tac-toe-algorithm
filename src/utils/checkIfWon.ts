@@ -3,6 +3,7 @@ import {SectionState, Tile, TileState, WinningLine} from '@src/types';
 import convertTo2DArray from './convertTo2DArray';
 import transposeMatrix from './transposeMatrix';
 import checkIfSection from './checkIfSection';
+import checkIfSectionIsFull from './checkIfSectionIsFull';
 
 enum RowOrColumn {
   Row,
@@ -68,6 +69,10 @@ const checkIfWon: (section: TileState[] | Tile[][]) => SectionState = (
 
   if (!checkIfSection(section)) {
     throw new Error('section should be valid.');
+  }
+
+  if (checkIfSectionIsFull(section)) {
+    return [TileState.Empty, WinningLine.Draw];
   }
 
   if (section.length === 3) {
