@@ -11,7 +11,7 @@ describe('checkIfAssets', () => {
     });
   });
 
-  it("should return false if arg doesn't have 3 properties", () => {
+  it("should return false if arg doesn't have 4 properties", () => {
     const wrongArgs = [
       {},
       {board: new Array(81).fill(TileState.Empty)},
@@ -42,6 +42,20 @@ describe('checkIfAssets', () => {
     const wrongAssets: any = generateAssets();
     delete wrongAssets.winner;
     wrongAssets.winners = TileState.Empty;
+
+    expect(checkIfAssets(wrongAssets)).toBe(false);
+  });
+
+  it('should return false if sectionStates is not a SectionState[]', () => {
+    const wrongAssets: any = generateAssets();
+    wrongAssets.checkIfAssets = [[TileState.Empty, null]];
+
+    expect(checkIfAssets(wrongAssets)).toBe(false);
+  });
+
+  it('should return false if mode is not a Mode', () => {
+    const wrongAssets: any = generateAssets();
+    wrongAssets.mode = 'not a mode';
 
     expect(checkIfAssets(wrongAssets)).toBe(false);
   });

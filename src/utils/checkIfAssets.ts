@@ -1,14 +1,16 @@
 import checkIfHistory from './checkIfHistory';
 import checkIfMode from './checkIfMode';
 import checkIfSectionState from './checkIfSectionState';
+import checkIfSectionStates from './checkIfSectionStates';
 
 const checkIfAssets: (item: any) => boolean = (item) => {
   if (
     typeof item !== 'object' ||
-    Object.keys(item).length !== 3 ||
+    Object.keys(item).length !== 4 ||
     !checkIfHistory(item.history) ||
-    !checkIfSectionState(item.winner) ||
-    !checkIfMode(item.mode)
+    !checkIfMode(item.mode) ||
+    !checkIfSectionStates(item.sectionStates) ||
+    !checkIfSectionState(item.winner)
   ) {
     return false;
   }
