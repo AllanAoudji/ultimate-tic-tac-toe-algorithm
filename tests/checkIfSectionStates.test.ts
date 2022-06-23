@@ -1,4 +1,4 @@
-import {TileState, WiningLine} from '@src/types';
+import {TileState, WinningLine} from '@src/types';
 import checkIfSectionStates from '@src/utils/checkIfSectionStates';
 
 describe('checkIfSectionStates', () => {
@@ -33,15 +33,15 @@ describe('checkIfSectionStates', () => {
     const sectionStates1 = new Array(9).fill([TileState.Empty, null]);
     const sectionStates2 = new Array(9).fill([
       TileState.Player1,
-      WiningLine.BottomRow,
+      WinningLine.BottomRow,
     ]);
     const sectionState3 = new Array(9).fill([
       TileState.Player2,
-      WiningLine.BottomRow,
+      WinningLine.BottomRow,
     ]);
     const sectionState4 = new Array(9).fill([
       TileState.Player2,
-      WiningLine.TopRow,
+      WinningLine.TopRow,
     ]);
     const sectionState5 = new Array(9).fill([TileState.Empty, null]);
 
