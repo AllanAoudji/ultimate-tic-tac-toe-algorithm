@@ -4,6 +4,8 @@ import convertTo2DArray from './convertTo2DArray';
 import transposeMatrix from './transposeMatrix';
 import checkIfSection from './checkIfSection';
 import checkIfSectionIsFull from './checkIfSectionIsFull';
+import convertTo1DArray from './convertTo1DArray';
+import mapMatrix from './mapMatrix';
 
 enum RowOrColumn {
   Row,
@@ -66,6 +68,8 @@ const checkIfWon: (section: TileState[] | Tile[][]) => SectionState = (
   section,
 ) => {
   let array2D: Tile[][];
+  let numOfPlayer1Tiles: number;
+  let numOfPlayer2Tiles: number;
 
   if (!checkIfSection(section)) {
     throw new Error('section should be valid.');
@@ -77,8 +81,24 @@ const checkIfWon: (section: TileState[] | Tile[][]) => SectionState = (
 
   if (section.length === 3) {
     array2D = [...(section as Tile[][])];
+    numOfPlayer1Tiles = convertTo1DArray(
+      mapMatrix(section as Tile[][], (tile) => tile.state),
+    ).filter((tile) => tile === TileState.Player1).length;
+    numOfPlayer2Tiles = convertTo1DArray(
+      mapMatrix(section as Tile[][], (tile) => tile.state),
+    ).filter((tile) => tile === TileState.Player2).length;
   } else {
     array2D = convertTo2DArray(section as TileState[]);
+    numOfPlayer1Tiles = (section as TileState[]).filter(
+      (tile) => tile === TileState.Player1,
+    ).length;
+    numOfPlayer2Tiles = (section as TileState[]).filter(
+      (tile) => tile === TileState.Player1,
+    ).length;
+  }
+
+  if (numOfPlayer1Tiles < 3 && numOfPlayer2Tiles < 3) {
+    return [TileState.Empty, null];
   }
 
   // Check if a row is wining.
