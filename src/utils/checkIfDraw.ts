@@ -15,6 +15,7 @@ const checkColumnsRowsOrDiagonals: (array: Tile[][]) => boolean = (array) => {
       previousValue[index] = true;
       return previousValue;
     }
+
     const moves = row.filter(
       (tile) =>
         tile.state === TileState.Player1 || tile.state === TileState.Player2,

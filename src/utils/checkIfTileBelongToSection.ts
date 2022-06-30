@@ -11,7 +11,7 @@ const checkIfTileBelongToSection: (
     throw new Error('sectionNumber out of range');
   }
 
-  if (!sectionNumber) {
+  if (sectionNumber === null) {
     return true;
   }
 
