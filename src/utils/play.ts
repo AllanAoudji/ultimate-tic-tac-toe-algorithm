@@ -42,10 +42,7 @@ const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
   // If current section is already won, update only history
   const sectionStates = [...assets.sectionStates];
   let winner = assets.winner;
-  if (
-    sectionStates[sectionIndex][0] !== TileState.Empty ||
-    sectionStates[sectionIndex][0] === TileState.Draw
-  ) {
+  if (sectionStates[sectionIndex][0] !== TileState.Empty) {
     return {
       history,
       mode: assets.mode,
