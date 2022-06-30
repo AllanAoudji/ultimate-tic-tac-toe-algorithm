@@ -3,10 +3,11 @@ import generateAssets from '@src/utils/generateAssets';
 import * as checkIfValidSection from '@src/utils/checkIfValidSection';
 import play from '@src/utils/play';
 import * as checkIfWon from '@src/utils/checkIfWon';
+import * as checkIfSectionDraw from '@src/utils/checkIfDraw';
 
 describe('play', () => {
   afterEach(() => {
-    jest.resetAllMocks();
+    jest.restoreAllMocks();
   });
 
   it('should throw an error if tile is out of bound', () => {
@@ -77,7 +78,7 @@ describe('play', () => {
     assets.sectionStates[6] = [TileState.Player1, WinningLine.BottomRow];
     assets.sectionStates[7] = [TileState.Player1, WinningLine.BottomRow];
     const {winner} = play(62, assets);
-    expect(winner).toEqual([TileState.Empty, WinningLine.Draw]);
+    expect(winner).toEqual([TileState.Draw, null]);
   });
 
   it('update only history if section is already won', () => {
@@ -85,7 +86,7 @@ describe('play', () => {
     jest
       .spyOn(checkIfWon, 'default')
       .mockReturnValue([TileState.Player1, WinningLine.BottomRow]);
-    assets.sectionStates[0] = [TileState.Empty, WinningLine.Draw];
+    assets.sectionStates[0] = [TileState.Draw, null];
     const {winner} = play(0, assets);
     expect(winner).toEqual([TileState.Empty, null]);
   });
@@ -94,5 +95,12 @@ describe('play', () => {
     const assets = generateAssets();
     jest.spyOn(checkIfValidSection, 'default').mockReturnValue(false);
     expect(() => play(0, assets)).toThrow('invalid move');
+  });
+
+  it('Sets corrent section to draw', () => {
+    const assets = generateAssets();
+    jest.spyOn(checkIfSectionDraw, 'default').mockReturnValue(true);
+    const {sectionStates} = play(0, assets);
+    expect(sectionStates[0]).toEqual([TileState.Draw, null]);
   });
 });
