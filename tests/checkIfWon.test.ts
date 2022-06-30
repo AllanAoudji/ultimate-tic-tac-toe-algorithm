@@ -35,22 +35,6 @@ describe('checkIfWon', () => {
     expect(checkIfWon(array1D)).toEqual([TileState.Empty, null]);
   });
 
-  it('should return [TileState.Empty, WinningLine.Draw] if section is full', () => {
-    const section = [
-      TileState.Player1,
-      TileState.Player2,
-      TileState.Player2,
-      TileState.Player2,
-      TileState.Player2,
-      TileState.Player1,
-      TileState.Player1,
-      TileState.Player1,
-      TileState.Player2,
-    ];
-
-    expect(checkIfWon(section)).toEqual([TileState.Empty, WinningLine.Draw]);
-  });
-
   it('should return a winner if the top row has the same symbol', () => {
     const winBoardPlayer1: Tile[][] = converToMatrixTile([
       [TileState.Player1, TileState.Player1, TileState.Player1],

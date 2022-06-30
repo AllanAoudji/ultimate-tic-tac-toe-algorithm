@@ -3,7 +3,6 @@ import {SectionState, Tile, TileState, WinningLine} from '@src/types';
 import convertTo2DArray from './convertTo2DArray';
 import transposeMatrix from './transposeMatrix';
 import checkIfSection from './checkIfSection';
-import checkIfSectionIsFull from './checkIfSectionIsFull';
 import convertTo1DArray from './convertTo1DArray';
 import mapMatrix from './mapMatrix';
 
@@ -25,11 +24,12 @@ const checkColumnsOrRows: (
       }
 
       // Continue if A === B && B === C
-      // and A !== Empty.
+      // and A !== Empty || A !== Draw.
       if (
         row[0].state === row[1].state &&
         row[1].state === row[2].state &&
-        row[0].state !== TileState.Empty
+        row[0].state !== TileState.Empty &&
+        row[0].state !== TileState.Draw
       ) {
         // Check if we check the columns or the row,
         // and assign the winning player and the position
@@ -75,10 +75,6 @@ const checkIfWon: (section: TileState[] | Tile[][]) => SectionState = (
     throw new Error('section should be valid.');
   }
 
-  if (checkIfSectionIsFull(section)) {
-    return [TileState.Empty, WinningLine.Draw];
-  }
-
   if (section.length === 3) {
     array2D = [...(section as Tile[][])];
     numOfPlayer1Tiles = convertTo1DArray(
@@ -118,14 +114,16 @@ const checkIfWon: (section: TileState[] | Tile[][]) => SectionState = (
   if (
     array2D[0][0].state === array2D[1][1].state &&
     array2D[1][1].state === array2D[2][2].state &&
-    array2D[0][0].state !== TileState.Empty
+    array2D[0][0].state !== TileState.Empty &&
+    array2D[0][0].state !== TileState.Draw
   ) {
     return [array2D[0][0].state, WinningLine.TopLeftBottomRightDiagonal];
   }
   if (
     array2D[0][2].state === array2D[1][1].state &&
     array2D[1][1].state === array2D[2][0].state &&
-    array2D[0][2].state !== TileState.Empty
+    array2D[0][2].state !== TileState.Empty &&
+    array2D[0][2].state !== TileState.Draw
   ) {
     return [array2D[0][2].state, WinningLine.TopRightBottomLeftDiagonal];
   }

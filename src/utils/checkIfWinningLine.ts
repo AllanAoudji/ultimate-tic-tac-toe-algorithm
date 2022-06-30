@@ -10,7 +10,6 @@ const checkIfWinningLine: (arg: any) => boolean = (arg) => {
     WinningLine.RightColumn,
     WinningLine.TopLeftBottomRightDiagonal,
     WinningLine.TopRightBottomLeftDiagonal,
-    WinningLine.Draw,
     WinningLine.Surrender,
   ];
 
