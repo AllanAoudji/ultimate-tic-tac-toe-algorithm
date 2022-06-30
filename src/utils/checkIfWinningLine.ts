@@ -2,15 +2,15 @@ import {WinningLine} from '@src/types';
 
 const checkIfWinningLine: (arg: any) => boolean = (arg) => {
   const validState = [
-    WinningLine.TopRow,
-    WinningLine.MiddleRow,
     WinningLine.BottomRow,
     WinningLine.LeftColumn,
     WinningLine.MiddleColumn,
+    WinningLine.MiddleRow,
     WinningLine.RightColumn,
+    WinningLine.Surrender,
     WinningLine.TopLeftBottomRightDiagonal,
     WinningLine.TopRightBottomLeftDiagonal,
-    WinningLine.Surrender,
+    WinningLine.TopRow,
   ];
 
   return validState.includes(arg);
