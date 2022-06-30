@@ -16,9 +16,10 @@ export enum Position {
 }
 
 export enum TileState {
-  Empty = 'EMPTY',
+  Draw,
+  Empty,
   Player1 = 'X',
-  Player2 = 'Y',
+  Player2 = '0',
 }
 
 export enum WinningLine {
@@ -30,7 +31,6 @@ export enum WinningLine {
   RightColumn,
   TopLeftBottomRightDiagonal,
   TopRightBottomLeftDiagonal,
-  Draw,
   Surrender,
 }
 
@@ -59,4 +59,4 @@ export interface Tile {
 export type SectionState =
   | [TileState.Player1 | TileState.Player2, WinningLine]
   | [TileState.Empty, null]
-  | [TileState.Empty, WinningLine.Draw];
+  | [TileState.Draw, null];

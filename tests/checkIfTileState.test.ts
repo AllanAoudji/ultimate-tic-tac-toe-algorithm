@@ -3,7 +3,12 @@ import checkIfTileState from '@src/utils/checkIfTileState';
 
 describe('checkIfTileState', () => {
   it('should return true if arg is a tileState', () => {
-    const tileStates = [TileState.Empty, TileState.Player1, TileState.Player2];
+    const tileStates = [
+      TileState.Draw,
+      TileState.Empty,
+      TileState.Player1,
+      TileState.Player2,
+    ];
 
     tileStates.forEach((tileState) => {
       expect(checkIfTileState(tileState)).toBe(true);

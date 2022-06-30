@@ -1,5 +1,6 @@
 import {Tile, TileState, WinningLine} from '@src/types';
 import checkIfWon from '@src/utils/checkIfWon';
+import * as transposeMatrix from '@src/utils/transposeMatrix';
 
 const converToMatrixTile: (board: TileState[][]) => Tile[][] = (board) => {
   return board.map((row) =>
@@ -32,22 +33,6 @@ describe('checkIfWon', () => {
     const array1D: TileState[] = new Array(9).fill(TileState.Empty);
 
     expect(checkIfWon(array1D)).toEqual([TileState.Empty, null]);
-  });
-
-  it('should return [TileState.Empty, WinningLine.Draw] if section is full', () => {
-    const section = [
-      TileState.Player1,
-      TileState.Player2,
-      TileState.Player2,
-      TileState.Player2,
-      TileState.Player2,
-      TileState.Player1,
-      TileState.Player1,
-      TileState.Player1,
-      TileState.Player2,
-    ];
-
-    expect(checkIfWon(section)).toEqual([TileState.Empty, WinningLine.Draw]);
   });
 
   it('should return a winner if the top row has the same symbol', () => {
@@ -263,5 +248,41 @@ describe('checkIfWon', () => {
     tests.forEach((test) => {
       expect(checkIfWon(test)).toEqual([TileState.Empty, null]);
     });
+  });
+
+  it('should return [TileState.Empty, null] if there is less than 3 Player1 moves in the section', () => {
+    jest.spyOn(transposeMatrix, 'default');
+    const section = [
+      TileState.Player1,
+      TileState.Empty,
+      TileState.Empty,
+      TileState.Empty,
+      TileState.Empty,
+      TileState.Empty,
+      TileState.Empty,
+      TileState.Player1,
+      TileState.Empty,
+    ];
+    expect(checkIfWon(section)).toEqual([TileState.Empty, null]);
+    expect(transposeMatrix.default).not.toHaveBeenCalled();
+    jest.spyOn(transposeMatrix, 'default').mockClear();
+  });
+
+  it('should return [TileState.Empty, null] if there is less than 3 Player2 moves in the section', () => {
+    jest.spyOn(transposeMatrix, 'default');
+    const section = [
+      TileState.Player2,
+      TileState.Empty,
+      TileState.Empty,
+      TileState.Empty,
+      TileState.Empty,
+      TileState.Empty,
+      TileState.Empty,
+      TileState.Player2,
+      TileState.Empty,
+    ];
+    expect(checkIfWon(section)).toEqual([TileState.Empty, null]);
+    expect(transposeMatrix.default).not.toHaveBeenCalled();
+    jest.spyOn(transposeMatrix, 'default').mockClear();
   });
 });

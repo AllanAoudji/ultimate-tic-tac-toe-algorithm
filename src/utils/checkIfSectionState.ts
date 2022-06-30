@@ -13,7 +13,10 @@ const checkIfSectionState: (arg: any) => boolean = (arg) => {
     return false;
   }
 
-  if (arg[0] === TileState.Empty && arg[1] !== null) {
+  if (
+    (arg[0] === TileState.Empty || arg[0] === TileState.Draw) &&
+    arg[1] !== null
+  ) {
     return false;
   }
 

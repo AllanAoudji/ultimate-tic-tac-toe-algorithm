@@ -12,6 +12,7 @@ import getIndex1DFrom2D from './utils/getIndex1DFrom2D';
 import getIndex2DFrom1D from './utils/getIndex2DFrom1D';
 import getPlayerMoves from './utils/getPlayerMoves';
 import getSections from './utils/getSections';
+import getTileIndexPositionAndSection from './utils/getTileIndexPositionAndSection';
 import mapMatrix from './utils/mapMatrix';
 import play from './utils/play';
 import transposeMatrix from './utils/transposeMatrix';
@@ -51,6 +52,7 @@ export {
   getIndex2DFrom1D,
   getPlayerMoves,
   getSections,
+  getTileIndexPositionAndSection,
   mapMatrix,
   play,
   transposeMatrix,

@@ -27,7 +27,6 @@ describe('checkIfWinningLine', () => {
       WinningLine.RightColumn,
       WinningLine.TopLeftBottomRightDiagonal,
       WinningLine.TopRightBottomLeftDiagonal,
-      WinningLine.Draw,
       WinningLine.Surrender,
     ];
 
