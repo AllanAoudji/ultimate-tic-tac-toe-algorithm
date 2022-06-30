@@ -5,7 +5,6 @@ import checkIfDraw from './checkIfDraw';
 import checkIfTileBelongToSection from './checkIfTileBelongToSection';
 import checkIfValidSection from './checkIfValidSection';
 import checkIfWon from './checkIfWon';
-import convertTo2DArray from './convertTo2DArray';
 import getActiveSection from './getActiveSection';
 import getSections from './getSections';
 import getTileIndexPositionAndSection from './getTileIndexPositionAndSection';
