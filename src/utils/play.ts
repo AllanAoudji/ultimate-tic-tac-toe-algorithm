@@ -3,7 +3,6 @@ import {Assets, TileState} from '@src/types';
 import checkIfAssets from './checkIfAssets';
 import checkIfDraw from './checkIfDraw';
 import checkIfTileBelongToSection from './checkIfTileBelongToSection';
-import checkIfValidSection from './checkIfValidSection';
 import checkIfWon from './checkIfWon';
 import getActiveSection from './getActiveSection';
 import getSections from './getSections';
@@ -16,7 +15,7 @@ const arrayEquals = (firstArray: any, secondArray: any) =>
   firstArray.every((val, index) => val === secondArray[index]);
 
 const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
-  if (tile >= 81) {
+  if (tile < 0 || tile >= 81) {
     throw new Error('tile out of bound');
   }
   if (!checkIfAssets(assets)) {
@@ -31,15 +30,11 @@ const play: (tile: number, assets: Assets) => Assets = (tile, assets) => {
     throw new Error('invalid move');
   }
 
-  const {section: sectionIndex} = getTileIndexPositionAndSection(tile);
-  if (!checkIfValidSection(assets.history, sectionIndex, assets.mode)) {
-    throw new Error('invalid move');
-  }
-
   // Update history
   const history = [...assets.history, tile];
 
   // If current section is already won, update only history
+  const {section: sectionIndex} = getTileIndexPositionAndSection(tile);
   const sectionStates = [...assets.sectionStates];
   let winner = assets.winner;
   if (sectionStates[sectionIndex][0] !== TileState.Empty) {

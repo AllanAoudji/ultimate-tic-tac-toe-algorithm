@@ -1,6 +1,5 @@
 import {Mode, TileState, WinningLine} from '@src/types';
 import generateAssets from '@src/utils/generateAssets';
-import * as checkIfValidSection from '@src/utils/checkIfValidSection';
 import play from '@src/utils/play';
 import * as checkIfWon from '@src/utils/checkIfWon';
 import * as checkIfSectionDraw from '@src/utils/checkIfDraw';
@@ -89,12 +88,6 @@ describe('play', () => {
     assets.sectionStates[0] = [TileState.Draw, null];
     const {winner} = play(0, assets);
     expect(winner).toEqual([TileState.Empty, null]);
-  });
-
-  it('should throw an error if section is not valid', () => {
-    const assets = generateAssets();
-    jest.spyOn(checkIfValidSection, 'default').mockReturnValue(false);
-    expect(() => play(0, assets)).toThrow('invalid move');
   });
 
   it('Sets corrent section to draw', () => {
