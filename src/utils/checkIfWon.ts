@@ -89,7 +89,7 @@ const checkIfWon: (section: TileState[] | Tile[][]) => SectionState = (
       (tile) => tile === TileState.Player1,
     ).length;
     numOfPlayer2Tiles = (section as TileState[]).filter(
-      (tile) => tile === TileState.Player1,
+      (tile) => tile === TileState.Player2,
     ).length;
   }
 
