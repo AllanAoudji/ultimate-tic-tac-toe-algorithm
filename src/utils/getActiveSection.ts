@@ -45,9 +45,11 @@ const getActiveSection: (history: number[], mode?: Mode) => number | null = (
 
   // If mode === normal and the active section is already won,
   // current player can play everywhere else
-  const sectionState = checkIfWon(sections[index].tiles);
-  if (mode === Mode.Normal && sectionState[0] !== TileState.Empty) {
-    return null;
+  if (mode === Mode.Normal) {
+    const sectionState = checkIfWon(sections[index].tiles);
+    if (sectionState[0] !== TileState.Empty) {
+      return null;
+    }
   }
 
   return index;
