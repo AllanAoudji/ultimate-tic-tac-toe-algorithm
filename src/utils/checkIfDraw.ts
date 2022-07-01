@@ -64,7 +64,7 @@ const checkIfDraw: (section: TileState[] | Tile[][]) => boolean = (section) => {
   ).filter(
     (tile) => tile === TileState.Player1 || tile === TileState.Player2,
   ).length;
-  if (numOfDraw < 3 && numOfMoves < 5) {
+  if (numOfDraw < 3 && numOfMoves < 6) {
     return false;
   }
 
