@@ -38,23 +38,18 @@ const getActiveSection: (history: number[], mode?: Mode) => number | null = (
     throw new Error('position not found');
   }
 
-  // If mode === normal,
-  // and the active section is already won,
-  // current player can play everywhere else
-  if (
-    mode === Mode.Normal &&
-    checkIfWon(sections[index].tiles)[0] !== TileState.Empty
-  ) {
+  // If the section which is supposed to be active is full, return null
+  if (checkIfSectionIsFull(sections[index].tiles)) {
     return null;
+  }
 
-    // If mode === contine
-    // the current player can play everywhere
-    // only if the active section is full
-  } else if (
-    mode === Mode.Continue &&
-    checkIfSectionIsFull(sections[index].tiles)
-  ) {
-    return null;
+  // If mode === normal and the active section is already won,
+  // current player can play everywhere else
+  if (mode === Mode.Normal) {
+    const sectionState = checkIfWon(sections[index].tiles);
+    if (sectionState[0] !== TileState.Empty) {
+      return null;
+    }
   }
 
   return index;
